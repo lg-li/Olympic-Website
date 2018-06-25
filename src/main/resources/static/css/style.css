@@ -193,7 +193,7 @@ select.in-drop {
 }
 
 .sb-search-submit {
-    background: url('../images/img-sprite.png') no-repeat -20px -87px;
+    background: url('/static/images/img-sprite.png') no-repeat -20px -87px;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
     filter: alpha(opacity=0); /* IE 5-7 */
     color: transparent;
@@ -204,7 +204,7 @@ select.in-drop {
 }
 
 .sb-icon-search {
-    background: #2f2f2f url('../images/img-sprite.png') no-repeat -20px -87px;
+    background: #2f2f2f url('/static/images/img-sprite.png') no-repeat -20px -87px;
     z-index: 90;
     width: 30px;
     height: 30px;
@@ -217,7 +217,7 @@ select.in-drop {
 }
 
 .sb-search.sb-search-open .sb-icon-search, .no-js .sb-search .sb-icon-search {
-    background: url('../images/search.png') no-repeat -20px -87px;
+    background: url('/static/images/search.png') no-repeat -20px -87px;
     color: #fff;
     z-index: 11;
 }
@@ -308,7 +308,7 @@ select.in-drop {
 }
 
 .nav li a i {
-    background: url(../images/arrow.png) no-repeat 0px 4px;
+    background: url(/static/images/arrow.png) no-repeat 0px 4px;
     display: inline-block;
     width: 13px;
     height: 13px;
@@ -442,7 +442,7 @@ select.in-drop {
 
 /*----*/
 .banner {
-    background: url(../images/banner.jpg) no-repeat center;
+    background: url(/static/images/banner.jpg) no-repeat center;
     width: 100%;
     min-height: 600px;
     display: block;
@@ -519,7 +519,7 @@ h6.your-in {
 }
 
 .run i {
-    background: url(../images/img-sprite.png) no-repeat -18px -11px;
+    background: url(/static/images/img-sprite.png) no-repeat -18px -11px;
     width: 60px;
     min-height: 60px;
     display: block;
@@ -659,7 +659,7 @@ b.plus-in {
     text-decoration: none;
     height: 76px;
     width: 76px;
-    background: url("../images/img-sprite.png") no-repeat -124px -76px;
+    background: url("/static/images/img-sprite.png") no-repeat -124px -76px;
 }
 
 .callbacks_nav.next {
@@ -744,7 +744,7 @@ b.plus-in {
 .eye li i {
     height: 16px;
     width: 16px;
-    background: url("../images/img-sprite.png") no-repeat -319px -114px;
+    background: url("/static/images/img-sprite.png") no-repeat -319px -114px;
     display: inline-block;
     vertical-align: middle;
 }
@@ -1120,7 +1120,7 @@ a.cart:hover {
 .star ul li i {
     height: 16px;
     width: 16px;
-    background: url("../images/img-sprite.png") no-repeat -386px -114px;
+    background: url("/static/images/img-sprite.png") no-repeat -386px -114px;
     display: inline-block;
 }
 
@@ -1204,7 +1204,7 @@ a.cart:hover {
 
 .single-bottom ul li input[type="checkbox"]:checked + label span:first-child:before {
     content: "";
-    background: url(../images/11.png) no-repeat;
+    background: url(/static/images/11.png) no-repeat;
     position: absolute;
     left: 2px;
     top: 2px;
@@ -1317,7 +1317,7 @@ ul.social-in li {
 }
 
 ul.social-in li i {
-    background: url(../images/img-sprite.png) no-repeat -16px -182px;
+    background: url(/static/images/img-sprite.png) no-repeat -16px -182px;
     width: 40px;
     height: 40px;
     display: inline-block;
@@ -2202,7 +2202,7 @@ p.footer-class a:hover {
     .callbacks_nav {
         height: 57px;
         width: 57px;
-        background: url("../images/img-sprite.png") no-repeat -92px -57px;
+        background: url("/static/images/img-sprite.png") no-repeat -92px -57px;
         background-size: 400px;
     }
 
