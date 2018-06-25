@@ -24,7 +24,8 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
                 .addPathPatterns("/**")
                 .excludePathPatterns("/general/**")
                 .excludePathPatterns("/user/login/**")
-                .excludePathPatterns("/pages/**");
+                .excludePathPatterns("/pages/**")
+                .excludePathPatterns("/");
     }
 
     @Bean

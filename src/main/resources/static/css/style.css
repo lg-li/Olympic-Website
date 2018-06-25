@@ -47,6 +47,14 @@ h1, h2, h3, h4, h5, h6, label, p {
     max-width: 200px;
 }
 
+.flag-medium {
+    max-width: 80px;
+}
+
+.flag-small {
+    max-width: 40px;
+}
+
 .flag-xsmall {
     max-width: 20px;
 }
@@ -471,16 +479,16 @@ select.in-drop {
     padding: 1em;
 }
 
-.banner-matter a.find {
+.banner-matter a.btn-dark {
     float: left;
     background: #191919;
 }
 
-.banner-matter a.find:hover {
+.banner-matter a.btn-dark:hover {
     background: #d2232a;
 }
 
-.banner-matter a.shop {
+.banner-matter a.btn-blue {
     float: left;
     background: #0087d5;
 }
@@ -1087,7 +1095,7 @@ label.add-to {
     line-height: 1.8em;
 }
 
-a.cart {
+a.btn-red {
     padding: 7px;
     color: #FFF;
     background: #d2232a;
@@ -1100,7 +1108,7 @@ a.cart {
     text-decoration: none;
 }
 
-a.cart:hover {
+a.btn-red:hover {
     background: #0087d5;
 }
 
@@ -1251,6 +1259,10 @@ span.price-in small {
 }
 
 /*--footer--*/
+.footer {
+    background: #333333;
+}
+
 .footer-left {
     padding: 0;
 }
