@@ -1,0 +1,13 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/olympic?characterEncoding=utf-8
+    username: root
+    platform: mysql
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: mysql
