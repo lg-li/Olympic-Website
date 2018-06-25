@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Olympic.iml" filepath="$PROJECT_DIR$/.idea/Olympic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OlympicBackEnd.iml" filepath="$PROJECT_DIR$/OlympicBackEnd.iml" />
     </modules>
   </component>
 </project>
