@@ -70,5 +70,4 @@ public class FrontEndController {
     public String participants() {
         return "participants";
     }
-
 }

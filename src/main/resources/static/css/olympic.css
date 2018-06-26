@@ -20,6 +20,32 @@ h1, h2, h3, h4, h5, h6, label, p {
     margin: 0;
 }
 
+.olympic-card {
+    background: #fcfcfc;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    display: inline;
+}
+
+.olympic-card:hover {
+    transform: scale(1.06);
+    transition: all 0.5s ease 0s;
+}
+
+.olympic-card img{
+    margin: 10px;
+    width: 100%;
+    float: left;
+    display: inline;
+    text-align: center;
+}
+
+.olympic-card-title{
+    width: 100%;
+    float: left;
+}
+
 .line {
     background: #0076bf;
     width: 100%;
@@ -821,6 +847,7 @@ a.view:hover {
 }
 
 .item-in h6 {
+    text-align: center;
     font-size: 1.2em;
     line-height: 1.8em;
 }
