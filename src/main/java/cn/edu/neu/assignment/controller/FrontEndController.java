@@ -70,4 +70,15 @@ public class FrontEndController {
     public String participants() {
         return "participants";
     }
+
+    @RequestMapping("/session/{id}")
+    public String session(@PathVariable String id, Model model) {
+        model.addAttribute("id",id);
+        return "session-detail";
+    }
+
+    @RequestMapping("/session/all")
+    public String session() {
+        return "competition-all#Section2";
+    }
 }

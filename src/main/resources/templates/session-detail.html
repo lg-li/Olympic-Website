@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Competition - Curling</title>
+    <title>Session</title>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/static/js/jquery.min.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
     <link href="/static/css/olympic.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="/static/css/datatables.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/datatables.min.css"  rel="stylesheet" type="text/css">
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -24,6 +24,8 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <!--//fonts-->
     <link rel="stylesheet" href="/static/css/etalage.css">
+    <!--//tab style-->
+    <link rel="stylesheet" href="/static/css/olympic.tab.css">
     <script src="/static/js/jquery.etalage.min.js"></script>
     <script>
         jQuery(document).ready(function ($) {
@@ -48,7 +50,7 @@
 <div id="header"></div>
 <div class="title-banner" style="background: url('/static/images/photos/Curling.jpg')">
     <div class="big-title">
-        <h1>Curling</h1>
+        <h1>Curling - Woman Round Robin Session 1</h1>
     </div>
 </div>
 <div class="line1"></div>
@@ -92,6 +94,59 @@
         </div>
         <div class="clearfix"></div>
     </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-sm-12 col-md-12">
+            <div class="tab" role="tabpanel">
+                <!--@LLG: Competition Nav Tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab"
+                                                              data-toggle="tab">Participants</a></li>
+                    <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Session Rank</a></li>
+
+                </ul>
+                <!-- Competition Tab Panes -->
+                <div class="tab-content tabs">
+                    <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                        <div class="container" id="competition-type-list">
+                            <h3>Session Participants</h3><br/>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section2">
+                        <div class="container">
+                            <h3>Session Result</h3>
+                            <div class="single">
+                                <div>
+                                    <table id="medals">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Type
+                                            </th>
+                                            <th>
+                                                Time
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="competition-status-table">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="single">
         <div>
             <h3><strong>Daily Scheduling</strong></h3>
@@ -100,12 +155,9 @@
                 <thead>
                 <tr>
                     <th>
-                        Start Time
-                    </th>
-
+                        Start Time</th>
                     <th>
-                        Event
-                    </th>
+                        Event</th>
 
                     <th>
                         Result
@@ -119,47 +171,40 @@
                 </thead>
                 <tbody>
 
-                <tr>
-                    <td>
-                        9:05
-                    </td>
+                <tr><a href="competition-detail.html"> <td>
+                    9:05
+                </td>
 
                     <td>
-                        <a href="/session/1"><h4>Woman Round Robin Session 1</h4></a>
+                        <h4>Woman Round Robin Session 1</h4>
                         <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Switzerland.png" alt="">
                         <strong><a href="/delegation/Switzerland">SUI</a></strong><br/>
                         <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20China.png" alt="">
                         <strong><a href="/delegation/China">CHN</a></strong>
                     </td>
                     <td>
-                        2<br/>7
-                    </td>
+                        2<br/>7</td>
                     <td>
                         Finished
-                    </td>
-                    </a>
+                    </td></a>
 
                 </tr>
-                <tr><a href="competition-detail.html">
-                    <td>
-                        11:05
-                    </td>
+                <tr><a href="competition-detail.html"><td>
+                    11:05
+                </td>
 
                     <td>
-                        <a href="/session/1"><h4>Woman Round Robin Session 2</h4></a>
+                        <h4>Woman Round Robin Session 2</h4>
                         <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Russia.png" alt="">
                         <strong><a href="/delegation/Russia">RUS</a></strong><br/>
                         <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20China.png" alt="">
                         <strong><a href="/delegation/China">CHN</a></strong>
-
                     </td>
                     <td>
-                        7<br/>6
-                    </td>
+                        7<br/>6</td>
                     <td>
                         Finished
-                    </td>
-                </a>
+                    </td></a>
 
                 </tr>
                 </tbody>
@@ -175,11 +220,11 @@
 <div id="footer"></div>
 <script src="/static/js/olympic.ui-loader.js"></script>
 <script src="/static/js/datatables.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#Daily-Scheduling').DataTable();
-    });
-</script>
-p
+    } );
+</script>p
 </body>
 </html>

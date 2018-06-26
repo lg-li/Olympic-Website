@@ -21,7 +21,7 @@ function fadeToText(id, text){
     setTimeout(function () {
         target.text(text);
         target.fadeIn(500);
-    },500)
+    },480)
 }
 
 // Compile templates to code in HTML5

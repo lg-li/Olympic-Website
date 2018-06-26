@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6, label, p {
     transition: all 0.5s ease 0s;
 }
 
-.olympic-card img{
+.olympic-card img {
     margin: 10px;
     width: 100%;
     float: left;
@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6, label, p {
     text-align: center;
 }
 
-.olympic-card-title{
+.olympic-card-title {
     width: 100%;
     float: left;
 }
@@ -408,6 +408,7 @@ select.in-drop {
 @media screen and (max-width: 768px) {
     .header {
         background: #4F4F4F;
+    !important;
     }
 
     .h_logo4 {
