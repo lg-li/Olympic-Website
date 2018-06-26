@@ -16,6 +16,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.util.List;
 
+/**
+ * @author: CCM 20164969
+ * @description: The config of this application
+ */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
     @Autowired
@@ -23,9 +27,9 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        //解决跨域问题拦截器
+        //Interceptor to solve cross-domain issues
         registry.addInterceptor(new ProcessInterceptor());
-        //Token验证拦截器，凡不是游客路由均会验证
+        //Token interceptor
 //        registry.addInterceptor(authorizationInterceptor)
 //                .addPathPatterns("/**")
 //                .excludePathPatterns("/general/**")
@@ -38,13 +42,10 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         return new WebMvcConfigurationSupport() {
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
-                // forward requests to /admin and /user to their index.html
                 registry.addViewController("/back").setViewName(
                         "forward:/back/index");
                 registry.addViewController("/").setViewName(
                         "forward:/back/index");
-                /*registry.addViewController("/app").setViewName(
-                        "forward:/WEB-INF/app/index.html");*/
             }
         };
     }
@@ -58,8 +59,6 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-        //registry.addResourceHandler("/admin/static/**").addResourceLocations("classpath:/static/");
-        //registry.addResourceHandler("/upload/**").addResourceLocations(ResourceUtils.FILE_URL_PREFIX+System.getProperty("user.dir")+"/web/upload/");
     }
 
     @Bean
@@ -72,20 +71,20 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        //调用父类的配置
+        //Inherit parent configuration
         super.configureMessageConverters(converters);
-        //创建fastJson消息转换器
+        //create fastJson converter
         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
-        //创建配置类
+        //create a config class
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        //修改配置返回内容的过滤
+        //Modify the config
         fastJsonConfig.setSerializerFeatures(
                 SerializerFeature.DisableCircularReferenceDetect,
                 SerializerFeature.WriteMapNullValue,
                 SerializerFeature.WriteNullStringAsEmpty
         );
         fastConverter.setFastJsonConfig(fastJsonConfig);
-        //将fastjson添加到视图消息转换器列表内
+        //add the converter into application
         converters.add(fastConverter);
     }
 }

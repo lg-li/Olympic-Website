@@ -1,18 +1,16 @@
 package cn.edu.neu.assignment.utl.constants;
 
+/**
+ * @author: CCM 20164969
+ * @description: The class to save error type
+ */
 public enum ErrorEnum {
     /*
-    * 错误信息
+    * error message
     * */
-    E_400("400", "请求处理异常，请稍后再试"),
-    E_500("500", "用户名或密码错误"),
-    E_501("501", "请求路径不存在"),
-    E_502("502", "邮箱已被注册"),
-    E_503("503", "邮箱或用户名已被使用"),
-    E_504("503", "邮箱不存在"),
-    E_505("503", "密码错误"),
+    E_400("400", "Request error,please try again later"),
+    E_501("501", "Undefined path");
 
-    E_90003("90003", "缺少必填参数");
 
     private String errorCode;
 
