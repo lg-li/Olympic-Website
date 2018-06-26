@@ -19,14 +19,19 @@ public class Competition {
     @Column(nullable = false)
     private Date time;
 
-    @Column(length = 32,nullable = false)
-    private String type;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Sport type;
 
     @OneToMany(mappedBy = "competition",fetch=FetchType.EAGER)
     private Set<IndividualCompetition> individualCompetitions;
 
     @OneToMany(mappedBy = "competition",fetch=FetchType.EAGER)
     private Set<TeamCompetition> teamCompetitions;
+
+    private short situation;
+
+    private boolean individual;
 
     public Competition() {
     }
@@ -55,11 +60,11 @@ public class Competition {
         this.place = place;
     }
 
-    public String getType() {
+    public Sport getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Sport type) {
         this.type = type;
     }
 
@@ -85,5 +90,21 @@ public class Competition {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public short getSituation() {
+        return situation;
+    }
+
+    public void setSituation(short situation) {
+        this.situation = situation;
+    }
+
+    public boolean isIndividual() {
+        return individual;
+    }
+
+    public void setIndividual(boolean individual) {
+        this.individual = individual;
     }
 }
