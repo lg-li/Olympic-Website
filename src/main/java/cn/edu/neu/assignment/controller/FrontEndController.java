@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class FrontEndController {
 
-    @RequestMapping("")
+    @RequestMapping("/")
     public String index() {
-        return "index";
+        return "pages/index.html";
     }
 
     @RequestMapping("**/footer.html")
