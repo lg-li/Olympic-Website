@@ -1,6 +1,7 @@
 package cn.edu.neu.assignment.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -14,6 +15,9 @@ public class Competition {
 
     @Column(length = 128,nullable = false)
     private String place;
+
+    @Column(nullable = false)
+    private Date time;
 
     @Column(length = 32,nullable = false)
     private String type;
@@ -73,5 +77,13 @@ public class Competition {
 
     public void setTeamCompetitions(Set<TeamCompetition> teamCompetitions) {
         this.teamCompetitions = teamCompetitions;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 }

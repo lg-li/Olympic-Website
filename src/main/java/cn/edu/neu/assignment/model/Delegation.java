@@ -68,4 +68,12 @@ public class Delegation {
     public void setTeams(Set<Team> teams) {
         this.teams = teams;
     }
+
+    public short getContinent() {
+        return continent;
+    }
+
+    public void setContinent(short continent) {
+        this.continent = continent;
+    }
 }
