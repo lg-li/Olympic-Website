@@ -9,5 +9,6 @@ function loadTo(url, id) {
     });
 }
 
-loadTo('./header.html','header');
-loadTo('./footer.html','footer');
+loadTo('/pages/header.html','header');
+loadTo('/pages/footer.html','footer');
+
