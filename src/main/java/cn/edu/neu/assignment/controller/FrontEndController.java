@@ -13,12 +13,12 @@ public class FrontEndController {
         return "index";
     }
 
-    @RequestMapping("/footer.html")
+    @RequestMapping("**/footer.html")
     public String footer() {
         return "footer";
     }
 
-    @RequestMapping("/header.html")
+    @RequestMapping("**/header.html")
     public String header() {
         return "header";
     }
