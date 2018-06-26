@@ -22,10 +22,10 @@ public class Competition {
     @Column(length = 32,nullable = false)
     private String type;
 
-    @OneToMany(mappedBy = "competition")
+    @OneToMany(mappedBy = "competition",fetch=FetchType.EAGER)
     private Set<IndividualCompetition> individualCompetitions;
 
-    @OneToMany(mappedBy = "competition")
+    @OneToMany(mappedBy = "competition",fetch=FetchType.EAGER)
     private Set<TeamCompetition> teamCompetitions;
 
     public Competition() {

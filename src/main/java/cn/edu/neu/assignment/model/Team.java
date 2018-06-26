@@ -16,14 +16,14 @@ public class Team {
     @Column(nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team",fetch=FetchType.EAGER)
     private Set<TeamCompetition> teamCompetitions = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "delegation_id")
     private Delegation delegations;
 
-    @ManyToMany(mappedBy = "teams")
+    @ManyToMany(mappedBy = "teams",fetch=FetchType.EAGER)
     private Set<Individual> individuals = new HashSet<>();
 
     public Team() {

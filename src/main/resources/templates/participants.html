@@ -1,0 +1,205 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sport A Ecommerce Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+    <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/static/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/static/css/datatables.min.css" rel="stylesheet" type="text/css">
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Sport Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+    <link rel="stylesheet" href="/static/css/etalage.css">
+    <script src="/static/js/jquery.etalage.min.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+
+            $('#etalage').etalage({
+                thumb_image_width: 300,
+                thumb_image_height: 400,
+                source_image_width: 900,
+                source_image_height: 1200,
+                show_hint: true,
+                click_callback: function (image_anchor, instance_id) {
+                    alert('Callback example:\nYou clicked on an image with the anchor: "' + image_anchor + '"\n(in Etalage instance: "' + instance_id + '")');
+                }
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+<!--header-->
+<div id="header"></div>
+<!---->
+<div class="container">
+    <div class="single">
+        <div class="col-md-9 top-in-single">
+            <div id="topSport" class="row">
+                <div class="clear"></div>
+            </div>
+
+            <div class="single">
+                <div class="content-grids">
+
+                    <div class="entriesSubPanel col-md-3 content-grid">
+                        Athlete or Team<br>
+                        <div class="btn-group btn-input clearfix">
+                            <button id="buttonEntriesKind" class="btn btn-default dropdown-toggle form-control"
+                                    type="button" data-toggle="dropdown">
+                            <span id="FilterComboKind" name="ZZZ" data-bind="label">
+                                <img class="comboImage" src="../../resOWG2018/img/sports/ZZZ.png" role="presentation"
+                                     aria-hidden="true" alt="">
+                                Category</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li name="ZZZ">
+                                    <a href="#" data-order="0">
+                                        <img class="comboImage" src="../../resOWG2018/img/sports/ZZZ.png"
+                                             role="presentation" aria-hidden="true" alt="">
+                                        Category</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="entriesSubPanel col-md-3 content-grid">
+                        Nations &amp; Territories<br>
+                        <div class="btn-group btn-input clearfix">
+                            <button id="buttonEntriesCount" class="btn btn-default dropdown-toggle form-control"
+                                    type="button" data-toggle="dropdown">
+                            <span id="FilterComboCountry" name="ZZZ" data-bind="label">
+                                <img class="comboImage" src="../../resOWG2018/img/sports/ZZZ.png" role="presentation"
+                                     aria-hidden="true" alt="">
+                                All Countries</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li name="ZZZ">
+                                    <a href="#" data-order="0">
+                                        <img class="comboImage" src="../../resOWG2018/img/sports/ZZZ.png"
+                                             role="presentation" aria-hidden="true" alt="">
+                                        All Countries</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="entriesSubPanel col-md-3 content-grid">
+                        Sport<br>
+                        <div class="btn-group btn-input clearfix">
+                            <button id="buttonEntriesDisc" class="btn btn-default dropdown-toggle form-control"
+                                    type="button" data-toggle="dropdown">
+                                <span id="FilterComboDiscipline" name="ZZZ" data-bind="label">
+                                    <img src="../../resOWG2018/img/sports/ZZZ.png" role="presentation"
+                                         aria-hidden="true" alt="" style="width:26px;height:26px;border:0px;">
+                                    All Sports
+                                </span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li name="ZZZ">
+                                    <a href="#" data-order="0">
+                                        <img src="../../resOWG2018/img/sports/ZZZ.png" role="presentation"
+                                             aria-hidden="true" alt="" style="width:26px;height:26px;border:0px;">
+                                        All Sports</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="entriesSubPanel col-md-3 content-grid">
+                        Name<br>
+                        <div>
+                            <input id="buttonEntriesName" aria-label="Name" type="text" value="" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="entriesSubPanel styleCenter col-md-3 content-grid">
+                        <br>
+                        <button id="buttonEntriesSearch" class="btn btn-default" onclick="filterByText();">
+                            Search
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="single">
+                <div class="content-grids">
+                    <h3>Results</h3>
+                    <div class="col-md-4 content-grid">
+                        <a href="#" class="lot">
+                            <img class="img-responsive" src="/static/images/persons/1.jpg" alt="">
+                        </a>
+                        <div class="big-item">
+                            <p><img src="/static/images/silver.png"/> Silver</p>
+                            <label>JIA Zongyang</label>
+                            <a href="single.html">Men's Aerials</a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <b class="plus-in">+</b>
+                    </div>
+                    <div class="col-md-4 content-grid">
+                        <a href="#" class="lot">
+                            <img class="img-responsive" src="/static/images/persons/2.jpg" alt="">
+                        </a>
+                        <div class="big-item">
+                            <p><img src="/static/images/silver.png"/> Silver</p>
+                            <label>ZHANG Xin</label>
+                            <a href="single.html">Ladies' Aerials</a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <b class="plus-in">+</b>
+                    </div>
+                    <div class="col-md-4 content-grid">
+                        <a href="#" class="lot">
+                            <img class="img-responsive" src="/static/images/persons/3.jpg" alt="">
+                        </a>
+                        <div class="big-item">
+                            <p><img src="/static/images/silver.png"/> Golden</p>
+                            <label>WU Dajing</label>
+                            <a href="single.html">Men's 500m</a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <b class="plus-in">+</b>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---->
+
+<!--footer-->
+<div id="footer"></div>
+<script src="/static/js/olympic-ui-loader.js"></script>
+<script src="/static/js/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#schedule').DataTable();
+        $('#events').DataTable();
+    });
+</script>
+</body>
+</html>

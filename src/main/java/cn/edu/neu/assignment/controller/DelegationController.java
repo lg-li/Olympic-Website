@@ -16,10 +16,9 @@ public class DelegationController {
     DelegationRepository delegationRepository;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public JSONObject login() {
+    public JSONObject list() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("list", delegationRepository.findAll());
         return CommonUtil.successJson(jsonObject);
     }
-
 }
