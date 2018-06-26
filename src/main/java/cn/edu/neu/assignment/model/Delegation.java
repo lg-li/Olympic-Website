@@ -22,6 +22,10 @@ public class Delegation {
     @OneToMany(mappedBy = "delegations")
     private Set<Team> teams = new HashSet<>();
 
+    //0 Africa; 1 America; 2 Asia Pacific; 3 Europe; 4 Oceania
+    @Column(nullable = false)
+    private short continent;
+
     public Delegation() {
     }
 
