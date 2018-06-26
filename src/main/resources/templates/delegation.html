@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Delegation</title>
     <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
@@ -52,11 +52,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="single">
         <div class="col-md-9 top-in-single">
             <div class="col-md-3 single-top">
-                <img class="flag-big" src="/static/images/flags/Flag%20of%20China.png"/>
+                <img class="flag-big" th:src="@{|/static/images/flags/Flag%20of%20${name}.png|}"/>
             </div>
             <div class="col-md-9 single-top-in">
                 <div class="single-para">
-                    <h2>China</h2>
+                    <h2 th:text="${name}">China</h2>
 
                     <div class="star">
                         <div class="review">
@@ -411,6 +411,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     $(document).ready(function () {
         $('#medals').DataTable();
     });
+
+
 </script>
 </body>
 </html>
