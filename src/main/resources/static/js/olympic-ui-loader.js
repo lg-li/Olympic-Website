@@ -1,4 +1,5 @@
-// Author Li Lingen (Bruce) 20165254
+// Author: Li Lingen (Bruce) 20165254
+// Async load template HTML file to Container
 function loadTo(url, id) {
     $.ajax({
         url: url, //URL Requested
@@ -11,4 +12,3 @@ function loadTo(url, id) {
 
 loadTo('/pages/header.html','header');
 loadTo('/pages/footer.html','footer');
-

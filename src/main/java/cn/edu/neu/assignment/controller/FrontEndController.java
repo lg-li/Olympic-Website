@@ -10,7 +10,7 @@ public class FrontEndController {
 
     @RequestMapping("/")
     public String index() {
-        return "pages/index.html";
+        return "index";
     }
 
     @RequestMapping("**/footer.html")
@@ -23,19 +23,34 @@ public class FrontEndController {
         return "header";
     }
 
-    @RequestMapping("/delegation")
-    public String register() {
-        return "delegation";
+    @RequestMapping("/medal")
+    public String medal() {
+        return "medal";
+    }
+
+    @RequestMapping("/competition/all")
+    public String competition() {
+        return "competition-all";
     }
 
     @RequestMapping("/delegation/all")
-    public String allDeleagtion(){
+    public String delegationAll(){
         return "delegation-all";
+    }
+
+    @RequestMapping("/delegation/{name}")
+    public String delegation(@PathVariable String name,Model model) {
+        model.addAttribute("name",name);
+        return "delegation";
     }
 
     @RequestMapping("team/detail")
     public String teamDetail(){
-        return "teamDetail";
+        return "team-detail";
     }
 
+    @RequestMapping("/athlete")
+    public String athlete() {
+        return "athlete";
+    }
 }
