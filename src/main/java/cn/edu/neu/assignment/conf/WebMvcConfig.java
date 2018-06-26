@@ -20,11 +20,11 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         //解决跨域问题拦截器
         registry.addInterceptor(new ProcessInterceptor());
         //Token验证拦截器，凡不是游客路由均会验证
-        registry.addInterceptor(authorizationInterceptor)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/general/**")
-                .excludePathPatterns("/user/login/**")
-                .excludePathPatterns("/pages/**");
+//        registry.addInterceptor(authorizationInterceptor)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/general/**")
+//                .excludePathPatterns("/user/login/**")
+//                .excludePathPatterns("/pages/**");
     }
 
     @Bean

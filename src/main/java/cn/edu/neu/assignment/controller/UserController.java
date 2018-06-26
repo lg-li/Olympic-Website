@@ -1,6 +1,6 @@
-//package com.neu.demo.controller;
-//
-//import com.alibaba.fastjson.JSONObject;
+package cn.edu.neu.assignment.controller;
+
+import com.alibaba.fastjson.JSONObject;
 //import com.neu.demo.inter.UserRepository;
 //import com.neu.demo.model.old.User;
 //import com.neu.demo.request.Request;
@@ -8,24 +8,26 @@
 //import Jwt;
 //import Constants;
 //import ErrorEnum;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.*;
-//
-//import javax.servlet.http.HttpServletRequest;
-//import java.util.Date;
-//import java.util.HashMap;
-//import java.util.Map;
-//
-//
-//@RestController
-//@RequestMapping("/user")
-//public class UserController {
-//
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
 //    @Autowired
 //    UserRepository userRepository;
-//
-//    @RequestMapping(value = "/login/{code}", method = RequestMethod.GET)
-//    public JSONObject login(@PathVariable() String code){
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(@PathVariable() String code){
+
+        return "hello";
 //        JSONObject jsonObject = new JSONObject();
 //        User user = Request.getUserByCode(code);
 //        if (user == null){
@@ -48,8 +50,8 @@
 //                return CommonUtil.successJsonWithToken(jsonObject,token);
 //            }
 //        }
-//    }
-//
+    }
+
 //    @RequestMapping(value = "/update", method = RequestMethod.POST)
 //    public JSONObject login(HttpServletRequest request, @RequestBody JSONObject requestJson){
 //        requestJson = requestJson.getJSONObject("user");
@@ -60,4 +62,4 @@
 //        userRepository.saveAndFlush(user);
 //        return CommonUtil.successJson(new JSONObject());
 //    }
-//}
+}
