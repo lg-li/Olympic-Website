@@ -1,5 +1,8 @@
 package cn.edu.neu.assignment.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,9 +14,10 @@ public class Sport {
     private int id;
 
     @Column(length = 32, nullable = false)
-    private String type;
+    private String typeName;
 
     @OneToMany(mappedBy = "type", fetch = FetchType.EAGER)
+    @JSONField(serialize = false)
     private Set<Competition> competitions = new HashSet<>();
 
     public Sport() {
@@ -36,11 +40,11 @@ public class Sport {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 }

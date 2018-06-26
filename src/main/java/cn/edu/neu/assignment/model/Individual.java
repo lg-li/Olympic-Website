@@ -25,7 +25,7 @@ public class Individual {
 
     private String photo;
 
-    @OneToMany(mappedBy = "individual",fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "individual",fetch=FetchType.LAZY)
     private Set<IndividualCompetition> individualCompetitions = new HashSet<>();
 
     @ManyToOne()

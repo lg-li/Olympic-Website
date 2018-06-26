@@ -1,5 +1,7 @@
 package cn.edu.neu.assignment.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,10 +17,12 @@ public class Delegation {
     @Column(length = 32, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "delegations",fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "delegations")
+    @JSONField(serialize = false)
     private Set<Individual> individuals = new HashSet<>();
 
-    @OneToMany(mappedBy = "delegations",fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "delegations")
+    @JSONField(serialize = false)
     private Set<Team> teams = new HashSet<>();
 
     //0 Africa; 1 America; 2 Asia Pacific; 3 Europe; 4 Oceania
