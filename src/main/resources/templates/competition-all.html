@@ -2,12 +2,12 @@
 <html>
 <head>
     <title>Competitions</title>
-    <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/static/js/jquery.min.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/static/css/olympic.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/static/css/datatables.min.css" rel="stylesheet" type="text/css">
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,10 +25,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <!--//fonts-->
     <link rel="stylesheet" href="/static/css/etalage.css">
+    <!--//tab style-->
+    <link rel="stylesheet" href="/static/css/olympic.tab.css">
     <script src="/static/js/jquery.etalage.min.js"></script>
     <script>
         jQuery(document).ready(function ($) {
-
             $('#etalage').etalage({
                 thumb_image_width: 300,
                 thumb_image_height: 400,
@@ -39,7 +40,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     alert('Callback example:\nYou clicked on an image with the anchor: "' + image_anchor + '"\n(in Etalage instance: "' + instance_id + '")');
                 }
             });
-
         });
     </script>
 
@@ -47,187 +47,202 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <!--header-->
 <div id="header"></div>
-<!---->
-<div class="container">
+<div>
+    <div class="title-banner" style="background: url('/static/images/photos/running.jpg')">
+        <div class="big-title">
+            <h1 id="competition-loading">Loading...</h1>
+        </div>
+    </div>
+    <div class="line1"></div>
+    <br/>
+    <div class="row">
+        <div class="col-sm-12 col-sm-12 col-md-12">
+            <div class="tab" role="tabpanel">
+                <!--@LLG: Competition Nav Tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab"
+                                                              data-toggle="tab">Competitions</a></li>
+                    <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Global
+                        Schedule</a></li>
+                    <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Status</a>
+                    </li>
+                </ul>
+                <!-- Competition Tab Panes -->
+                <div class="tab-content tabs">
+                    <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                        <div class="container" id="competition-type-list">
+                            <h3>Competitions</h3>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section2">
+                        <div class="container">
+                            <h3>Global Schedule Overview</h3>
+                            <div class="single">
+                                <div id="competition-schedule-table">
+                                    Loading competition events from server...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section3">
+                        <div class="container">
+                            <h3>Competition Status</h3>
+                            <div class="single">
+                                <div>
+                                    <table id="medals">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Type
+                                            </th>
+                                            <th>
+                                                Time
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="competition-status-table">
 
-    <div class="single">
-        <div>
-            <h3>Competitions Overview</h3>
-            <table id="medals">
-                <thead>
-                <tr>
-                    <th>
-                        Type
-                    </th>
-                    <th>
-                        Schedule
-                    </th>
-                    <th>
-                        Status
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u2.png" alt="">
-                        <strong><a href="">Biathlon 2</a></strong>
-                    </td>
-                    <td>
-                        June-25-2018
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </tr>
-                <tr class="Res2">
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u2.png" alt="">
-                        <strong><a href="">Biathlon</a></strong>
-                    </td>
-                    <td>
-                        June-28-2018
-                    </td>
-                    <td>
-                        In progress
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u3.png" alt="">
-                        <strong><a href="">Bobsleigh</a></strong>
-                    </td>
-                    <td>
-                        June-28-2018
-                    </td>
-                    <td>
-                        In progress
-                    </td>
-                </tr>
-                <tr class="Res2">
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u4.png" alt="">
-                        <strong><a href="">Cross-Country Skiing</a></strong>
-                    </td>
-                    <td>
-                        June-25-2018
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u5.png" alt="">
-                        <strong><a href="">Curling</a></strong>
-                    </td>
-                    <td>
-                        June-24-2018
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </tr>
-                <tr class="Res2">
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u6.png" alt="">
-                        <strong><a href="">Figure Skating</a></strong>
-                    </td>
-                    <td>
-                        June-22-2018
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u7.png" alt="">
-                        <strong><a href="">Freestyle Skiing</a></strong>
-                    </td>
-                    <td>
-                        June-21-2018
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </tr>
-                <tr class="Res2">
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u8.png" alt="">
-                        <strong><a href="">Short Track Speed Skating</a></strong>
-                    </td>
-                    <td>
-                        June-25-2018
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u9.png" alt="">
-                        <strong><a href="">Skeleton</a></strong>
-                    </td>
-                    <td>
-                        June-31-2018
-                    </td>
-                    <td>
-                        Pending
-                    </td>
-                </tr>
-                <tr class="Res2">
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u10.png" alt="">
-                        <strong><a href="">Ski Jumping</a></strong>
-                    </td>
-                    <td>
-                        June-30-2018
-                    </td>
-                    <td>
-                        Pending
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u11.png" alt="">
-                        <strong><a href="">Snowboard</a></strong>
-                    </td>
-                    <td>
-                        June-31-2018
-                    </td>
-                    <td>
-                        Pending
-                    </td>
-                </tr>
-                <tr class="Res2">
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u12.png" alt="">
-                        <strong><a href="">Speed Skating</a></strong>
-                    </td>
-                    <td>
-                        June-31-2018
-                    </td>
-                    <td>
-                        Pending
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!---->
-
 <!--footer-->
 <div id="footer"></div>
-<script src="/static/js/olympic-ui-loader.js"></script>
+
+<script src="/static/js/olympic.ui-loader.js"></script>
 <script src="/static/js/datatables.min.js"></script>
+<script src="/static/js/jquery-ui.min.js"></script>
+<script src="/static/js/moment.min.js"></script>
+<link href="/static/css/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
+<script src="/static/js/fullcalendar.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/static/js/ToProgress.min.js"></script>
 <script>
+
     $(document).ready(function () {
-        $('#medals').DataTable();
+
+
+        var status_table_row_template = '<tr>' +
+            '<td><strong><a href="">__COMPETITION_NAME__</a></strong></td>' +
+            '<td>__COMPETITION_MODE__</td>' +
+            '<td>__COMPETITION_TIME__</td>' +
+            '<td>__COMPETITION_STATUS__</td>' +
+            '</tr>';
+
+        // load competition events from server in background
+        $.ajax({
+            async: true,
+            url: '/competition/list', //URL Requested
+            type: "GET", // Get only
+            dataType: "json",
+            success: function (data) {
+                var schedule_table = $('#competition-schedule-table');
+                var status_table = $('#competition-status-table');
+                if (data['code'] === '100') {
+                    schedule_table.text("");
+                    var competition_events = [];
+                    for (var i = 0; i < data['data']['list'].length; i++) {
+                        // competition type
+                        var cmode = data['data']['list'][i]['individual']?'Individual':'Team';
+                        // competition status: 0:
+                        var cstatus = function(){
+                            switch (data['data']['list'][i]['situation']){
+                                case 0:
+                                    return 'Pending';
+                                case 1:
+                                    return 'In Progress';
+                                case 2:
+                                    return 'Finished';
+                            }
+                        };
+                        status_table.append(compileTemplate(status_table_row_template,
+                            {
+                                COMPETITION_NAME: data['data']['list'][i]['name'],
+                                COMPETITION_TIME: data['data']['list'][i]['time'],
+                                COMPETITION_STATUS: cstatus,
+                                COMPETITION_MODE: cmode
+                            }
+                        ));
+                        competition_events[i] = {};
+                        competition_events[i]['title'] = data['data']['list'][i]['id'];
+                        competition_events[i]['title'] = data['data']['list'][i]['name'];
+                        competition_events[i]['start'] = data['data']['list'][i]['time'];
+                    }
+                    schedule_table.fullCalendar({
+                        header: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'month,agendaWeek,agendaDay,listMonth'
+                        },
+                        weekNumbers: true,
+                        navLinks: true, // can click day/week names to navigate views
+                        editable: true,
+                        eventLimit: true, // allow "more" link when too many events
+                        events: competition_events // render the events
+                    });
+                    $('#medals').DataTable();
+                }
+            },
+            error: function (err) {
+                fadeToText('competition-loading', 'Failed to load competitions. Try refresh this page.');
+                $('#medals').DataTable();
+            }
+        })
+
+        var competition_type_list_template = '<div class="olympic-card col-xs-6 col-sm-4 col-md-2 grid-product-in" style="max-height: 240px; min-height: 240px"><div class=" product-grid">' +
+            '<a href="/competition/__ID__"><img class="img-responsive" src="/static/images/sports/u__ID__.png" alt=""></a>' +
+            '<div class="">' +
+            '<p><a href="/competition/__ID__">__TYPE_NAME__</a></p></div></div></div>';
+
+        var progressBar = new ToProgress({
+            id: 'top-progress-bar',
+            color: '#F44336',
+            height: '10px',
+            duration: 1.0
+        });
+        progressBar.increase(60);
+        // load countries list by ajax
+        $.ajax({
+            async: true,
+            url: '/type/list', //URL Requested
+            type: "GET", // Get only
+            dataType: "json",
+            success: function (data) {
+                if (data['code'] === '100') {
+                    var type_list = $('#competition-type-list');
+                    for (var i = 0; i < data['data']['list'].length; i++) {
+                        type_list.append(
+                            compileTemplate(competition_type_list_template,
+                                {
+                                    TYPE_NAME: data['data']['list'][i]['typeName'],
+                                    ID: data['data']['list'][i]['id']
+                                }
+                            )
+                        );
+                    }
+                    type_list.slideDown(800);
+                }
+                progressBar.finish();
+                fadeToText('competition-loading', 'Competitions');
+            },
+            error: function (err) {
+                fadeToText('competition-loading', 'Failed to load competitions. Try refresh this page.');
+            }
+        })
     });
 </script>
 </body>

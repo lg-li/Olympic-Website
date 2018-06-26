@@ -1,7 +1,6 @@
 package cn.edu.neu.assignment.controller;
 
-
-import cn.edu.neu.assignment.inter.DelegationRepository;
+import cn.edu.neu.assignment.inter.TypeRepository;
 import cn.edu.neu.assignment.utl.CommonUtil;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/delegation")
-public class DelegationController {
+@RequestMapping("/type")
+public class TypeController {
     @Autowired
-    DelegationRepository delegationRepository;
+    TypeRepository typeRepository;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public JSONObject list() {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("list", delegationRepository.findAll());
+        jsonObject.put("list", typeRepository.findAll());
         return CommonUtil.successJson(jsonObject);
     }
 }

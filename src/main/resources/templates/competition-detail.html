@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Team</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/static/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/static/css/datatables.min.css"  rel="stylesheet" type="text/css">
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Sport Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+    <link rel="stylesheet" href="/static/css/etalage.css">
+    <script src="/static/js/jquery.etalage.min.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+
+            $('#etalage').etalage({
+                thumb_image_width: 300,
+                thumb_image_height: 400,
+                source_image_width: 900,
+                source_image_height: 1200,
+                show_hint: true,
+                click_callback: function (image_anchor, instance_id) {
+                    alert('Callback example:\nYou clicked on an image with the anchor: "' + image_anchor + '"\n(in Etalage instance: "' + instance_id + '")');
+                }
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+<!--header-->
+<div id="header"></div>
+<!---->
+<div class="container">
+    <div class="single">
+        <div class="col-md-9 top-in-single">
+            <div class="col-md-3 single-top">
+                <h2>Curling</h2>
+                <img class="flag-big" src="/static/images/sports/u25.png"/>
+            </div>
+            <div class="col-md-9 single-top-in">
+                <div class="single-para">
+                    <label class="add-to"></label>
+                    <p>
+                        Curling, is a throwing competition on the ice for teams, Winter Olympics, and
+                        curling championships. There are two small items for men and women. Each team
+                        has four people. The curling is a round pot, made of natural granite without
+                        granite, and all of the world's natural granites for the production of fine
+                        curling are produced on an island off the coast of Scotland,and only the Scots
+                        hold the world's best Horizontal curling technique.
+                        <a href="#" class="cart ">More from Wiki</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="single-bottom">
+                <h4>Other Olympic Sports</h4>
+                <ul>
+                    <li>
+                        <img class="flag-xsmall" src="/static/images/sports/u2.png">
+                        <a href="#"><span></span> Ice Hockey</a>
+                    </li>
+                    <li>
+                        <img class="flag-xsmall" src="/static/images/sports/u3.png">
+                        <a href="#"><span></span> Short Track Speed Skating</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="single">
+        <div>
+            <h3><strong>Daily Scheduling</strong></h3>
+            <h3><strong>Thu, 8 Feb</strong></h3>
+            <table id="Daily-Scheduling">
+                <thead>
+                <tr>
+                    <th>
+                        Start Time</th>
+
+                    <th>
+                        Event</th>
+
+                    <th>
+                        Result
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+                </tr>
+
+                </thead>
+                <tbody>
+
+                <tr><a href="competition-detail.html"> <td>
+                    9:05
+                </td>
+
+                    <td>
+                        <h4>Woman Round Robin Session 1</h4>
+                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Switzerland.png" alt="">
+                        <strong><a href="/delegation/Switzerland">SUI</a></strong><br/>
+                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20China.png" alt="">
+                        <strong><a href="/delegation/China">CHN</a></strong>
+                    </td>
+                    <td>
+                        2<br/>7</td>
+                    <td>
+                        Finished
+                    </td></a>
+
+                </tr>
+                <tr><a href="competition-detail.html"><td>
+                    11:05
+                </td>
+
+                    <td>
+                        <h4>Woman Round Robin Session 2</h4>
+                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Russia.png" alt="">
+                        <strong><a href="/delegation/Russia">RUS</a></strong><br/>
+                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20China.png" alt="">
+                        <strong><a href="/delegation/China">CHN</a></strong>
+                    </td>
+                    <td>
+                        7<br/>6</td>
+                    <td>
+                        Finished
+                    </td></a>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<!---->
+
+<!--footer-->
+<div id="footer"></div>
+<script src="/static/js/olympic-ui-loader.js"></script>
+<script src="/static/js/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#Daily-Scheduling').DataTable();
+    } );
+</script>p
+</body>
+</html>

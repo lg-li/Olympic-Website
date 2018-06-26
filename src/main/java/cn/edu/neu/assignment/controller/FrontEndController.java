@@ -10,7 +10,7 @@ public class FrontEndController {
 
     @RequestMapping("/")
     public String index() {
-        return "pages/index.html";
+        return "index";
     }
 
     @RequestMapping("**/footer.html")
@@ -33,13 +33,19 @@ public class FrontEndController {
         return "competition-all";
     }
 
+    @RequestMapping("/competition/{id}")
+    public String competition(@PathVariable String id, Model model) {
+        model.addAttribute("id",id);
+        return "competition-detail";
+    }
+
     @RequestMapping("/delegation/all")
     public String delegationAll(){
         return "delegation-all";
     }
 
     @RequestMapping("/delegation/{name}")
-    public String delegation(@PathVariable String name,Model model) {
+    public String delegation(@PathVariable String name, Model model) {
         model.addAttribute("name",name);
         return "delegation";
     }
@@ -49,8 +55,19 @@ public class FrontEndController {
         return "team-detail";
     }
 
-    @RequestMapping("/athlete")
-    public String athlete() {
-        return "athlete";
+    @RequestMapping("/athlete/{name}")
+    public String athlete(@PathVariable String name, Model model) {
+        model.addAttribute("name",name);
+        return "athlete-detail";
+    }
+
+    @RequestMapping("/manage/login")
+    public String login() {
+        return "manager-login";
+    }
+
+    @RequestMapping("/participants")
+    public String participants() {
+        return "participants";
     }
 }

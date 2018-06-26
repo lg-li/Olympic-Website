@@ -1,5 +1,8 @@
 package cn.edu.neu.assignment.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -10,23 +13,30 @@ public class Competition {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 32,nullable = false)
+    @Column(length = 32, nullable = false)
     private String name;
 
-    @Column(length = 128,nullable = false)
+    @Column(length = 128, nullable = false)
     private String place;
 
     @Column(nullable = false)
     private Date time;
 
-    @Column(length = 32,nullable = false)
-    private String type;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Sport type;
 
-    @OneToMany(mappedBy = "competition",fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "competition")
+    @JSONField(serialize = false)
     private Set<IndividualCompetition> individualCompetitions;
 
-    @OneToMany(mappedBy = "competition",fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "competition")
+    @JSONField(serialize = false)
     private Set<TeamCompetition> teamCompetitions;
+
+    private short situation;
+
+    @Column(nullable = false)
+    private boolean individual;
 
     public Competition() {
     }
@@ -55,11 +65,11 @@ public class Competition {
         this.place = place;
     }
 
-    public String getType() {
+    public Sport getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Sport type) {
         this.type = type;
     }
 
@@ -85,5 +95,21 @@ public class Competition {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public short getSituation() {
+        return situation;
+    }
+
+    public void setSituation(short situation) {
+        this.situation = situation;
+    }
+
+    public boolean isIndividual() {
+        return individual;
+    }
+
+    public void setIndividual(boolean individual) {
+        this.individual = individual;
     }
 }
