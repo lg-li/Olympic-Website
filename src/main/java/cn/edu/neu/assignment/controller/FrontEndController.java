@@ -10,7 +10,7 @@ public class FrontEndController {
 
     @RequestMapping("/")
     public String index() {
-        return "index";
+        return "pages/index.html";
     }
 
     @RequestMapping("**/footer.html")

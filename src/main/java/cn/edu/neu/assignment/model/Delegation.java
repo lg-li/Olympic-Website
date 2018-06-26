@@ -10,7 +10,6 @@ public class Delegation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
     private String description;
 
     @Column(length = 32, nullable = false)
