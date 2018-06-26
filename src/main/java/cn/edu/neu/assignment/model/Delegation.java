@@ -15,10 +15,10 @@ public class Delegation {
     @Column(length = 32, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "delegations")
+    @OneToMany(mappedBy = "delegations",fetch=FetchType.EAGER)
     private Set<Individual> individuals = new HashSet<>();
 
-    @OneToMany(mappedBy = "delegations")
+    @OneToMany(mappedBy = "delegations",fetch=FetchType.EAGER)
     private Set<Team> teams = new HashSet<>();
 
     //0 Africa; 1 America; 2 Asia Pacific; 3 Europe; 4 Oceania
