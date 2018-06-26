@@ -72,8 +72,7 @@ h1, h2, h3, h4, h5, h6, label, p {
 }
 
 .flag-small {
-    max-width: 40px;
-!important;
+    max-width: 40px !important;
 }
 
 .flag-xsmall {
@@ -407,8 +406,7 @@ select.in-drop {
 /***** Media Quries *****/
 @media screen and (max-width: 768px) {
     .header {
-        background: #4F4F4F;
-    !important;
+        background: #4F4F4F !important;
     }
 
     .h_logo4 {
@@ -474,7 +472,7 @@ select.in-drop {
 .title-banner {
     min-height: 110px;
     width: 100%;
-    background-size: cover
+    background-size: cover !important;
 }
 
 .big-title {
