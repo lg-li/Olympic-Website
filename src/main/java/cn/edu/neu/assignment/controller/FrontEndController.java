@@ -29,7 +29,7 @@ public class FrontEndController {
     }
 
     @RequestMapping("/delegation/all")
-    public String allDeleagtion(){
+    public String allDelegation(){
         return "delegation-all";
     }
 
