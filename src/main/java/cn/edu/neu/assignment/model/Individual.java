@@ -1,6 +1,7 @@
 package cn.edu.neu.assignment.model;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,12 +17,15 @@ public class Individual {
     @Column(nullable = false)
     private boolean sex;
 
+
+    private Date birthday;
+
     @Column(nullable = false)
     private String description;
 
     private String photo;
 
-    @OneToMany(mappedBy = "individual")
+    @OneToMany(mappedBy = "individual",fetch=FetchType.EAGER)
     private Set<IndividualCompetition> individualCompetitions = new HashSet<>();
 
     @ManyToOne()
@@ -98,5 +102,11 @@ public class Individual {
         this.teams = teams;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
 
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 }

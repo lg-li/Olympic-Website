@@ -1,7 +1,7 @@
-var ww = document.body.clientWidth;
-
+var ww = document.body.clientWidth; // display port width
 
 var adjustMenu = function () {
+    // toggle at 768px
     if (ww < 768) {
         var toggleMenu = $(".toggleMenu");
         toggleMenu.css("display", "inline-block");
@@ -16,8 +16,7 @@ var adjustMenu = function () {
             e.preventDefault();
             $(this).parent("li").toggleClass("hover");
         });
-    }
-    else if (ww >= 768) {
+    }else if (ww >= 768) {
         $(".toggleMenu").css("display", "none");
         $(".nav").show();
         var nav_li = $(".nav li");
@@ -30,7 +29,7 @@ var adjustMenu = function () {
     }
 }
 
-
+// ready event
 $(document).ready(function () {
     $(".nav li a").each(function () {
         if ($(this).next().length > 0) {

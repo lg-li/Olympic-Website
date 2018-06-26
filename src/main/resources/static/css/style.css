@@ -27,18 +27,18 @@ h1, h2, h3, h4, h5, h6, label, p {
 }
 
 .line {
-    background: #d2232a;
+    background: #0076bf;
     width: 100%;
     height: 10px;
     display: block;
 }
 
 .logo {
-    background: #000;
+    background: #0087D5;
     width: 15%;
     margin: 0 auto;
     float: left;
-    min-height: 120px;
+    min-height: 102px;
     text-align: center;
     padding-top: 14px;
 }
@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6, label, p {
 }
 
 .flag-small {
-    max-width: 40px;
+    max-width: 40px;!important;
 }
 
 .flag-xsmall {
@@ -159,7 +159,7 @@ select.in-drop {
     right: 43px;
     border: none;
     outline: none;
-    background: #d2232a;
+    background: #0076bf;
     width: 35%;
     height: 40px;
     margin: 0;
@@ -304,7 +304,7 @@ select.in-drop {
 }
 
 .nav li:hover {
-    color: #d2232a;
+    color: #0076bf;
 }
 
 .nav li {
@@ -328,7 +328,7 @@ select.in-drop {
 }
 
 .nav > li > a:hover {
-    color: #d2232a;
+    color: #0076bf;
 }
 
 .nav > li.hover > ul {
@@ -372,7 +372,7 @@ select.in-drop {
 }
 
 .nav li li a:hover {
-    color: #d2232a;
+    color: #0076bf;
 }
 
 .nav > li > ul {
@@ -485,7 +485,7 @@ select.in-drop {
 }
 
 .banner-matter a.btn-dark:hover {
-    background: #d2232a;
+    background: #0076bf;
 }
 
 .banner-matter a.btn-blue {
@@ -494,7 +494,7 @@ select.in-drop {
 }
 
 .line1, .line2 {
-    background: #d2232a;
+    background: #0076bf;
     width: 100%;
     height: 5px;
     display: block;
@@ -597,7 +597,7 @@ h6.your-in {
 }
 
 .big-item a:hover {
-    color: #d2232a;
+    color: #0076bf;
 }
 
 b.plus-in {
@@ -766,7 +766,7 @@ a.view {
     color: #fff;
     font-size: 1.3em;
     padding: 0.7em 1.3em;
-    background: #d2232a;
+    background: #0076bf;
     display: inline-block;
     margin: 0.8em 0 0;
 }
@@ -793,7 +793,7 @@ a.view:hover {
 }
 
 .product-grid:hover .item-in {
-    background: #d2232a;
+    background: #0076bf;
 }
 
 .product-grid img {
@@ -886,7 +886,7 @@ b.plus-on {
     padding: 7px 20px;
     color: #FFF;
     cursor: pointer;
-    background: #d2232a;
+    background: #0076bf;
     border: none;
     width: 20%;
     margin: 1em auto 0;
@@ -911,7 +911,7 @@ b.plus-on {
 }
 
 a.forgot {
-    color: #d2232a;
+    color: #0076bf;
     font-size: 1.2em;
     margin: 0em 1em;
 }
@@ -919,7 +919,7 @@ a.forgot {
 .five {
     background: #fff;
     border-radius: 100px;
-    border: 2px solid #D2232A;
+    border: 2px solid #0076bf;
     width: 80px;
     height: 80px;
     position: absolute;
@@ -937,7 +937,7 @@ a.forgot {
 
 .five span {
     font-size: 1em;
-    color: #d2232a;
+    color: #0076bf;
 }
 
 .left-account img {
@@ -953,7 +953,7 @@ a.create {
     text-decoration: none;
     color: #fff;
     padding: 7px 20px;
-    background: #d2232a;
+    background: #0076bf;
     margin: 0 auto;
     text-align: center;
     display: block;
@@ -1032,7 +1032,7 @@ a.create:hover {
 .send-in input[type="submit"] {
     width: 100%;
     font-size: 1.5em;
-    background: #d2232a;
+    background: #0076bf;
     padding: 0.4em 1em;
     text-align: center;
     color: #fff;
@@ -1086,7 +1086,7 @@ ul.social {
 label.add-to {
     display: block;
     font-size: 2em;
-    color: #d2232a;
+    color: #0076bf;
 }
 
 .single-para p {
@@ -1098,7 +1098,7 @@ label.add-to {
 a.btn-red {
     padding: 7px;
     color: #FFF;
-    background: #d2232a;
+    background: #0076bf;
     margin: 1.5em 0 0;
     font-size: 1em;
     display: block;
@@ -1154,7 +1154,7 @@ a.btn-red:hover {
 }
 
 .available h6 {
-    color: #d2232a;
+    color: #0076bf;
     font-size: 1.4em;
     padding: 0 0 1em;
 }
@@ -1204,7 +1204,7 @@ a.btn-red:hover {
     width: 18px;
     height: 18px;
     display: inline-block;
-    border: 2px solid #D2232A;
+    border: 2px solid #0076bf;
     position: absolute;
     left: 0;
     bottom: 3px;
@@ -1233,7 +1233,7 @@ a.elit {
 }
 
 a.elit:hover {
-    color: #d2232a;
+    color: #0076bf;
     text-decoration: underline;
 }
 
@@ -1271,7 +1271,7 @@ span.price-in small {
     padding: 1em;
     color: #fff;
     font-size: 1.7em;
-    background: #ce232a;
+    background: #0076bf;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -1300,7 +1300,7 @@ span.price-in small {
 }
 
 .run-grid li a:hover, .run-grid-in li a:hover {
-    color: #d2232a;
+    color: #0076bf;
 }
 
 .left-footer h4 {
@@ -1402,7 +1402,7 @@ a.sign {
 }
 
 a.sign:hover {
-    background: #d2232a;
+    background: #0076bf;
 }
 
 p.footer-class {
@@ -1412,7 +1412,7 @@ p.footer-class {
 }
 
 p.footer-class a {
-    color: #d2232a;
+    color: #0076bf;
 }
 
 p.footer-class a:hover {

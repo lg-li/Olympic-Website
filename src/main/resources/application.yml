@@ -13,3 +13,5 @@ spring:
       ddl-auto: update
     show-sql: true
     database: mysql
+  thymeleaf:
+    cache: false

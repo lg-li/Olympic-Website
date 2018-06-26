@@ -7,11 +7,13 @@ import java.io.Serializable;
 @Table(name = "individual_competition")
 public class IndividualCompetition implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     @ManyToOne
     @JoinColumn(name = "individual_id")
     private Individual individual;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "competition_id")
     private Competition competition;
@@ -20,6 +22,14 @@ public class IndividualCompetition implements Serializable {
     private short rank;
 
     public IndividualCompetition() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Individual getIndividual() {
