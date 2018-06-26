@@ -33,4 +33,9 @@ public class FrontEndController {
         return "delegation-all";
     }
 
+    @RequestMapping("team/detail")
+    public String teamDetail(){
+        return "teamDetail";
+    }
+
 }
