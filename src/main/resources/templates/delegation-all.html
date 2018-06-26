@@ -7,7 +7,7 @@
     <script src="/static/js/jquery.min.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/static/css/olympic.css" rel="stylesheet" type="text/css" media="all"/>
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -28,8 +28,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <!--header-->
 <div id="header"></div>
+<div class="title-banner" style="background: url('/static/images/photos/flags.jpg')">
+    <div class="big-title">
+        <h1 id="delegation-loading">Loading...</h1>
+    </div>
+</div>
+<div class="line1"></div>
 <!---->
-<div class="col-xs-12" style=""></div>
 <div class="product-grids">
     <div id="countries-panel" class="container" style="display: none">
         <h3>Africa</h3>
@@ -61,14 +66,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!---->
 <!--footer-->
 <div id="footer"></div>
-<script src="/static/js/olympic-ui-loader.js">
+<script src="/static/js/olympic.ui-loader.js">
 </script>
+<script src="/static/js/ToProgress.min.js"></script>
 <script>
     var country_template = '<div class="col-xs-6 col-sm-4 col-md-2 grid-product-in"><div class=" product-grid">' +
         '<a href="/delegation/__COUNTRY_NAME__"><img class="img-responsive" src="/static/images/flags/Flag%20of%20__COUNTRY_NAME__.png" alt=""></a>' +
         '<div class="item-in">' +
         '<h6><a href="delegation.html">__COUNTRY_NAME__ </a></h6></div></div></div>';
+    var progressBar = new ToProgress({
+        id: 'top-progress-bar',
+        color: '#F44336',
+        height: '10px',
+        duration: 1.0
+    });
     $(document).ready(function () {
+        progressBar.increase(60);
         // load countries list by ajax
         $.ajax({
             async: true,
@@ -86,6 +99,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     }
                     $('#countries-panel').slideDown(800);
                 }
+                progressBar.finish();
+                fadeToText('delegation-loading','Delegations of Countries/Regions');
             }
         })
     });

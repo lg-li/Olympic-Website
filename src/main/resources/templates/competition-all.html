@@ -7,7 +7,7 @@
     <script src="/static/js/jquery.min.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="/static/css/olympic.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/static/css/datatables.min.css" rel="stylesheet" type="text/css">
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,10 +25,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <!--//fonts-->
     <link rel="stylesheet" href="/static/css/etalage.css">
+    <!--//tab style-->
+    <link rel="stylesheet" href="/static/css/olympic.tab.css">
     <script src="/static/js/jquery.etalage.min.js"></script>
     <script>
         jQuery(document).ready(function ($) {
-
             $('#etalage').etalage({
                 thumb_image_width: 300,
                 thumb_image_height: 400,
@@ -39,7 +40,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     alert('Callback example:\nYou clicked on an image with the anchor: "' + image_anchor + '"\n(in Etalage instance: "' + instance_id + '")');
                 }
             });
-
         });
     </script>
 
@@ -47,187 +47,304 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <!--header-->
 <div id="header"></div>
-<!---->
-<div class="container">
-
-    <div class="single">
-        <div>
-            <h3>Competitions Overview</h3>
-            <table id="medals">
-                <thead>
-                <tr>
-                    <th>
-                        Type
-                    </th>
-                    <th>
-                        Schedule
-                    </th>
-                    <th>
-                        Status
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u2.png" alt="">
-                        <strong><a href="">Biathlon 2</a></strong>
-                    </td>
-                    <td>
-                        June-25-2018
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </tr>
-                <tr class="Res2">
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u2.png" alt="">
-                        <strong><a href="">Biathlon</a></strong>
-                    </td>
-                    <td>
-                        June-28-2018
-                    </td>
-                    <td>
-                        In progress
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u3.png" alt="">
-                        <strong><a href="">Bobsleigh</a></strong>
-                    </td>
-                    <td>
-                        June-28-2018
-                    </td>
-                    <td>
-                        In progress
-                    </td>
-                </tr>
-                <tr class="Res2">
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u4.png" alt="">
-                        <strong><a href="">Cross-Country Skiing</a></strong>
-                    </td>
-                    <td>
-                        June-25-2018
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u5.png" alt="">
-                        <strong><a href="">Curling</a></strong>
-                    </td>
-                    <td>
-                        June-24-2018
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </tr>
-                <tr class="Res2">
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u6.png" alt="">
-                        <strong><a href="">Figure Skating</a></strong>
-                    </td>
-                    <td>
-                        June-22-2018
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u7.png" alt="">
-                        <strong><a href="">Freestyle Skiing</a></strong>
-                    </td>
-                    <td>
-                        June-21-2018
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </tr>
-                <tr class="Res2">
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u8.png" alt="">
-                        <strong><a href="">Short Track Speed Skating</a></strong>
-                    </td>
-                    <td>
-                        June-25-2018
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u9.png" alt="">
-                        <strong><a href="">Skeleton</a></strong>
-                    </td>
-                    <td>
-                        June-31-2018
-                    </td>
-                    <td>
-                        Pending
-                    </td>
-                </tr>
-                <tr class="Res2">
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u10.png" alt="">
-                        <strong><a href="">Ski Jumping</a></strong>
-                    </td>
-                    <td>
-                        June-30-2018
-                    </td>
-                    <td>
-                        Pending
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u11.png" alt="">
-                        <strong><a href="">Snowboard</a></strong>
-                    </td>
-                    <td>
-                        June-31-2018
-                    </td>
-                    <td>
-                        Pending
-                    </td>
-                </tr>
-                <tr class="Res2">
-                    <td>
-                        <img class="flag-small" src="/static/images/sports/u12.png" alt="">
-                        <strong><a href="">Speed Skating</a></strong>
-                    </td>
-                    <td>
-                        June-31-2018
-                    </td>
-                    <td>
-                        Pending
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
+<div>
+    <div class="title-banner" style="background: url('/static/images/photos/running.jpg')">
+        <div class="big-title">
+            <h1>Competitions</h1>
         </div>
     </div>
+    <div class="line1"></div>
+    <br/>
+    <div class="row">
+        <div class="col-sm-12 col-sm-12 col-md-12">
+            <div class="tab" role="tabpanel">
+                <!--@LLG: Competition Nav Tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab"
+                                                              data-toggle="tab">Competitions</a></li>
+                    <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Global
+                        Schedule</a></li>
+                    <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Status</a>
+                    </li>
+                </ul>
+                <!-- Competition Tab Panes -->
+                <div class="tab-content tabs">
+                    <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                        <div class="container">
+                            <h3>Competitions</h3>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section2">
+                        <div class="container">
+                            <h3>Global Schedule Overview</h3>
+                            <div class="single">
+                                <div id="competition-schedule-table">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section3">
+                        <div class="container">
+                            <h3>Competition Status</h3>
+                            <div class="single">
+                                <div>
+                                    <table id="medals">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                Type
+                                            </th>
+                                            <th>
+                                                Schedule
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <img class="flag-small" src="/static/images/sports/u2.png" alt="">
+                                                <strong><a href="">Biathlon 2</a></strong>
+                                            </td>
+                                            <td>
+                                                June-25-2018
+                                            </td>
+                                            <td>
+                                                Finished
+                                            </td>
+                                        </tr>
+                                        <tr class="Res2">
+                                            <td>
+                                                <img class="flag-small" src="/static/images/sports/u2.png" alt="">
+                                                <strong><a href="">Biathlon</a></strong>
+                                            </td>
+                                            <td>
+                                                June-28-2018
+                                            </td>
+                                            <td>
+                                                In progress
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="flag-small" src="/static/images/sports/u3.png" alt="">
+                                                <strong><a href="">Bobsleigh</a></strong>
+                                            </td>
+                                            <td>
+                                                June-28-2018
+                                            </td>
+                                            <td>
+                                                In progress
+                                            </td>
+                                        </tr>
+                                        <tr class="Res2">
+                                            <td>
+                                                <img class="flag-small" src="/static/images/sports/u4.png" alt="">
+                                                <strong><a href="">Cross-Country Skiing</a></strong>
+                                            </td>
+                                            <td>
+                                                June-25-2018
+                                            </td>
+                                            <td>
+                                                Finished
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="flag-small" src="/static/images/sports/u5.png" alt="">
+                                                <strong><a href="">Curling</a></strong>
+                                            </td>
+                                            <td>
+                                                June-24-2018
+                                            </td>
+                                            <td>
+                                                Finished
+                                            </td>
+                                        </tr>
+                                        <tr class="Res2">
+                                            <td>
+                                                <img class="flag-small" src="/static/images/sports/u6.png" alt="">
+                                                <strong><a href="">Figure Skating</a></strong>
+                                            </td>
+                                            <td>
+                                                June-22-2018
+                                            </td>
+                                            <td>
+                                                Finished
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="flag-small" src="/static/images/sports/u7.png" alt="">
+                                                <strong><a href="">Freestyle Skiing</a></strong>
+                                            </td>
+                                            <td>
+                                                June-21-2018
+                                            </td>
+                                            <td>
+                                                Finished
+                                            </td>
+                                        </tr>
+                                        <tr class="Res2">
+                                            <td>
+                                                <img class="flag-small" src="/static/images/sports/u8.png" alt="">
+                                                <strong><a href="">Short Track Speed Skating</a></strong>
+                                            </td>
+                                            <td>
+                                                June-25-2018
+                                            </td>
+                                            <td>
+                                                Finished
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="flag-small" src="/static/images/sports/u9.png" alt="">
+                                                <strong><a href="">Skeleton</a></strong>
+                                            </td>
+                                            <td>
+                                                June-31-2018
+                                            </td>
+                                            <td>
+                                                Pending
+                                            </td>
+                                        </tr>
+                                        <tr class="Res2">
+                                            <td>
+                                                <img class="flag-small" src="/static/images/sports/u10.png" alt="">
+                                                <strong><a href="">Ski Jumping</a></strong>
+                                            </td>
+                                            <td>
+                                                June-30-2018
+                                            </td>
+                                            <td>
+                                                Pending
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="flag-small" src="/static/images/sports/u11.png" alt="">
+                                                <strong><a href="">Snowboard</a></strong>
+                                            </td>
+                                            <td>
+                                                June-31-2018
+                                            </td>
+                                            <td>
+                                                Pending
+                                            </td>
+                                        </tr>
+                                        <tr class="Res2">
+                                            <td>
+                                                <img class="flag-small" src="/static/images/sports/u12.png" alt="">
+                                                <strong><a href="">Speed Skating</a></strong>
+                                            </td>
+                                            <td>
+                                                June-31-2018
+                                            </td>
+                                            <td>
+                                                Pending
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 <!---->
 
 <!--footer-->
 <div id="footer"></div>
-<script src="/static/js/olympic-ui-loader.js"></script>
+
+<script src="/static/js/olympic.ui-loader.js"></script>
 <script src="/static/js/datatables.min.js"></script>
+<script src="/static/js/jquery-ui.min.js"></script>
+<script src="/static/js/moment.min.js"></script>
+<link href="/static/css/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
+<script src="/static/js/fullcalendar.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#medals').DataTable();
+        $('#competition-schedule-table').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay,listMonth'
+            },
+            defaultDate: '2018-03-12',
+            weekNumbers: true,
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            events: [
+                {
+                    title: 'All Day Event',
+                    start: '2018-03-01'
+                },
+                {
+                    title: 'Long Event',
+                    start: '2018-03-07',
+                    end: '2018-03-10'
+                },
+                {
+                    id: 999,
+                    title: 'Repeating Event',
+                    start: '2018-03-09T16:00:00'
+                },
+                {
+                    id: 999,
+                    title: 'Repeating Event',
+                    start: '2018-03-16T16:00:00'
+                },
+                {
+                    title: 'Conference',
+                    start: '2018-03-11',
+                    end: '2018-03-13'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2018-03-12T10:30:00',
+                    end: '2018-03-12T12:30:00'
+                },
+                {
+                    title: 'Lunch',
+                    start: '2018-03-12T12:00:00'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2018-03-12T14:30:00'
+                },
+                {
+                    title: 'Happy Hour',
+                    start: '2018-03-12T17:30:00'
+                },
+                {
+                    title: 'Dinner',
+                    start: '2018-03-12T20:00:00'
+                },
+                {
+                    title: 'Birthday Party',
+                    start: '2018-03-13T07:00:00'
+                },
+                {
+                    title: 'Click for Google',
+                    url: 'http://google.com/',
+                    start: '2018-03-28'
+                }
+            ]
+        });
     });
 </script>
 </body>

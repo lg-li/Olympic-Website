@@ -12,3 +12,12 @@ function loadTo(url, id) {
 
 loadTo('/pages/header.html','header');
 loadTo('/pages/footer.html','footer');
+
+function fadeToText(id, text){
+    var target = $('#'+id);
+    target.fadeOut(500);
+    setTimeout(function () {
+        target.text(text);
+        target.fadeIn(500);
+    },500)
+}
