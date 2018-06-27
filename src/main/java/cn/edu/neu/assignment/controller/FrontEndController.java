@@ -1,5 +1,8 @@
 package cn.edu.neu.assignment.controller;
 
+import cn.edu.neu.assignment.inter.CompetitionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,8 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class FrontEndController {
 
+    @Autowired
+    CompetitionRepository competitionRepository;
+
     @RequestMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("recent-competition", competitionRepository.findAll(new PageRequest(0,4)));
         return "index";
     }
 
@@ -69,5 +76,16 @@ public class FrontEndController {
     @RequestMapping("/participants")
     public String participants() {
         return "participants";
+    }
+
+    @RequestMapping("/session/{id}")
+    public String session(@PathVariable String id, Model model) {
+        model.addAttribute("id",id);
+        return "session-detail";
+    }
+
+    @RequestMapping("/session/all")
+    public String session() {
+        return "competition-all#Section2";
     }
 }

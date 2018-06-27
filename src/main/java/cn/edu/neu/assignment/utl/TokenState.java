@@ -1,21 +1,15 @@
 package cn.edu.neu.assignment.utl;
 
-/**
- * 枚举，定义token的三种状态
- * @author running@vip.163.com
- *
- */
  public enum TokenState {  
 	 /**
-	  * 过期
+	  * Expired
 	  */
 	EXPIRED("EXPIRED"),
-	/**
-	 * 无效(token不合法)
+	/**invalid
 	 */
 	INVALID("INVALID"), 
 	/**
-	 * 有效的
+	 * valid
 	 */
 	VALID("VALID");  
 	
@@ -24,12 +18,7 @@ package cn.edu.neu.assignment.utl;
     private TokenState(String state) {  
         this.state = state;  
     }
-    
-    /**
-     * 根据状态字符串获取token状态枚举对象
-     * @param tokenState
-     * @return
-     */
+
     public static TokenState getTokenState(String tokenState){
     	TokenState[] states=TokenState.values();
     	TokenState ts=null;

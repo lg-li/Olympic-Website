@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Olympic Online</title>
+    <title>Olympic NEU</title>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
     <!-- jQuery -->
     <script src="/static/js/jquery.min.js"></script>
@@ -16,7 +16,7 @@
         setTimeout(hideURLbar, 0);
     }, false);
 
-    function hideURLbar() {
+    function hideURLbar () {
         window.scrollTo(0, 1);
     } </script>
     <!--fonts-->
@@ -176,114 +176,80 @@
         </div>
     </div>
     <!--//sreen-gallery-cursual---->
+    <div class="mdui-container-fluid" style="margin: 0 6%">
+        <div class="single mdui-row ">
+            <div class="mdui-col-sm-12 mdui-col-md-8 mdui-row">
+                <p></p>
+                <h3>Recent Competitions</h3>
+                <p></p>
 
-    <div class="content-grids">
-        <div class="col-sm-12 col-md-8">
-            <h3>Recent Competitions</h3>
-            <p></p>
-            <div class="col-sm-4 col-md-3 content-grid">
-                <a href="/competition/all" class="lot">
-                    <img class="img-responsive " src="/static/images/sports/u26.png" alt="">
-                </a>
-                <div class="big-item">
-                    <p>6/25 18:00</p>
-                    <label>Table Tennis</label>
-                    <a href="/competition/all">Trace on the competition</a>
+                <div th:each="comp : ${re}" class="mdui-col-sm-4 mdui-col-md-3">
+                    <div class="mdui-card">
+                        <div class="mdui-card-media">
+                            <img src="/static/images/competition/curling-photo.jpg"/>
+                        </div>
+                        <div class="mdui-card-primary">
+                            <div class="mdui-card-primary-title">Men's 100m</div>
+                            <div class="mdui-card-primary-subtitle">6/26 10:00</div>
+                        </div>
+                        <div class="mdui-card-actions">
+                            <button class="mdui-btn mdui-ripple">Trace on it</button>
+                            <button class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons">expand_more</i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="col-sm-4 col-md-3 content-grid">
-                <a href="/competition/all" class="lot">
-                    <img class="img-responsive " src="/static/images/sports/u4.png" alt="">
-                </a>
-                <div class="big-item">
-                    <p>6/26 10:00</p>
-                    <label>Men's 100m</label>
-                    <a href="/competition/all">Trace on the competition</a>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="col-sm-4 col-md-3 content-grid">
-                <a href="/competition/all" class="lot">
-                    <img class="img-responsive " src="/static/images/sports/u20.png" alt="">
-                </a>
-                <div class="big-item">
-                    <p>6/26 11:00</p>
-                    <label>Kendo</label>
-                    <a href="/competition/all">Trace on the competition</a>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="col-sm-4 col-md-3 content-grid">
-                <a href="/competition/all" class="lot">
-                    <img class="img-responsive " src="/static/images/sports/u26.png" alt="">
-                </a>
-                <div class="big-item">
-                    <p>6/25 18:00</p>
-                    <label>Table Tennis</label>
-                    <a href="/competition/all">Trace on the competition</a>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="col-sm-4 col-md-3 content-grid">
-                <a href="/competition/all" class="lot">
-                    <img class="img-responsive " src="/static/images/sports/u4.png" alt="">
-                </a>
-                <div class="big-item">
-                    <p>6/25 18:00</p>
-                    <label>Men's 100m</label>
-                    <a href="/competition/all">Trace on the competition</a>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="col-sm-4 col-md-3 content-grid">
-                <a href="/competition/all" class="lot">
-                    <img class="img-responsive " src="/static/images/sports/u20.png" alt="">
-                </a>
-                <div class="big-item">
-                    <p>6/25 18:00</p>
-                    <label>Kendo</label>
-                    <a href="/competition/all">Trace on the competition</a>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-4">
-            <div class="single-bottom">
-                <h3>Rank by country</h3>
-                <ul>
-                    <li>
-                        <img class="flag-small" src="/static/images/flags/Flag%20of%20Japan.png">
-                        <a href="#"><span></span> Japan</a>
-                    </li>
-                    <li>
-                        <img class="flag-small" src="/static/images/flags/Flag%20of%20South%20Korea.png">
-                        <a href="#"><span></span> South Korea</a>
-                    </li>
-                    <li>
-                        <img class="flag-small" src="/static/images/flags/Flag%20of%20United%20Kingdom.png">
-                        <a href="#"><span></span> United Kongdom</a>
-                    </li>
-                    <li>
-                        <img class="flag-small" src="/static/images/flags/Flag%20of%20United%20States.png">
-                        <a href="#"><span></span> United States</a>
-                    </li>
-                    <li>
-                        <img class="flag-small"
-                             src="/static/images/flags/Flag%20of%20Chinese%20Taipei.png">
-                        <a href="#"><span></span> Chinese Taipei</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
 
-        <div class="clearfix"></div>
-        <h5 style="text-align: center; alignment: center">
-            <a href="competition-all.html" class="btn-red">All Competitions...</a>
-        </h5>
+            </div>
+            <div class="mdui-col-md-1"></div>
+            <div class="mdui-col-sm-12 mdui-col-md-3">
+                <p></p>
+                <h3>Rank by countries</h3>
+                <p></p>
+                <div class="mdui-card">
+                    <div class="mdui-card-content">
+                        <ul class="mdui-list">
+                            <li class="mdui-list-item mdui-ripple">
+                                <div class="mdui-list-item-avatar"><img
+                                        src="/static/images/flags/Flag%20of%20United%20States%20of%20America.png"/>
+                                </div>
+                                <div class="mdui-list-item-content"> United States</div>
+                            </li>
+                            <li class="mdui-list-item mdui-ripple">
+                                <div class="mdui-list-item-avatar"><img
+                                        src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png"/>
+                                </div>
+                                <div class="mdui-list-item-content">China</div>
+                            </li>
+                            <li class="mdui-list-item mdui-ripple">
+                                <div class="mdui-list-item-avatar"><img
+                                        src="/static/images/flags/Flag%20of%20Japan.png"/></div>
+                                <div class="mdui-list-item-content">Japan</div>
+                            </li>
+                            <li class="mdui-list-item mdui-ripple">
+                                <div class="mdui-list-item-avatar"><img
+                                        src="/static/images/flags/Flag%20of%20South%20Korea.png"/></div>
+                                <div class="mdui-list-item-content">South Korea</div>
+                            </li>
+                            <li class="mdui-list-item mdui-ripple">
+                                <div class="mdui-list-item-avatar"><img
+                                        src="/static/images/flags/Flag%20of%20United%20Kingdom.png"/></div>
+                                <div class="mdui-list-item-content">United Kingdom</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="clearfix"></div>
+            <h5 style="text-align: center; alignment: center">
+                <a href="competition-all.html" class="btn-red">All Competitions...</a>
+            </h5>
+        </div>
     </div>
     <div class="content-bottom" style="background-color: #1a1a1a">
-        <div class="col-md-8 bottom-content">
+        <div class="mdui-col-md-8 bottom-content">
             <script src="/static/js/responsiveslides.min.js"></script>
             <script>
                 $(function () {
@@ -319,7 +285,7 @@
             </div>
 
         </div>
-        <div class="col-md-4 bottom-grid">
+        <div class="mdui-col-md-4 bottom-grid">
             <h4>Latest Sport News</h4>
             <div class="news">
                 <span>25/07</span>
@@ -357,7 +323,7 @@
                     <div class="clearfix"></div>
                 </div>
             </div>
-            <a href="#" class="view">view all articles</a>
+            <a href="#" class="mdui-btn mdui-color-theme mdui-btn-raised">view all articles</a>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -366,37 +332,37 @@
     <div class="content-grids">
         <h3>Other Olympic Websites</h3>
         <div class="clearfix"></div>
-        <div class="col-xs-4 col-sm-3 col-md-2 top-content">
+        <div class="mdui-col-xs-4 mdui-col-sm-3 mdui-col-md-2 top-content">
             <a href="#">
                 <img class="img-responsive " src="/static/images/banners/banner_pyeongchang.png" alt="">
             </a>
         </div>
-        <div class="col-xs-4 col-sm-3 col-md-2 top-content">
+        <div class="mdui-col-xs-4 mdui-col-sm-3 mdui-col-md-2 top-content">
             <a href="#">
                 <img class="img-responsive " src="/static/images/banners/banner_tokyo.png" alt="">
             </a>
         </div>
-        <div class="col-xs-4 col-sm-3 col-md-2 top-content">
+        <div class="mdui-col-xs-4 mdui-col-sm-3 mdui-col-md-2 top-content">
             <a href="#">
                 <img class="img-responsive " src="/static/images/banners/banner_beijing.png" alt="">
             </a>
         </div>
-        <div class="col-xs-4 col-sm-3 col-md-2 top-content">
+        <div class="mdui-col-xs-4 mdui-col-sm-3 mdui-col-md-2 top-content">
             <a href="#">
                 <img class="img-responsive " src="/static/images/banners/banner_paris.png" alt="">
             </a>
         </div>
-        <div class="col-xs-4 col-sm-3 col-md-2 top-content">
+        <div class="mdui-col-xs-4 mdui-col-sm-3 mdui-col-md-2 top-content">
             <a href="#">
                 <img class="img-responsive " src="/static/images/banners/banner_buenos_aires.png" alt="">
             </a>
         </div>
-        <div class="col-xs-4 col-sm-3 col-md-2 top-content">
+        <div class="mdui-col-xs-4 mdui-col-sm-3 mdui-col-md-2 top-content">
             <a href="#">
                 <img class="img-responsive " src="/static/images/banners/banner_lausanne.png" alt="">
             </a>
         </div>
-        <div class="col-xs-4 col-sm-3 col-md-2 top-content">
+        <div class="mdui-col-xs-4 mdui-col-sm-3 mdui-col-md-2 top-content">
             <a href="#">
                 <img class="img-responsive " src="/static/images/banners/olympic_org.png" alt="">
             </a>
@@ -411,7 +377,7 @@
 <script src="/static/js/olympic.ui-loader.js">
 </script>
 <script>
-    function scrollToCompetition() {
+    function scrollToCompetition () {
         var body = $('body');
         body.animate({
             scrollTop: $('#competitions').offset().top - body.offset().top + body.scrollTop()

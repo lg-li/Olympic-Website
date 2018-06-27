@@ -11,8 +11,7 @@
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Sport Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <meta name="keywords" content="Olympic Games, Sports"/>
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
@@ -30,12 +29,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div id="header"></div>
 <div class="title-banner" style="background: url('/static/images/photos/flags.jpg')">
     <div class="big-title">
-        <h1 id="delegation-loading">Loading...</h1>
+        <p id="delegation-loading">Loading...</p>
     </div>
 </div>
 <div class="line1"></div>
 <!---->
 <div class="product-grids">
+    <div id="preloader" style="text-align: center;">
+        <span></span><span></span><span></span><span></span>
+        <br/><br/><br/><br/>
+        <h3>Fetching countries</h3>
+        <br/><br/><br/><br/>
+    </div>
     <div id="countries-panel" class="container" style="display: none">
         <h3>Africa</h3>
         <div id="continent0" class="product-top">
@@ -89,18 +94,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             type: "GET", // Get only
             dataType: "json",
             success: function (data) {
-                var countries=data;
-                if(countries['code'] === '100'){
+                var countries = data;
+                if (countries['code'] === '100') {
                     var country;
-                    for(var i =0; i<countries['data']['list'].length; i++){
-                        $('#continent'+countries['data']['list'][i]['continent']).append(
-                            compileTemplate(country_template,{COUNTRY_NAME: countries['data']['list'][i]['name']})
+                    for (var i = 0; i < countries['data']['list'].length; i++) {
+                        $('#continent' + countries['data']['list'][i]['continent']).append(
+                            compileTemplate(country_template, {COUNTRY_NAME: countries['data']['list'][i]['name']})
                         );
                     }
                     $('#countries-panel').slideDown(800);
                 }
                 progressBar.finish();
-                fadeToText('delegation-loading','Delegations of Countries/Regions');
+                $('#preloader').hide();
+                fadeToText('delegation-loading', 'Delegations of Countries/Regions');
             }
         })
     });

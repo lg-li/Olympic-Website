@@ -1,6 +1,5 @@
 body {
     background: #ffffff;
-    font-family: 'Open Sans', sans-serif;
 }
 
 body a {
@@ -33,7 +32,7 @@ h1, h2, h3, h4, h5, h6, label, p {
     transition: all 0.5s ease 0s;
 }
 
-.olympic-card img{
+.olympic-card img {
     margin: 10px;
     width: 100%;
     float: left;
@@ -41,7 +40,7 @@ h1, h2, h3, h4, h5, h6, label, p {
     text-align: center;
 }
 
-.olympic-card-title{
+.olympic-card-title {
     width: 100%;
     float: left;
 }
@@ -58,7 +57,7 @@ h1, h2, h3, h4, h5, h6, label, p {
     width: 15%;
     margin: 0 auto;
     float: left;
-    min-height: 102px;
+    min-height: 108px;
     text-align: center;
     padding-top: 14px;
 }
@@ -72,8 +71,7 @@ h1, h2, h3, h4, h5, h6, label, p {
 }
 
 .flag-small {
-    max-width: 40px;
-!important;
+    max-width: 40px !important;
 }
 
 .flag-xsmall {
@@ -406,8 +404,8 @@ select.in-drop {
 
 /***** Media Quries *****/
 @media screen and (max-width: 768px) {
-    .header {
-        background: #4F4F4F;
+    .olympic-header {
+        background: #4F4F4F !important;
     }
 
     .h_logo4 {
@@ -473,7 +471,7 @@ select.in-drop {
 .title-banner {
     min-height: 110px;
     width: 100%;
-    background-size: cover
+    background-size: cover !important;
 }
 
 .big-title {
@@ -482,7 +480,7 @@ select.in-drop {
     width: 100%;
 }
 
-.big-title h1 {
+.big-title p {
     color: #fff;
     font-size: 3.5em;
     width: 100%;
@@ -2285,4 +2283,85 @@ p.footer-class a:hover {
     a.create {
         width: 61%;
     }
+}
+
+
+/******************* PRELOADER 1 **********
+*******************************************/
+#preloader{
+    position:relative;
+}
+#preloader span{
+    display:block;
+    bottom:0px;
+    width: 9px;
+    height: 5px;
+    background:#9b59b6;
+    position:absolute;
+    -webkit-animation: preloader 1.5s	 infinite ease-in-out;
+    -moz-animation: preloader 1.5s	 infinite ease-in-out;
+    -ms-animation: preloader 1.5s	 infinite ease-in-out;
+    -o-animation: preloader 1.5s	 infinite ease-in-out;
+    animation: preloader 1.5s	 infinite ease-in-out;
+
+}
+#preloader span:nth-child(2){
+    left:11px;
+    -webkit-animation-delay: .2s;
+    -moz-animation-delay: .2s;
+    -ms-animation-delay: .2s;
+    -o-animation-delay: .2s;
+    animation-delay: .2s;
+
+}
+#preloader span:nth-child(3){
+    left:22px;
+    -webkit-animation-delay: .4s;
+    -moz-animation-delay: .4s;
+    -ms-animation-delay: .4s;
+    -o-animation-delay: .4s;
+    animation-delay: .4s;
+}
+#preloader span:nth-child(4){
+    left:33px;
+    -webkit-animation-delay: .6s;
+    -moz-animation-delay: .6s;
+    -ms-animation-delay: .6s;
+    -o-animation-delay: .6s;
+    animation-delay: .6s;
+}
+#preloader span:nth-child(5){
+    left:44px;
+    -webkit-animation-delay: .8s;
+    -moz-animation-delay: .8s;
+    -ms-animation-delay: .8s;
+    -o-animation-delay: .8s;
+    animation-delay: .8s;
+}
+@-webkit-keyframes preloader {
+    0% {height:5px;-webkit-transform:translateY(0px);background:#9b59b6;}
+    25% {height:30px;-webkit-transform:translateY(15px);background:#3498db;}
+    50% {height:5px;-webkit-transform:translateY(0px);background:#9b59b6;}
+    100% {height:5px;-webkit-transform:translateY(0px);background:#9b59b6;}
+}
+
+@-moz-keyframes preloader {
+    0% {height:5px;-moz-transform:translateY(0px);background:#9b59b6;}
+    25% {height:30px;-moz-transform:translateY(15px);background:#3498db;}
+    50% {height:5px;-moz-transform:translateY(0px);background:#9b59b6;}
+    100% {height:5px;-moz-transform:translateY(0px);background:#9b59b6;}
+}
+
+@-ms-keyframes preloader {
+    0% {height:5px;-ms-transform:translateY(0px);background:#9b59b6;}
+    25% {height:30px;-ms-transform:translateY(15px);background:#3498db;}
+    50% {height:5px;-ms-transform:translateY(0px);background:#9b59b6;}
+    100% {height:5px;-ms-transform:translateY(0px);background:#9b59b6;}
+}
+
+@keyframes preloader {
+    0% {height:5px;transform:translateY(0px);background:#9b59b6;}
+    25% {height:30px;transform:translateY(15px);background:#3498db;}
+    50% {height:5px;transform:translateY(0px);background:#9b59b6;}
+    100% {height:5px;transform:translateY(0px);background:#9b59b6;}
 }
