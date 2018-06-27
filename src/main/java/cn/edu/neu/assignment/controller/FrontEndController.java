@@ -79,8 +79,8 @@ public class FrontEndController {
     }
 
     @RequestMapping("/session/{id}")
-    public String session(@PathVariable String id, Model model) {
-        model.addAttribute("id",id);
+    public String session(@PathVariable Integer id, Model model) {
+        model.addAttribute("competition",competitionRepository.findById(id));
         return "session-detail";
     }
 
