@@ -16,7 +16,7 @@ public class FrontEndController {
 
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("recent-competition", competitionRepository.findAll(new PageRequest(0,4)));
+        model.addAttribute("list", competitionRepository.findAll(new PageRequest(0,4)));
         return "index";
     }
 

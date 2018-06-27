@@ -183,14 +183,14 @@
                 <h3>Recent Competitions</h3>
                 <p></p>
 
-                <div th:each="comp : ${re}" class="mdui-col-sm-4 mdui-col-md-3">
+                <div th:each="comp:${list}" class="mdui-col-sm-4 mdui-col-md-3">
                     <div class="mdui-card">
                         <div class="mdui-card-media">
                             <img src="/static/images/competition/curling-photo.jpg"/>
                         </div>
                         <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">Men's 100m</div>
-                            <div class="mdui-card-primary-subtitle">6/26 10:00</div>
+                            <div th:text="${comp.name}" class="mdui-card-primary-title"></div>
+                            <div th:text="${comp.time}" class="mdui-card-primary-subtitle"></div>
                         </div>
                         <div class="mdui-card-actions">
                             <button class="mdui-btn mdui-ripple">Trace on it</button>
