@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Olympic NEU</title>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
@@ -182,14 +182,15 @@
                 <p></p>
                 <h3>Recent Competitions</h3>
                 <p></p>
-                <div class="mdui-col-sm-4 mdui-col-md-3">
+
+                <div th:each="comp:${list}" class="mdui-col-sm-4 mdui-col-md-3">
                     <div class="mdui-card">
                         <div class="mdui-card-media">
-                            <img src="/static/images/sports/u1.png"/>
+                            <img src="/static/images/competition/curling-photo.jpg"/>
                         </div>
                         <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">Men's 100m</div>
-                            <div class="mdui-card-primary-subtitle">6/26 10:00</div>
+                            <div th:text="${comp.name}" class="mdui-card-primary-title"></div>
+                            <div th:text="${comp.time}" class="mdui-card-primary-subtitle"></div>
                         </div>
                         <div class="mdui-card-actions">
                             <button class="mdui-btn mdui-ripple">Trace on it</button>
@@ -198,86 +199,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mdui-col-sm-4 mdui-col-md-3">
-                    <div class="mdui-card">
-                        <div class="mdui-card-media">
-                            <img src="/static/images/sports/u20.png"/>
-                        </div>
-                        <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">Kendo</div>
-                            <div class="mdui-card-primary-subtitle">6/26 10:00</div>
-                        </div>
-                        <div class="mdui-card-actions">
-                            <button class="mdui-btn mdui-ripple">Trace on it</button>
-                            <button class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons">expand_more</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="mdui-col-sm-4 mdui-col-md-3">
-                    <div class="mdui-card">
-                        <div class="mdui-card-media">
-                            <img src="/static/images/sports/u26.png"/>
-                        </div>
-                        <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">Table Tennis</div>
-                            <div class="mdui-card-primary-subtitle">6/26 10:00</div>
-                        </div>
-                        <div class="mdui-card-actions">
-                            <button class="mdui-btn mdui-ripple">Trace on it</button>
-                            <button class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons">expand_more</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="mdui-col-sm-4 mdui-col-md-3">
-                    <div class="mdui-card">
-                        <div class="mdui-card-media">
-                            <img src="/static/images/sports/u26.png"/>
-                        </div>
-                        <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">Table Tennis</div>
-                            <div class="mdui-card-primary-subtitle">6/26 10:00</div>
-                        </div>
-                        <div class="mdui-card-actions">
-                            <button class="mdui-btn mdui-ripple">Trace on it</button>
-                            <button class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons">expand_more</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="mdui-col-sm-4 mdui-col-md-3">
-                    <div class="mdui-card">
-                        <div class="mdui-card-media">
-                            <img src="/static/images/sports/u26.png"/>
-                        </div>
-                        <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">Table Tennis</div>
-                            <div class="mdui-card-primary-subtitle">6/26 10:00</div>
-                        </div>
-                        <div class="mdui-card-actions">
-                            <button class="mdui-btn mdui-ripple">Trace on it</button>
-                            <button class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons">expand_more</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="mdui-col-sm-4 mdui-col-md-3">
-                    <div class="mdui-card">
-                        <div class="mdui-card-media">
-                            <img src="/static/images/sports/u26.png"/>
-                        </div>
-                        <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">Table Tennis</div>
-                            <div class="mdui-card-primary-subtitle">6/26 10:00</div>
-                        </div>
-                        <div class="mdui-card-actions">
-                            <button class="mdui-btn mdui-ripple">Trace on it</button>
-                            <button class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons">expand_more</i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div class="mdui-col-md-1"></div>
             <div class="mdui-col-sm-12 mdui-col-md-3">
