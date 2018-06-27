@@ -1,6 +1,5 @@
 body {
     background: #ffffff;
-    font-family: 'Open Sans', sans-serif;
 }
 
 body a {
@@ -58,7 +57,7 @@ h1, h2, h3, h4, h5, h6, label, p {
     width: 15%;
     margin: 0 auto;
     float: left;
-    min-height: 102px;
+    min-height: 108px;
     text-align: center;
     padding-top: 14px;
 }
@@ -405,7 +404,7 @@ select.in-drop {
 
 /***** Media Quries *****/
 @media screen and (max-width: 768px) {
-    .header {
+    .olympic-header {
         background: #4F4F4F !important;
     }
 
@@ -481,7 +480,7 @@ select.in-drop {
     width: 100%;
 }
 
-.big-title h1 {
+.big-title p {
     color: #fff;
     font-size: 3.5em;
     width: 100%;
