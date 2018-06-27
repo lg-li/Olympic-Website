@@ -18,7 +18,7 @@ package cn.edu.neu.assignment.utl;
     private TokenState(String state) {  
         this.state = state;  
     }
-    
+
     public static TokenState getTokenState(String tokenState){
     	TokenState[] states=TokenState.values();
     	TokenState ts=null;
