@@ -15,3 +15,6 @@ spring:
     database: mysql
   thymeleaf:
     cache: false
+  jackson:
+    date-format: java.text.SimpleDateFormat
+    time-zone: GMT+8

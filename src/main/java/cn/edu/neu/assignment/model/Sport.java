@@ -20,6 +20,12 @@ public class Sport {
     @JSONField(serialize = false)
     private Set<Competition> competitions = new HashSet<>();
 
+    private String description;
+
+    private String pictureUrl;
+
+    private String logoUrl;
+
     public Sport() {
 
     }
@@ -46,5 +52,29 @@ public class Sport {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 }
