@@ -8,8 +8,9 @@ public enum ErrorEnum {
     /*
     * error message
     * */
-    E_400("400", "Request error,please try again later"),
-    E_501("501", "Undefined path");
+    E_400("400", "Request error,please try again later!"),
+    E_501("501", "Undefined path!"),
+    E_502("502", "Don't exist!");
 
 
     private String errorCode;

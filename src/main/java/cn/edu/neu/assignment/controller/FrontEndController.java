@@ -16,7 +16,7 @@ public class FrontEndController {
 
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("recent-competition", competitionRepository.findAll(new PageRequest(0,4)));
+        model.addAttribute("list", competitionRepository.findAll(new PageRequest(0,4)));
         return "index";
     }
 
@@ -79,8 +79,8 @@ public class FrontEndController {
     }
 
     @RequestMapping("/session/{id}")
-    public String session(@PathVariable String id, Model model) {
-        model.addAttribute("id",id);
+    public String session(@PathVariable Integer id, Model model) {
+        model.addAttribute("competition",competitionRepository.findById(id));
         return "session-detail";
     }
 
