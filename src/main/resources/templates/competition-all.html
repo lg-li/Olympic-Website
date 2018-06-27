@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="/static/css/etalage.css">
     <!--//tab style-->
     <link rel="stylesheet" href="/static/css/olympic.tab.css">
+    <!--//schedule table (calendar) style-->
+    <link href="/static/css/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
     <script src="/static/js/jquery.etalage.min.js"></script>
     <script>
         jQuery(document).ready(function ($) {
@@ -46,70 +48,75 @@
 <body>
 <!--header-->
 <div id="header"></div>
-<div>
-    <div class="title-banner" style="background: url('/static/images/photos/running.jpg')">
-        <div class="big-title">
-            <h1 id="competition-loading">Loading...</h1>
-        </div>
+<div class="title-banner" style="background: url('/static/images/photos/running.jpg')">
+    <div class="big-title">
+        <h1 id="competition-loading">Loading...</h1>
     </div>
-    <div class="line1"></div>
-    <br/>
-    <div class="row">
-        <div class="col-sm-12 col-sm-12 col-md-12">
-            <div class="tab" role="tabpanel">
-                <!--@LLG: Competition Nav Tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab"
-                                                              data-toggle="tab">Competitions</a></li>
-                    <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Global
-                        Schedule</a></li>
-                    <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Status</a>
-                    </li>
-                </ul>
-                <!-- Competition Tab Panes -->
-                <div class="tab-content tabs">
-                    <div role="tabpanel" class="tab-pane fade in active" id="Section1">
-                        <div class="container" id="competition-type-list">
-                            <h3>Competitions</h3><br/>
+</div>
+<div class="line1"></div>
+<br/>
+<div class="row">
+    <div class="col-sm-12 col-sm-12 col-md-12">
+        <div class="tab" role="tabpanel">
+            <!--@LLG: Competition Nav Tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab"
+                                                          data-toggle="tab">Competitions</a></li>
+                <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Global
+                    Schedule</a></li>
+                <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab"
+                                           data-toggle="tab">Status</a>
+                </li>
+            </ul>
+            <!-- Competition Tab Panes -->
+            <div class="tab-content tabs">
+                <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                    <div class="container" id="competition-type-list">
+                        <h3>Competitions</h3><br/>
+                        <div id="preloader" style="text-align: center;">
+                            <span></span><span></span><span></span><span></span>
+                            <br/><br/><br/><br/>
+                            <h3>Fetching competitions</h3>
+                            <br/><br/><br/><br/>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="Section2">
-                        <div class="container">
-                            <h3>Global Schedule Overview</h3>
-                            <div class="single">
-                                <div id="competition-schedule-table">
-                                    Loading competition events from server...
-                                </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Section2">
+                    <div class="container">
+                        <h3>Global Schedule Overview</h3>
+                        <div class="single">
+                            <div id="competition-schedule-table">
+                                Loading competition events from server...
                             </div>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="Section3">
-                        <div class="container">
-                            <h3>Competition Status</h3>
-                            <div class="single">
-                                <div>
-                                    <table id="medals">
-                                        <thead>
-                                        <tr>
-                                            <th>
-                                                Name
-                                            </th>
-                                            <th>
-                                                Type
-                                            </th>
-                                            <th>
-                                                Time
-                                            </th>
-                                            <th>
-                                                Status
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="competition-status-table">
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Section3">
+                    <div class="container">
+                        <h3>Competition Status</h3>
+                        <div class="single">
+                            <div>
+                                <table id="medals">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Type
+                                        </th>
+                                        <th>
+                                            Time
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="competition-status-table">
 
-                                        </tbody>
-                                    </table>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -125,14 +132,19 @@
 <script src="/static/js/datatables.min.js"></script>
 <script src="/static/js/jquery-ui.min.js"></script>
 <script src="/static/js/moment.min.js"></script>
-<link href="/static/css/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
 <script src="/static/js/fullcalendar.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/ToProgress.min.js"></script>
 <script>
 
     $(document).ready(function () {
-
+        var progressBar = new ToProgress({
+            id: 'top-progress-bar',
+            color: '#F44336',
+            height: '10px',
+            duration: 2.0
+        });
+        progressBar.increase(10);
 
         var status_table_row_template = '<tr>' +
             '<td><strong><a href="">__COMPETITION_NAME__</a></strong></td>' +
@@ -144,21 +156,24 @@
         // load competition events from server in background
         $.ajax({
             async: true,
-            url: '/competition/list', //URL Requested
-            type: "GET", // Get only
+            url: '/competition/list',
+            type: "GET",
             dataType: "json",
             success: function (data) {
+                progressBar.increase(20);
                 var schedule_table = $('#competition-schedule-table');
                 var status_table = $('#competition-status-table');
                 if (data['code'] === '100') {
                     schedule_table.text("");
                     var competition_events = [];
                     for (var i = 0; i < data['data']['list'].length; i++) {
-                        // competition type
-                        var cmode = data['data']['list'][i]['individual']?'Individual':'Team';
-                        // competition status: 0:
-                        var cstatus = function(){
-                            switch (data['data']['list'][i]['situation']){
+                        // competition types
+                        var cmode = data['data']['list'][i]['individual'] ? 'Individual' : 'Team';
+                        // competition status: 0:Pending; 1:In Progress; 2:Finished
+                        var status_code = data['data']['list'][i]['situation'];
+                        // convert code from database to readable strings
+                        var cstatus = function () {
+                            switch (status_code) {
                                 case 0:
                                     return 'Pending';
                                 case 1:
@@ -180,6 +195,7 @@
                         competition_events[i]['title'] = data['data']['list'][i]['name'];
                         competition_events[i]['start'] = data['data']['list'][i]['time'];
                     }
+                    // initialize the schedule table
                     schedule_table.fullCalendar({
                         header: {
                             left: 'prev,next today',
@@ -201,18 +217,16 @@
             }
         })
 
-        var competition_type_list_template = '<div class="olympic-card col-xs-6 col-sm-4 col-md-2 grid-product-in" style="max-height: 240px; min-height: 240px"><div class=" product-grid">' +
-            '<a href="/competition/__ID__"><img class="img-responsive" src="/static/images/sports/u__ID__.png" alt=""></a>' +
-            '<div class="">' +
+        progressBar.increase(10);
+
+        var competition_type_list_template = '<div class="olympic-card col-xs-6 col-sm-4 col-md-2 grid-product-in" style="max-height: 240px; min-height: 240px">' +
+            '<div class=" product-grid">' +
+            '<a href="/competition/__ID__">' +
+            '<img class="img-responsive" src="/static/images/sports/u__ID__.png" alt="">' +
+            '</a><div>' +
             '<p><a href="/competition/__ID__">__TYPE_NAME__</a></p></div></div></div>';
 
-        var progressBar = new ToProgress({
-            id: 'top-progress-bar',
-            color: '#F44336',
-            height: '10px',
-            duration: 1.0
-        });
-        progressBar.increase(60);
+
         // load countries list by ajax
         $.ajax({
             async: true,
@@ -220,6 +234,7 @@
             type: "GET", // Get only
             dataType: "json",
             success: function (data) {
+                progressBar.increase(20);
                 if (data['code'] === '100') {
                     var type_list = $('#competition-type-list');
                     for (var i = 0; i < data['data']['list'].length; i++) {
@@ -233,8 +248,11 @@
                         );
                     }
                     type_list.slideDown(800);
+                    $('#preloader').hide();
                 }
-                progressBar.finish();
+                setTimeout(function () {
+                    progressBar.finish();
+                }, 500);
                 fadeToText('competition-loading', 'Competitions');
             },
             error: function (err) {

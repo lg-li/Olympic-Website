@@ -1,5 +1,9 @@
-// Author: Li Lingen (Bruce) 20165254
-// Async load template HTML file to Container
+/**@Author Li Lingen (Bruce) 20165254
+ * Olympic basic universal JS lib.
+ * Async load template HTML file to Container
+ * Fade transition text effect
+ * Basic template compile
+ */
 function loadTo(url, id) {
     $.ajax({
         url: url, //URL Requested
