@@ -59,7 +59,7 @@
     <div class="single">
         <div class="col-md-9 top-in-single">
             <div class="col-md-3 single-top">
-                <img class="flag-big" src="/static/images/sports/25.png"/>
+                <img class="flag-big" src="/static/images/sports/20.png"/>
             </div>
             <div class="col-md-9 single-top-in">
                 <div class="single-para">
@@ -111,6 +111,7 @@
                     <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                         <div class="container" id="competition-type-list">
                             <h3>Session Participants</h3><br/>
+
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="Section2">
@@ -118,20 +119,17 @@
                             <h3>Session Result</h3>
                             <div class="single">
                                 <div>
-                                    <table id="medals">
+                                    <table id="session-result">
                                         <thead>
                                         <tr>
                                             <th>
-                                                Name
+                                                Rank
                                             </th>
                                             <th>
-                                                Type
+                                                Participant
                                             </th>
                                             <th>
-                                                Time
-                                            </th>
-                                            <th>
-                                                Status
+                                                Result
                                             </th>
                                         </tr>
                                         </thead>
@@ -232,7 +230,7 @@
 <script src="/static/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#Daily-Scheduling').DataTable();
+        $('#session-result').DataTable();
     });
 </script>
 p

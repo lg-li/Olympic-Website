@@ -42,7 +42,6 @@ public class FrontEndController {
                 }
                 return x;
             }
-
         });
         model.addAttribute("rank",delegations);
         return "index";
@@ -82,6 +81,7 @@ public class FrontEndController {
     @RequestMapping("/delegation/{name}")
     public String delegation(@PathVariable String name, Model model) {
         model.addAttribute("name",name);
+
         return "delegation";
     }
 
