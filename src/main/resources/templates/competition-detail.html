@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Competition - Curling</title>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
@@ -46,126 +46,134 @@
 <body>
 <!--header-->
 <div id="header"></div>
-<div class="title-banner" style="background: url('/static/images/photos/Curling.jpg')">
-    <div class="big-title">
-        <p>Curling</p>
-    </div>
-</div>
-<div class="line1"></div>
-<!---->
-<div class="container">
-    <div class="single">
-        <div class="col-md-9 top-in-single">
-            <div class="col-md-3 single-top">
-                <img class="flag-big" src="/static/images/sports/25.png"/>
-            </div>
-            <div class="col-md-9 single-top-in">
-                <div class="single-para">
-                    <label class="add-to"></label>
-                    <p>
-                        <strong>Curling</strong>, is a throwing competition on the ice for teams, Winter Olympics, and
-                        curling championships. There are two small items for men and women. Each team
-                        has four people. The curling is a round pot, made of natural granite without
-                        granite, and all of the world's natural granites for the production of fine
-                        curling are produced on an island off the coast of Scotland,and only the Scots
-                        hold the world's best Horizontal curling technique.
-                        <a href="#" class="cart">More from Wiki</a>
-                    </p>
+<div class="competition-type-banner" th:style="'background: url(\'/static/images/competition/'+${sport.pictureUrl}+'.jpg\')">
+    <div class="mdui-container-fluid bg-transparent-dark">
+        <div class="mdui-container">
+            <div class="col-md-9 top-in-single">
+                <div class="big-title-transparent">
+                    <p th:text="${sport.typeName}">competition type (sport) name</p>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="single-bottom">
-                <h4>Other Olympic Competitions</h4>
-                <ul>
-                    <li>
-                        <img class="flag-xsmall" src="/static/images/sports/2.png">
-                        <a href="#"><span></span> Ice Hockey</a>
-                    </li>
-                    <li>
-                        <img class="flag-xsmall" src="/static/images/sports/3.png">
-                        <a href="#"><span></span> Short Track Speed Skating</a>
-                    </li>
-                </ul>
+                <div class="col-md-3 single-top">
+                    <img class="flag-big" src="/static/images/sports/20.png"/>
+                </div>
+                <div class="col-md-9 single-top-in">
+                    <div class="single-para">
+                        <label class="add-to"></label>
+                        <p>
+                            <strong>Curling</strong>, is a throwing competition on the ice for teams, Winter Olympics, and
+                            curling championships. There are two small items for men and women. Each team
+                            has four people. The curling is a round pot, made of natural granite without
+                            granite, and all of the world's natural granites for the production of fine
+                            curling are produced on an island off the coast of Scotland,and only the Scots
+                            hold the world's best Horizontal curling technique.
+                        </p>
+                        <button href="#" class="mdui-btn mdui-color-theme">More from Wiki</button>
+                    </div>
+                </div>
             </div>
 
         </div>
         <div class="clearfix"></div>
     </div>
-    <div class="single">
-        <div>
-            <h3><strong>Daily Scheduling</strong></h3>
-            <h3><strong>Thu, 8 Feb</strong></h3>
-            <table id="Daily-Scheduling">
-                <thead>
-                <tr>
-                    <th>
-                        Start Time
-                    </th>
+</div>
+<div class="line1"></div>
+<!---->
+<div class="mdui-container-fluid">
+    <div class="mdui-row">
+        <div class="mdui-card mdui-col-md-9">
+            <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title">Daily Scheduling</div>
+            <div class="mdui-card-primary-subtitle">Thu, 8 Feb</div>
+            </div>
+            <div class="mdui-card-content">
+                <table id="Daily-Scheduling">
+                    <thead>
+                    <tr>
+                        <th>
+                            Start Time
+                        </th>
 
-                    <th>
-                        Event
-                    </th>
+                        <th>
+                            Event
+                        </th>
 
-                    <th>
-                        Result
-                    </th>
+                        <th>
+                            Result
+                        </th>
 
-                    <th>
-                        Status
-                    </th>
-                </tr>
+                        <th>
+                            Status
+                        </th>
+                    </tr>
 
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
 
-                <tr>
-                    <td>
-                        9:05
-                    </td>
+                    <tr>
+                        <td>
+                            9:05
+                        </td>
 
-                    <td>
-                        <a href="/session/1"><h4>Woman Round Robin Session 1</h4></a>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Switzerland.png" alt="">
-                        <strong><a href="/delegation/Switzerland">SUI</a></strong><br/>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20China.png" alt="">
-                        <strong><a href="/delegation/China">CHN</a></strong>
-                    </td>
-                    <td>
-                        2<br/>7
-                    </td>
-                    <td>
-                        Finished
-                    </td>
+                        <td>
+                            <a href="/session/1"><h4>Woman Round Robin Session 1</h4></a>
+                            <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Switzerland.png" alt="">
+                            <strong><a href="/delegation/Switzerland">SUI</a></strong><br/>
+                            <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20China.png" alt="">
+                            <strong><a href="/delegation/China">CHN</a></strong>
+                        </td>
+                        <td>
+                            2<br/>7
+                        </td>
+                        <td>
+                            Finished
+                        </td>
+                        </a>
+
+                    </tr>
+                    <tr><a href="competition-detail.html">
+                        <td>
+                            11:05
+                        </td>
+
+                        <td>
+                            <a href="/session/1"><h4>Woman Round Robin Session 2</h4></a>
+                            <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Russia.png" alt="">
+                            <strong><a href="/delegation/Russia">RUS</a></strong><br/>
+                            <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20China.png" alt="">
+                            <strong><a href="/delegation/China">CHN</a></strong>
+
+                        </td>
+                        <td>
+                            7<br/>6
+                        </td>
+                        <td>
+                            Finished
+                        </td>
                     </a>
 
-                </tr>
-                <tr><a href="competition-detail.html">
-                    <td>
-                        11:05
-                    </td>
-
-                    <td>
-                        <a href="/session/1"><h4>Woman Round Robin Session 2</h4></a>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Russia.png" alt="">
-                        <strong><a href="/delegation/Russia">RUS</a></strong><br/>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20China.png" alt="">
-                        <strong><a href="/delegation/China">CHN</a></strong>
-
-                    </td>
-                    <td>
-                        7<br/>6
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </a>
-
-                </tr>
-                </tbody>
-            </table>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
+        <div class="mdui-card mdui-col-md-3">
+                <div class="mdui-card-primary">
+                    <div class="mdui-card-primary-title">Other Olympic Competitions</div>
+                </div>
+                <div class="mdui-card-content">
+                    <ul>
+                        <li>
+                            <img class="flag-xsmall" src="/static/images/sports/2.png">
+                            <a href="#"><span></span> Ice Hockey</a>
+                        </li>
+                        <li>
+                            <img class="flag-xsmall" src="/static/images/sports/3.png">
+                            <a href="#"><span></span> Short Track Speed Skating</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        <br/>
     </div>
 </div>
 
