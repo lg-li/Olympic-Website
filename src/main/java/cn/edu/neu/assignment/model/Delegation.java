@@ -8,11 +8,12 @@ import java.util.Iterator;
 import java.util.Set;
 
 @Entity
-public class Delegation {
+public class Delegation implements Comparable<Delegation> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @JSONField(serialize = false)
     private String description;
 
     @Column(length = 32, nullable = false)
@@ -106,4 +107,18 @@ public class Delegation {
         return amount;
     }
 
+    @Override
+    public int compareTo(Delegation that) {
+//        int goldAmount = this.countMedals(1)
+        int x = (this.countMedals(1)+this.countMedals(2)+this.countMedals(3)) - (that.countMedals(1)+that.countMedals(2)+that.countMedals(3));
+        int y = this.countMedals(1) - that.countMedals(1);
+        int z = this.countMedals(2) - that.countMedals(2);
+        if(x==0){
+            if(y==0){
+                return z;
+            }
+            return y;
+        }
+        return x;
+    }
 }
