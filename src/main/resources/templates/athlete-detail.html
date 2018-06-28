@@ -20,27 +20,6 @@
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <!--fonts-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <!--//fonts-->
-    <link rel="stylesheet" href="/static/css/etalage.css">
-    <script src="/static/js/jquery.etalage.min.js"></script>
-    <script>
-        jQuery(document).ready(function ($) {
-
-            $('#etalage').etalage({
-                thumb_image_width: 300,
-                thumb_image_height: 400,
-                source_image_width: 900,
-                source_image_height: 1200,
-                show_hint: true,
-                click_callback: function (image_anchor, instance_id) {
-                    alert('Callback example:\nYou clicked on an image with the anchor: "' + image_anchor + '"\n(in Etalage instance: "' + instance_id + '")');
-                }
-            });
-
-        });
-    </script>
 
 </head>
 <body>
@@ -82,28 +61,15 @@
         </div>
         <div class="col-md-3">
             <div class="single-bottom">
-                <h4>Other Countries or Region</h4>
+                <h4>Other Athletes Of This Delegation</h4>
                 <ul>
                     <li>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Japan.png">
-                        <a href="#"><span></span> Japan</a>
+                        <img class="flag-small" src="/static/images/persons/1.jpg">
+                        <a href="#"><span></span> JIA Zongyang</a>
                     </li>
                     <li>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20South%20Korea.png">
-                        <a href="#"><span></span> South Korea</a>
-                    </li>
-                    <li>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20United%20Kingdom.png">
-                        <a href="#"><span></span> United Kongdom</a>
-                    </li>
-                    <li>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20United%20States.png">
-                        <a href="#"><span></span> United States</a>
-                    </li>
-                    <li>
-                        <img class="flag-xsmall"
-                             src="/static/images/flags/Flag%20of%20Chinese%20Taipei(Republic%20of%20China).png">
-                        <a href="#"><span></span> Chinese Taipei</a>
+                        <img class="flag-small" src="/static/images/persons/2.jpg">
+                        <a href="#"><span></span> ZHANG Xin</a>
                     </li>
                 </ul>
             </div>

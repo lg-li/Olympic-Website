@@ -2,6 +2,7 @@ package cn.edu.neu.assignment.controller;
 
 import cn.edu.neu.assignment.inter.CompetitionRepository;
 import cn.edu.neu.assignment.inter.DelegationRepository;
+import cn.edu.neu.assignment.inter.TeamRepository;
 import cn.edu.neu.assignment.inter.TypeRepository;
 import cn.edu.neu.assignment.model.Competition;
 import cn.edu.neu.assignment.model.Delegation;
@@ -24,6 +25,8 @@ public class FrontEndController {
     DelegationRepository delegationRepository;
     @Autowired
     TypeRepository typeRepository;
+    @Autowired
+    TeamRepository teamRepository;
 
     private List<Delegation> getRankedDelegations(){
         List<Delegation> delegations = delegationRepository.findAll();
@@ -53,7 +56,7 @@ public class FrontEndController {
 
     @RequestMapping("/medal")
     public String medal(Model model) {
-        model.addAttribute("rank",(getRankedDelegations().subList(0,4)));
+        model.addAttribute("rank",(getRankedDelegations()));
         return "medal";
     }
 
@@ -65,7 +68,7 @@ public class FrontEndController {
     @RequestMapping("/competition/{id}") // Competition Type (sport, not session)
     public String competition(@PathVariable Integer id, Model model) {
         model.addAttribute("id",id);
-        model.addAttribute("sport", typeRepository.findById(id));
+        model.addAttribute("sport", typeRepository.findById(id).get());
         return "competition-detail";
     }
 
@@ -74,14 +77,15 @@ public class FrontEndController {
         return "delegation-all";
     }
 
-    @RequestMapping("/delegation/{name}")
-    public String delegation(@PathVariable String name, Model model) {
-        model.addAttribute("name",name);
+    @RequestMapping("/delegation/{id}")
+    public String delegation(@PathVariable Integer id, Model model) {
+        model.addAttribute("delegation",delegationRepository.findById(id).get());
         return "delegation";
     }
 
-    @RequestMapping("team/detail")
-    public String teamDetail(){
+    @RequestMapping("team/{id}")
+    public String teamDetail(@PathVariable Integer id, Model model){
+        model.addAttribute("team", teamRepository.findById(id).get());
         return "team-detail";
     }
 
@@ -103,13 +107,13 @@ public class FrontEndController {
 
     @RequestMapping("/session/{id}") // Competition Item(session)
     public String session(@PathVariable Integer id, Model model) {
-        model.addAttribute("competition",competitionRepository.findById(id));
+        model.addAttribute("session",competitionRepository.findById(id).get());
         return "session-detail";
     }
 
     @RequestMapping("/session/all")
     public String session() {
-        return "competition-all#Section2";
+        return "competition-all";
     }
 
     @RequestMapping("/admin/")

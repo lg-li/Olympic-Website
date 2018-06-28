@@ -470,7 +470,7 @@ select.in-drop {
 /*----*/
 
 .competition-type-banner {
-    min-height: 200px;
+    min-height: 400px !important;
     width: 100%;
     background-size: cover !important;
 }
