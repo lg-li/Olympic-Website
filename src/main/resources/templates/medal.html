@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Medals</title>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
@@ -20,27 +20,6 @@
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <!--fonts-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <!--//fonts-->
-    <link rel="stylesheet" href="/static/css/etalage.css">
-    <script src="/static/js/jquery.etalage.min.js"></script>
-    <script>
-        jQuery(document).ready(function ($) {
-
-            $('#etalage').etalage({
-                thumb_image_width: 300,
-                thumb_image_height: 400,
-                source_image_width: 900,
-                source_image_height: 1200,
-                show_hint: true,
-                click_callback: function (image_anchor, instance_id) {
-                    alert('Callback example:\nYou clicked on an image with the anchor: "' + image_anchor + '"\n(in Etalage instance: "' + instance_id + '")');
-                }
-            });
-
-        });
-    </script>
 
 </head>
 <body>
@@ -53,7 +32,6 @@
 </div>
 <!---->
 <div class="container">
-
     <div class="single">
         <div>
             <h3>Medals Standing</h3>
@@ -75,78 +53,20 @@
                 </tr>
                 </thead>
                 <tbody>
-
-                <tr>
+                <tr th:each="delegation,index:${rank}">
                     <td>
                         <img class="flag-xsmall"
                              src="/static/images/flags/Flag%20of%20United%20States%20of%20America.png" alt="">
-                        <strong><a>United States</a></strong>
+                        <strong><a th:text="${delegation.name}">DELEGATION_NAME</a></strong>
                     </td>
-                    <td>
-                        1
+                    <td th:text="${delegation.gold}">
+                        GOLD_COUNT
                     </td>
-                    <td>
-                        1
+                    <td th:text="${delegation.silver}">
+                        SILVER_COUNT
                     </td>
-                    <td>
-                        2
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20United%20Kingdom.png" alt="">
-                        <strong><a>United Kingdom</a></strong></td>
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        0
-                    </td>
-                    <td>
-                        2
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-xsmall"
-                             src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png" alt="">
-                        <strong><a>People's Republic of China</a></strong></td>
-                    <td>
-                        0
-                    </td>
-                    <td>
-                        5
-                    </td>
-                    <td>
-                        5
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Chinese%20Taipei.png" alt="">
-                        <strong><a>Chinese Taipei</a></strong></td>
-                    <td>
-                        0
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        0
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Japan.png" alt="">
-                        <strong><a>Japan</a></strong></td>
-                    <td>
-                        0
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        0
+                    <td th:text="${delegation.brozen}">
+                        BROZEN_COUNT
                     </td>
                 </tr>
                 </tbody>

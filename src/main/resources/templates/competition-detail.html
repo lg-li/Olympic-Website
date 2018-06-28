@@ -20,33 +20,14 @@
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <!--fonts-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <!--//fonts-->
-    <link rel="stylesheet" href="/static/css/etalage.css">
-    <script src="/static/js/jquery.etalage.min.js"></script>
-    <script>
-        jQuery(document).ready(function ($) {
 
-            $('#etalage').etalage({
-                thumb_image_width: 300,
-                thumb_image_height: 400,
-                source_image_width: 900,
-                source_image_height: 1200,
-                show_hint: true,
-                click_callback: function (image_anchor, instance_id) {
-                    alert('Callback example:\nYou clicked on an image with the anchor: "' + image_anchor + '"\n(in Etalage instance: "' + instance_id + '")');
-                }
-            });
-
-        });
-    </script>
 
 </head>
 <body>
 <!--header-->
 <div id="header"></div>
-<div class="competition-type-banner" th:style="'background: url(\'/static/images/competition/'+${sport.pictureUrl}+'.jpg\')">
+<div class="competition-type-banner"
+     th:style="'background: url(\'/static/images/competition/'+${sport.pictureUrl}+'.jpg\')">
     <div class="mdui-container-fluid bg-transparent-dark">
         <div class="mdui-container">
             <div class="col-md-9 top-in-single">
@@ -60,7 +41,8 @@
                     <div class="single-para">
                         <label class="add-to"></label>
                         <p>
-                            <strong>Curling</strong>, is a throwing competition on the ice for teams, Winter Olympics, and
+                            <strong>Curling</strong>, is a throwing competition on the ice for teams, Winter Olympics,
+                            and
                             curling championships. There are two small items for men and women. Each team
                             has four people. The curling is a round pot, made of natural granite without
                             granite, and all of the world's natural granites for the production of fine
@@ -82,8 +64,8 @@
     <div class="mdui-row">
         <div class="mdui-card mdui-col-md-9">
             <div class="mdui-card-primary">
-            <div class="mdui-card-primary-title">Daily Scheduling</div>
-            <div class="mdui-card-primary-subtitle">Thu, 8 Feb</div>
+                <div class="mdui-card-primary-title">Daily Scheduling</div>
+                <div class="mdui-card-primary-subtitle">Thu, 8 Feb</div>
             </div>
             <div class="mdui-card-content">
                 <table id="Daily-Scheduling">
@@ -92,11 +74,9 @@
                         <th>
                             Start Time
                         </th>
-
                         <th>
                             Event
                         </th>
-
                         <th>
                             Result
                         </th>
@@ -105,15 +85,12 @@
                             Status
                         </th>
                     </tr>
-
                     </thead>
                     <tbody>
-
                     <tr>
                         <td>
                             9:05
                         </td>
-
                         <td>
                             <a href="/session/1"><h4>Woman Round Robin Session 1</h4></a>
                             <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Switzerland.png" alt="">
@@ -127,21 +104,17 @@
                         <td>
                             Finished
                         </td>
-                        </a>
-
                     </tr>
-                    <tr><a href="competition-detail.html">
+                    <tr>
                         <td>
                             11:05
                         </td>
-
                         <td>
                             <a href="/session/1"><h4>Woman Round Robin Session 2</h4></a>
                             <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Russia.png" alt="">
                             <strong><a href="/delegation/Russia">RUS</a></strong><br/>
                             <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20China.png" alt="">
                             <strong><a href="/delegation/China">CHN</a></strong>
-
                         </td>
                         <td>
                             7<br/>6
@@ -149,29 +122,27 @@
                         <td>
                             Finished
                         </td>
-                    </a>
-
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="mdui-card mdui-col-md-3">
-                <div class="mdui-card-primary">
-                    <div class="mdui-card-primary-title">Other Olympic Competitions</div>
-                </div>
-                <div class="mdui-card-content">
-                    <ul>
-                        <li>
-                            <img class="flag-xsmall" src="/static/images/sports/2.png">
-                            <a href="#"><span></span> Ice Hockey</a>
-                        </li>
-                        <li>
-                            <img class="flag-xsmall" src="/static/images/sports/3.png">
-                            <a href="#"><span></span> Short Track Speed Skating</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title">Other Olympic Competitions</div>
+            </div>
+            <div class="mdui-card-content">
+                <ul>
+                    <li>
+                        <img class="flag-xsmall" src="/static/images/sports/2.png">
+                        <a href="#"><span></span> Ice Hockey</a>
+                    </li>
+                    <li>
+                        <img class="flag-xsmall" src="/static/images/sports/3.png">
+                        <a href="#"><span></span> Short Track Speed Skating</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <br/>
     </div>
