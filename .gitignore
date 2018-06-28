@@ -11,10 +11,11 @@
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.ideamodules.xml
 *.iws
 *.iml
 *.ipr
+
 
 ### NetBeans ###
 /nbproject/private/
