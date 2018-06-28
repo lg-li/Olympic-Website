@@ -20,6 +20,7 @@ public class Competition {
     private String place;
 
     @Column(nullable = false)
+    @JSONField(format="yyyy-MM-dd HH:mm")
     private Date time;
 
     @ManyToOne(fetch = FetchType.EAGER)

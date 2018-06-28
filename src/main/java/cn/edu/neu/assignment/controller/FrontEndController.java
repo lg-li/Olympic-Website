@@ -37,7 +37,10 @@ public class FrontEndController {
     @RequestMapping("/")
     public String index(Model model) {
         model.addAttribute("list", competitionRepository.findAll(new PageRequest(0,4)));
-        model.addAttribute("rank",getRankedDelegations().subList(0,4));
+        List<Delegation> delegations = getRankedDelegations();
+        Collections.sort(delegations);
+        delegations = delegations.subList(0,4);
+        model.addAttribute("rank",delegations);
         return "index";
     }
 
@@ -111,5 +114,10 @@ public class FrontEndController {
     @RequestMapping("/session/all")
     public String session() {
         return "competition-all";
+    }
+
+    @RequestMapping("/admin/")
+    public String adminIndex(){
+        return "admin/index";
     }
 }
