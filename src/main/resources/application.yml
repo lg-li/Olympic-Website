@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    #@LiLingen: This remote database is only for test and demo for the assignment of course [JSP and Servlet Tech.]
+    # @LiLingen: This remote database is only for test and demo for the assignment of course [JSP and Servlet Tech.]
     url: jdbc:mysql://intpserv1.5io2.com:3306/olympic?characterEncoding=utf-8&createDatabaseIfNotExist=true
     username: olympic
     platform: mysql

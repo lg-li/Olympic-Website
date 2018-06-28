@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Session</title>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
@@ -20,37 +20,17 @@
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <!--fonts-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <!--//fonts-->
-    <link rel="stylesheet" href="/static/css/etalage.css">
     <!--//tab style-->
     <link rel="stylesheet" href="/static/css/olympic.tab.css">
-    <script src="/static/js/jquery.etalage.min.js"></script>
-    <script>
-        jQuery(document).ready(function ($) {
 
-            $('#etalage').etalage({
-                thumb_image_width: 300,
-                thumb_image_height: 400,
-                source_image_width: 900,
-                source_image_height: 1200,
-                show_hint: true,
-                click_callback: function (image_anchor, instance_id) {
-                    alert('Callback example:\nYou clicked on an image with the anchor: "' + image_anchor + '"\n(in Etalage instance: "' + instance_id + '")');
-                }
-            });
-
-        });
-    </script>
 
 </head>
 <body>
 <!--header-->
 <div id="header"></div>
-<div class="title-banner" style="background: url('/static/images/photos/Curling.jpg')">
+<div class="title-banner" th:style="'background: url(/static/images/competition/'+${session.type.pictureUrl}+'.jpg)'">
     <div class="big-title">
-        <p>Curling - Woman Round Robin Session 1</p>
+        <p th:text="${session.name} +' - '+ ${session.type.typeName}">SESSION_NAME_TITLE</p>
     </div>
 </div>
 <div class="line1"></div>
@@ -59,19 +39,12 @@
     <div class="single">
         <div class="col-md-9 top-in-single">
             <div class="col-md-3 single-top">
-                <img class="flag-big" src="/static/images/sports/25.png"/>
+                <img class="flag-big" th:src="@{|/static/images/sports/${session.type.logoUrl}|}"/>
             </div>
             <div class="col-md-9 single-top-in">
                 <div class="single-para">
                     <label class="add-to"></label>
-                    <p>
-                        <strong>Curling</strong>, is a throwing competition on the ice for teams, Winter Olympics, and
-                        curling championships. There are two small items for men and women. Each team
-                        has four people. The curling is a round pot, made of natural granite without
-                        granite, and all of the world's natural granites for the production of fine
-                        curling are produced on an island off the coast of Scotland,and only the Scots
-                        hold the world's best Horizontal curling technique.
-                        <a href="#" class="cart">More from Wiki</a>
+                    <p th:text="${session.type.description}">
                     </p>
                 </div>
             </div>
@@ -111,27 +84,94 @@
                     <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                         <div class="container" id="competition-type-list">
                             <h3>Session Participants</h3><br/>
+
+                                <div class="mdui-card-content">
+                                    <div class="mdui-col-md-4">
+                                        <a href="/athlete/1" class="lot">
+                                            <img class="img-responsive" src="/static/images/persons/1.jpg" alt="">
+                                        </a>
+                                        <div class="big-item">
+                                            <p><img class="flag-xsmall"
+                                                    src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png"/> China</p>
+                                            <label>JIA Zongyang</label>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="mdui-col-md-4">
+                                        <a href="#" class="lot">
+                                            <img class="img-responsive" src="/static/images/persons/2.jpg" alt="">
+                                        </a>
+                                        <div class="big-item">
+                                            <p><img class="flag-xsmall"
+                                                    src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png"/> China</p>
+                                            <label>ZHANG Xin</label>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="mdui-col-md-4">
+                                        <a href="#" class="lot">
+                                            <img class="img-responsive" src="/static/images/persons/3.jpg" alt="">
+                                        </a>
+                                        <div class="big-item">
+                                            <p><img class="flag-xsmall"
+                                                    src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png"/> China</p>
+                                            <label>WU Dajing</label>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="mdui-col-md-4">
+                                        <a href="#" class="lot">
+                                            <img class="img-responsive" src="/static/images/persons/3.jpg" alt="">
+                                        </a>
+                                        <div class="big-item">
+                                            <p><img class="flag-xsmall"
+                                                    src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png"/> China</p>
+                                            <label>WU Dajing</label>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="mdui-col-md-4">
+                                        <a href="#" class="lot">
+                                            <img class="img-responsive" src="/static/images/persons/3.jpg" alt="">
+                                        </a>
+                                        <div class="big-item">
+                                            <p><img class="flag-xsmall"
+                                                    src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png"/> China</p>
+                                            <label>WU Dajing</label>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="mdui-col-md-4 content-grid">
+                                        <a href="#" class="lot">
+                                            <img class="img-responsive" src="/static/images/persons/3.jpg" alt="">
+                                        </a>
+                                        <div class="big-item">
+                                            <p><img class="flag-xsmall"
+                                                    src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png"/> China</p>
+                                            <label>WU Dajing</label>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="Section2">
                         <div class="container">
                             <h3>Session Result</h3>
                             <div class="single">
-                                <div>
-                                    <table id="medals">
+                                <div class="mdui-container">
+                                    <table id="session-result">
                                         <thead>
                                         <tr>
                                             <th>
-                                                Name
+                                                Rank
                                             </th>
                                             <th>
-                                                Type
+                                                Participant
                                             </th>
                                             <th>
-                                                Time
-                                            </th>
-                                            <th>
-                                                Status
+                                                Result
                                             </th>
                                         </tr>
                                         </thead>
@@ -148,79 +188,6 @@
         </div>
     </div>
 
-    <div class="single">
-        <div>
-            <h3><strong>Daily Scheduling</strong></h3>
-            <h3><strong>Thu, 8 Feb</strong></h3>
-            <table id="Daily-Scheduling">
-                <thead>
-                <tr>
-                    <th>
-                        Start Time
-                    </th>
-                    <th>
-                        Event
-                    </th>
-
-                    <th>
-                        Result
-                    </th>
-
-                    <th>
-                        Status
-                    </th>
-                </tr>
-
-                </thead>
-                <tbody>
-
-                <tr><a href="competition-detail.html">
-                    <td>
-                        9:05
-                    </td>
-
-                    <td>
-                        <h4>Woman Round Robin Session 1</h4>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Switzerland.png" alt="">
-                        <strong><a href="/delegation/Switzerland">SUI</a></strong><br/>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20China.png" alt="">
-                        <strong><a href="/delegation/China">CHN</a></strong>
-                    </td>
-                    <td>
-                        2<br/>7
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </a>
-
-                </tr>
-                <tr><a href="competition-detail.html">
-                    <td>
-                        11:05
-                    </td>
-
-                    <td>
-                        <h4>Woman Round Robin Session 2</h4>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Russia.png" alt="">
-                        <strong><a href="/delegation/Russia">RUS</a></strong><br/>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20China.png" alt="">
-                        <strong><a href="/delegation/China">CHN</a></strong>
-                    </td>
-                    <td>
-                        7<br/>6
-                    </td>
-                    <td>
-                        Finished
-                    </td>
-                </a>
-
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </div>
 </div>
 
 <!---->
@@ -232,7 +199,7 @@
 <script src="/static/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#Daily-Scheduling').DataTable();
+        $('#session-result').DataTable();
     });
 </script>
 p

@@ -1,5 +1,7 @@
 package cn.edu.neu.assignment.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,10 +22,12 @@ public class Team {
     private Set<TeamCompetition> teamCompetitions = new HashSet<>();
 
     @ManyToOne
+    @JSONField(serialize = false)
     @JoinColumn(name = "delegation_id")
     private Delegation delegations;
 
     @ManyToMany(mappedBy = "teams",fetch=FetchType.EAGER)
+    @JSONField(serialize = false)
     private Set<Individual> individuals = new HashSet<>();
 
     public Team() {

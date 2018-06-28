@@ -16,33 +16,14 @@
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
-
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <!--fonts-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <!--//fonts-->
-    <link rel="stylesheet" href="/static/css/etalage.css">
-    <!--//tab style-->
+    <!--tab style-->
     <link rel="stylesheet" href="/static/css/olympic.tab.css">
+    <!--//tab style-->
     <!--//schedule table (calendar) style-->
     <link href="/static/css/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
-    <script src="/static/js/jquery.etalage.min.js"></script>
-    <script>
-        jQuery(document).ready(function ($) {
-            $('#etalage').etalage({
-                thumb_image_width: 300,
-                thumb_image_height: 400,
-                source_image_width: 900,
-                source_image_height: 1200,
-                show_hint: true,
-                click_callback: function (image_anchor, instance_id) {
-                    alert('Callback example:\nYou clicked on an image with the anchor: "' + image_anchor + '"\n(in Etalage instance: "' + instance_id + '")');
-                }
-            });
-        });
-    </script>
 
 </head>
 <body>
@@ -219,8 +200,8 @@
 
         progressBar.increase(10);
 
-        var competition_type_list_template = '<div class="olympic-card col-xs-6 col-sm-4 col-md-2 grid-product-in" style="max-height: 240px; min-height: 240px">' +
-            '<div class=" product-grid">' +
+        var competition_type_list_template = '<div class="olympic-card col-xs-6 col-sm-4 col-md-2 grid-item-in" style="max-height: 240px; min-height: 240px">' +
+            '<div class=" item-grid">' +
             '<a href="/competition/__ID__">' +
             '<img class="img-responsive" src="/static/images/sports/__ID__.png" alt="">' +
             '</a><div>' +

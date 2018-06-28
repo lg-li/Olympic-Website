@@ -468,6 +468,35 @@ select.in-drop {
 }
 
 /*----*/
+
+.competition-type-banner {
+    min-height: 400px !important;
+    width: 100%;
+    background-size: cover !important;
+}
+
+.bg-transparent-dark {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.big-title-transparent{
+    min-height: 100%;
+    width: 100%;
+}
+
+.big-title-transparent p {
+    color: #fff;
+    font-size: 3.5em;
+    width: 100%;
+    font-weight: 100;
+    padding: 0.5em;
+    line-height: 1.3em;
+}
+
+.bg-transparent-dark p{
+    color: #FFFFFF !important;
+}
+
 .title-banner {
     min-height: 110px;
     width: 100%;
@@ -475,7 +504,7 @@ select.in-drop {
 }
 
 .big-title {
-    background: rgba(0, 0, 0, 0.57);
+    background: rgba(0, 0, 0, 0.6);
     min-height: 100%;
     width: 100%;
 }
@@ -824,19 +853,19 @@ a.view:hover {
     padding: 2em 0;
 }
 
-.product-grid {
+.item-grid {
     position: relative;
 }
 
-.product-grid:hover {
+.item-grid:hover {
     background: #fff;
 }
 
-.product-grid:hover .item-in {
+.item-grid:hover .item-in {
     background: #0076bf;
 }
 
-.product-grid img {
+.item-grid img {
     margin: 0 auto;
 }
 
@@ -846,13 +875,18 @@ a.view:hover {
 
 .item-in h6 {
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.0em;
     line-height: 1.8em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .item-in h6 a {
     color: #000;
-    text-decoration: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .item-in label {
@@ -880,8 +914,8 @@ b.plus-on {
     left: 4%;
 }
 
-.product-grid:hover .item-in h6 a, .product-grid:hover .item-in label,
-.product-grid:hover .item-in a {
+.item-grid:hover .item-in h6 a, .item-grid:hover .item-in label,
+.item-grid:hover .item-in a {
     color: #fff;
 }
 
@@ -1688,12 +1722,13 @@ p.footer-class a:hover {
         width: 100%;
     }
 
-    .grid-product-in {
+    .grid-item-in {
         float: left;
         width: 50%;
+        min-height: 300px !important;
     }
 
-    .grid-product-in:nth-child(3) {
+    .grid-item-in:nth-child(3) {
         display: none;
     }
 
@@ -2103,7 +2138,7 @@ p.footer-class a:hover {
         font-size: 0.8em;
     }
 
-    .grid-product-in {
+    .grid-item-in {
         width: 100%;
         padding: 0 0 1em;
     }
