@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Session</title>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
@@ -20,37 +20,17 @@
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <!--fonts-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <!--//fonts-->
-    <link rel="stylesheet" href="/static/css/etalage.css">
     <!--//tab style-->
     <link rel="stylesheet" href="/static/css/olympic.tab.css">
-    <script src="/static/js/jquery.etalage.min.js"></script>
-    <script>
-        jQuery(document).ready(function ($) {
 
-            $('#etalage').etalage({
-                thumb_image_width: 300,
-                thumb_image_height: 400,
-                source_image_width: 900,
-                source_image_height: 1200,
-                show_hint: true,
-                click_callback: function (image_anchor, instance_id) {
-                    alert('Callback example:\nYou clicked on an image with the anchor: "' + image_anchor + '"\n(in Etalage instance: "' + instance_id + '")');
-                }
-            });
-
-        });
-    </script>
 
 </head>
 <body>
 <!--header-->
 <div id="header"></div>
-<div class="title-banner" style="background: url('/static/images/photos/Curling.jpg')">
+<div class="title-banner" th:style="'background: url(/static/images/competition/'+${session.type.pictureUrl}+'.jpg)'">
     <div class="big-title">
-        <p>Curling - Woman Round Robin Session 1</p>
+        <p th:text="${session.name} +' - '+ ${session.type.typeName}">SESSION_NAME_TITLE</p>
     </div>
 </div>
 <div class="line1"></div>
@@ -59,19 +39,12 @@
     <div class="single">
         <div class="col-md-9 top-in-single">
             <div class="col-md-3 single-top">
-                <img class="flag-big" src="/static/images/sports/20.png"/>
+                <img class="flag-big" th:src="@{|/static/images/sports/${session.type.logoUrl}|}"/>
             </div>
             <div class="col-md-9 single-top-in">
                 <div class="single-para">
                     <label class="add-to"></label>
-                    <p>
-                        <strong>Curling</strong>, is a throwing competition on the ice for teams, Winter Olympics, and
-                        curling championships. There are two small items for men and women. Each team
-                        has four people. The curling is a round pot, made of natural granite without
-                        granite, and all of the world's natural granites for the production of fine
-                        curling are produced on an island off the coast of Scotland,and only the Scots
-                        hold the world's best Horizontal curling technique.
-                        <a href="#" class="cart">More from Wiki</a>
+                    <p th:text="${session.type.description}">
                     </p>
                 </div>
             </div>
