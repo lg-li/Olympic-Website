@@ -22,8 +22,10 @@ public class TeamCompetition implements Serializable {
     @JoinColumn(name = "competition_id")
     private Competition competition;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private short rank;
+
+    private String result;
 
     public TeamCompetition() {
     }
@@ -58,5 +60,13 @@ public class TeamCompetition implements Serializable {
 
     public void setRank(short rank) {
         this.rank = rank;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }
