@@ -1,5 +1,6 @@
 package cn.edu.neu.assignment.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -14,10 +15,12 @@ public class IndividualCompetition implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "individual_id")
+    @JSONField(serialize = false)
     private Individual individual;
 
     @ManyToOne
     @JoinColumn(name = "competition_id")
+    @JSONField(serialize = false)
     private Competition competition;
 
     @Column(nullable = false)

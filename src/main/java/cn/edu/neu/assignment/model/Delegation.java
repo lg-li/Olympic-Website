@@ -4,6 +4,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 @Entity
@@ -17,12 +18,10 @@ public class Delegation {
     @Column(length = 32, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "delegations")
-    @JSONField(serialize = false)
+    @OneToMany(mappedBy = "delegations",fetch = FetchType.EAGER)
     private Set<Individual> individuals = new HashSet<>();
 
-    @OneToMany(mappedBy = "delegations")
-    @JSONField(serialize = false)
+    @OneToMany(mappedBy = "delegations",fetch = FetchType.EAGER)
     private Set<Team> teams = new HashSet<>();
 
     //0 Africa; 1 America; 2 Asia Pacific; 3 Europe; 4 Oceania
@@ -79,4 +78,32 @@ public class Delegation {
     public void setContinent(short continent) {
         this.continent = continent;
     }
+
+    public int countMedals(int kind){
+        Iterator<Individual> individualIterator = individuals.iterator();
+        Iterator<IndividualCompetition> individualCompetitionIterator;
+        Iterator<Team> teamIterator = teams.iterator();
+        Iterator<TeamCompetition> teamCompetitionIterator;
+        Individual individual;
+        Team team;
+        int amount = 0;
+        while (individualIterator.hasNext()){
+            individual = individualIterator.next();
+            individualCompetitionIterator = individual.getIndividualCompetitions().iterator();
+            while (individualCompetitionIterator.hasNext()){
+                if (individualCompetitionIterator.next().getRank()==kind)
+                    amount++;
+            }
+        }
+        while (teamIterator.hasNext()){
+            team = teamIterator.next();
+            teamCompetitionIterator = team.getTeamCompetitions().iterator();
+            while(teamCompetitionIterator.hasNext()){
+                if (teamCompetitionIterator.next().getRank()==kind)
+                    amount++;
+            }
+        }
+        return amount;
+    }
+
 }

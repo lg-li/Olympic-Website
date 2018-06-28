@@ -54,7 +54,7 @@ public class Jwt {
      * check token invalid or not
      *
      * @param token
-     * @return Map<String   ,       Object>
+     * @return Map<String               ,                               Object>
      */
     public static Map<String, Object> validToken(String token) {
         Map<String, Object> resultMap = new HashMap<String, Object>();
