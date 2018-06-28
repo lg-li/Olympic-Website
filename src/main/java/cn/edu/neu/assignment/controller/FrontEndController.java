@@ -42,7 +42,6 @@ public class FrontEndController {
                 }
                 return x;
             }
-
         });
         model.addAttribute("rank",delegations);
         return "index";

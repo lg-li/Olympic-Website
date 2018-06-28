@@ -13,6 +13,7 @@ public class Delegation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @JSONField(serialize = false)
     private String description;
 
     @Column(length = 32, nullable = false)
