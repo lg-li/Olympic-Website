@@ -29,20 +29,7 @@ public class FrontEndController {
         model.addAttribute("list", competitionRepository.findAll(new PageRequest(0,4)));
 
         List<Delegation> delegations = delegationRepository.findAll();
-        Collections.sort(delegations, new Comparator<Delegation>(){
-            public int compare(Delegation a1, Delegation a2) {
-                int x = a1.countMedals(1) - a2.countMedals(1);
-                int y = a1.countMedals(2) - a2.countMedals(2);
-                int z = a1.countMedals(3) - a2.countMedals(3);
-                if(x==0){
-                    if(y==0){
-                        return z;
-                    }
-                    return y;
-                }
-                return x;
-            }
-        });
+        Collections.sort(delegations);
         model.addAttribute("rank",delegations);
         return "index";
     }
