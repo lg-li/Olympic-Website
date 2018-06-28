@@ -27,27 +27,23 @@
 <!--header-->
 <div id="header"></div>
 <div class="competition-type-banner"
-     th:style="'background: url(\'/static/images/competition/'+${sport.pictureUrl}+'.jpg\')">
+     th:style="'background: url(/static/images/competition/'+${sport.pictureUrl}+'.jpg)'">
     <div class="mdui-container-fluid bg-transparent-dark">
         <div class="mdui-container">
             <div class="col-md-9 top-in-single">
                 <div class="big-title-transparent">
                     <p th:text="${sport.typeName}">competition type (sport) name</p>
                 </div>
-                <div class="col-md-3 single-top">
-                    <img class="flag-big" src="/static/images/sports/20.png"/>
+                <div class="col-md-2">
+                    <p>
+                        <img style="text-align: center" class="img-responsive flag-medium" th:src="@{|/static/images/sports/${sport.logoUrl}}"/>
+                    </p>
                 </div>
-                <div class="col-md-9 single-top-in">
+                <div class="col-md-10">
                     <div class="single-para">
                         <label class="add-to"></label>
-                        <p>
-                            <strong>Curling</strong>, is a throwing competition on the ice for teams, Winter Olympics,
-                            and
-                            curling championships. There are two small items for men and women. Each team
-                            has four people. The curling is a round pot, made of natural granite without
-                            granite, and all of the world's natural granites for the production of fine
-                            curling are produced on an island off the coast of Scotland,and only the Scots
-                            hold the world's best Horizontal curling technique.
+                        <p th:text="${sport.description}">
+                            SPORT_DESC
                         </p>
                         <button href="#" class="mdui-btn mdui-color-theme">More from Wiki</button>
                     </div>

@@ -56,7 +56,7 @@ public class FrontEndController {
 
     @RequestMapping("/medal")
     public String medal(Model model) {
-        model.addAttribute("rank",(getRankedDelegations().subList(0,4)));
+        model.addAttribute("rank",(getRankedDelegations()));
         return "medal";
     }
 
@@ -77,9 +77,9 @@ public class FrontEndController {
         return "delegation-all";
     }
 
-    @RequestMapping("/delegation/{name}")
-    public String delegation(@PathVariable String name, Model model) {
-        model.addAttribute("name",name);
+    @RequestMapping("/delegation/{id}")
+    public String delegation(@PathVariable Integer id, Model model) {
+        model.addAttribute("delegation",delegationRepository.findById(id).get());
         return "delegation";
     }
 

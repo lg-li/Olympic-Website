@@ -55,9 +55,11 @@
                 <tbody>
                 <tr th:each="delegation,index:${rank}">
                     <td>
-                        <img class="flag-xsmall"
-                             src="/static/images/flags/Flag%20of%20United%20States%20of%20America.png" alt="">
-                        <strong><a th:text="${delegation.name}">DELEGATION_NAME</a></strong>
+                        <img class="flag-small"
+                             th:src="@{|/static/images/flags/Flag%20of%20${delegation.name}.png|}" th:alt="${delegation.name}">
+                        <strong>
+                            <a th:src="'/delegation/'+${delegation.id}" th:text="${delegation.name}">DELEGATION_NAME</a>
+                        </strong>
                     </td>
                     <td th:text="${delegation.gold}">
                         GOLD_COUNT
@@ -65,7 +67,7 @@
                     <td th:text="${delegation.silver}">
                         SILVER_COUNT
                     </td>
-                    <td th:text="${delegation.brozen}">
+                    <td th:text="${delegation.bronze}">
                         BROZEN_COUNT
                     </td>
                 </tr>
@@ -74,9 +76,7 @@
         </div>
     </div>
 </div>
-
 <!---->
-
 <!--footer-->
 <div id="footer"></div>
 <script src="/static/js/olympic.ui-loader.js"></script>
