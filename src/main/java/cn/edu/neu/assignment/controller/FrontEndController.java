@@ -110,14 +110,12 @@ public class FrontEndController {
         Competition competition = competitionRepository.findById(id).get();
         if(competition.isIndividual()){
             model.addAttribute("partner", competition.getIndividualCompetitions());
-        }else
-            model.addAttribute("partner",competition.getTeamCompetitions());
-        model.addAttribute("session",competition);
-        return "session-detail";
-        Optional<Competition> competition = competitionRepository.findById(id);
-        if (competition.isPresent() && (competition.get().getType() != null)) {
-            model.addAttribute("session", competition.get());
-            model.addAttribute("type", competition.get().getType());
+        }else {
+            model.addAttribute("partner", competition.getTeamCompetitions());
+        }
+        if (competition.getType() != null) {
+            model.addAttribute("session", competition);
+            model.addAttribute("type", competition.getType());
             return "session-detail";
         } else {
             return "index";
