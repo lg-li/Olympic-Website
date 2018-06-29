@@ -6,6 +6,7 @@ import cn.edu.neu.assignment.inter.TeamRepository;
 import cn.edu.neu.assignment.inter.TypeRepository;
 import cn.edu.neu.assignment.model.Competition;
 import cn.edu.neu.assignment.model.Delegation;
+import cn.edu.neu.assignment.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -85,7 +86,10 @@ public class FrontEndController {
 
     @RequestMapping("team/{id}")
     public String teamDetail(@PathVariable Integer id, Model model) {
-        model.addAttribute("team", teamRepository.findById(id).get());
+        Team team = teamRepository.findById(id).get();
+
+        model.addAttribute("team", team);
+        model.addAttribute("individuals",team.getIndividuals());
         return "team-detail";
     }
 

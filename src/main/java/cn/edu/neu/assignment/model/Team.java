@@ -33,7 +33,7 @@ public class Team {
     @JSONField(serialize = false)
     private Set<Individual> individuals = new HashSet<>();
 
-    public Team() {
+    public Team(){
     }
 
     public int getId() {
