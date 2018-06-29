@@ -28,9 +28,9 @@
 <body>
 <!--header-->
 <div id="header"></div>
-<div class="title-banner" th:style="'background: url(/static/images/competition/'+${session.type.pictureUrl}+'.jpg)'">
+<div class="title-banner" th:style="'background: url(/static/images/competition/'+${type.pictureUrl}+'.jpg)'">
     <div class="big-title">
-        <p th:text="${session.name} +' - '+ ${session.type.typeName}">SESSION_NAME_TITLE</p>
+        <p th:text="${session.name} +' - '+ ${type.typeName}">SESSION_NAME_TITLE</p>
     </div>
 </div>
 <div class="line1"></div>
@@ -39,12 +39,12 @@
     <div class="single">
         <div class="col-md-9 top-in-single">
             <div class="col-md-3 single-top">
-                <img class="flag-big" th:src="@{|/static/images/sports/${session.type.logoUrl}|}"/>
+                <img class="flag-big" th:src="@{|/static/images/sports/${type.logoUrl}|}"/>
             </div>
             <div class="col-md-9 single-top-in">
                 <div class="single-para">
                     <label class="add-to"></label>
-                    <p th:text="${session.type.description}">
+                    <p th:text="${type.description}">
                     </p>
                 </div>
             </div>
@@ -63,7 +63,6 @@
                     </li>
                 </ul>
             </div>
-
         </div>
         <div class="clearfix"></div>
     </div>
@@ -76,81 +75,28 @@
                     <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab"
                                                               data-toggle="tab">Participants</a></li>
                     <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Session
-                        Rank</a></li>
-
+                        Rank</a>
+                    </li>
                 </ul>
                 <!-- Competition Tab Panes -->
                 <div class="tab-content tabs">
                     <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                         <div class="container" id="competition-type-list">
                             <h3>Session Participants</h3><br/>
-
                                 <div class="mdui-card-content">
-                                    <div class="mdui-col-md-4">
-                                        <a href="/athlete/1" class="lot">
-                                            <img class="img-responsive" src="/static/images/persons/1.jpg" alt="">
-                                        </a>
-                                        <div class="big-item">
-                                            <p><img class="flag-xsmall"
-                                                    src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png"/> China</p>
-                                            <label>JIA Zongyang</label>
+                                    <div class="mdui-row">
+                                        <div th:if="${session.individual eq true}" th:each="individualComp,index:${session.individualCompetitions}" class="mdui-col-md-4">
+                                            <a th:href="'/athlete/'+${individualComp.individual.id}" class="lot">
+                                                <img class="img-responsive" th:src="@{|/static/images/persons/${individualComp.individual.photo}|}" alt="">
+                                            </a>
+                                            <div class="big-item">
+                                                <p><img class="flag-xsmall"
+                                                        th:src="@{|/static/images/flags/Flag%20of%20${individualComp.individual.delegation.name}|}"/>
+                                                    <span th:text="${individualComp.individual.delegations.name}">PARENT_DELEGATION_NAME</span></p>
+                                                <label th:text="${individualComp.individual.name}">JIA Zongyang</label>
+                                            </div>
+                                            <div class="clearfix"></div>
                                         </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="mdui-col-md-4">
-                                        <a href="#" class="lot">
-                                            <img class="img-responsive" src="/static/images/persons/2.jpg" alt="">
-                                        </a>
-                                        <div class="big-item">
-                                            <p><img class="flag-xsmall"
-                                                    src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png"/> China</p>
-                                            <label>ZHANG Xin</label>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="mdui-col-md-4">
-                                        <a href="#" class="lot">
-                                            <img class="img-responsive" src="/static/images/persons/3.jpg" alt="">
-                                        </a>
-                                        <div class="big-item">
-                                            <p><img class="flag-xsmall"
-                                                    src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png"/> China</p>
-                                            <label>WU Dajing</label>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="mdui-col-md-4">
-                                        <a href="#" class="lot">
-                                            <img class="img-responsive" src="/static/images/persons/3.jpg" alt="">
-                                        </a>
-                                        <div class="big-item">
-                                            <p><img class="flag-xsmall"
-                                                    src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png"/> China</p>
-                                            <label>WU Dajing</label>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="mdui-col-md-4">
-                                        <a href="#" class="lot">
-                                            <img class="img-responsive" src="/static/images/persons/3.jpg" alt="">
-                                        </a>
-                                        <div class="big-item">
-                                            <p><img class="flag-xsmall"
-                                                    src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png"/> China</p>
-                                            <label>WU Dajing</label>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="mdui-col-md-4 content-grid">
-                                        <a href="#" class="lot">
-                                            <img class="img-responsive" src="/static/images/persons/3.jpg" alt="">
-                                        </a>
-                                        <div class="big-item">
-                                            <p><img class="flag-xsmall"
-                                                    src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png"/> China</p>
-                                            <label>WU Dajing</label>
-                                        </div>
-                                        <div class="clearfix"></div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>

@@ -203,7 +203,7 @@
         var competition_type_list_template = '<div class="olympic-card col-xs-6 col-sm-4 col-md-2 grid-item-in" style="max-height: 240px; min-height: 240px">' +
             '<div class=" item-grid">' +
             '<a href="/competition/__ID__">' +
-            '<img class="img-responsive" src="/static/images/sports/__ID__.png" alt="">' +
+            '<img class="img-responsive" src="/static/images/sports/__LOGO_URL__" alt="">' +
             '</a><div>' +
             '<p><a href="/competition/__ID__">__TYPE_NAME__</a></p></div></div></div>';
 
@@ -223,7 +223,8 @@
                             compileTemplate(competition_type_list_template,
                                 {
                                     TYPE_NAME: data['data']['list'][i]['typeName'],
-                                    ID: data['data']['list'][i]['id']
+                                    ID: data['data']['list'][i]['id'],
+                                    LOGO_URL: data['data']['list'][i]['logoUrl']
                                 }
                             )
                         );

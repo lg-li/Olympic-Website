@@ -573,7 +573,7 @@ select.in-drop {
     position: relative;
 }
 
-h6.your-in {
+h6.vertical-slider-title {
     color: #fff;
     position: absolute;
     top: 31%;
@@ -1162,6 +1162,7 @@ label.add-to {
     display: block;
     font-size: 2em;
     color: #0076bf;
+    text-shadow: 0 0 0.3em #ffffff, 0 0 0.5em #ffffff;
 }
 
 .single-para p {
@@ -1551,7 +1552,7 @@ p.footer-class a:hover {
         left: 10%;
     }
 
-    h6.your-in {
+    h6.vertical-slider-title {
         font-size: 1.2em;
     }
 
@@ -1820,7 +1821,7 @@ p.footer-class a:hover {
         width: 60%;
     }
 
-    h6.your-in {
+    h6.vertical-slider-title {
         top: 25%;
         font-size: 1em;
     }
@@ -2037,7 +2038,7 @@ p.footer-class a:hover {
         padding: 1em 0 0;
     }
 
-    h6.your-in {
+    h6.vertical-slider-title {
         top: 24%;
         font-size: 0.59em;
         left: -1%;
