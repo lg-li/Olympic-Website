@@ -31,26 +31,22 @@
     <div class="single">
         <div class="col-md-9 top-in-single">
             <div class="col-md-3 single-top">
-                <img class="flag-big" th:src="@{|/static/images/flags/Flag%20of%20${name}.png|}"/>
+                <img class="flag-big" th:src="@{|/static/images/flags/Flag%20of%20${delegation.name}.png|}"/>
             </div>
             <div class="col-md-9 single-top-in">
                 <div class="single-para">
-                    <h2 th:text="${name}">China</h2>
-
+                    <h2 th:text="${delegation.name}">DELEGATION_NAME</h2>
                     <div class="star">
                         <div class="review">
-                            Metals
-                            <img src="/static/images/gold.png"/> 1
-                            <img src="/static/images/silver.png"/> 3
-                            <img src="/static/images/bronze.png"/> 4
+                            Metals Overview
+                            <img src="/static/images/gold.png"/> <span th:text="${delegation.gold}">GOLD</span>
+                            <img src="/static/images/silver.png"/> <span th:text="${delegation.silver}">SILVER</span>
+                            <img src="/static/images/bronze.png"/> <span th:text="${delegation.bronze}">BRONZE</span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
 
-                    Rank
-                    <small>Metals in total</small>
-                    <label class="add-to">#3 </label>
-                    <p>
+                    <p th:text="${delegation.description}">
                         China, officially the People's Republic of China (PRC), is a unitary one-party sovereign state
                         in East Asia and the world's most populous country, with a population of around 1.404
                         billion.[13] Covering approximately 9,600,000 square kilometers (3,700,000 sq mi), it is the

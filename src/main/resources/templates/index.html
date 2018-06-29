@@ -166,7 +166,7 @@
                 </div>
             </div>
         </div>
-        <h6 class="your-in">Competitions</h6>
+        <h6 class="vertical-slider-title">Competitions</h6>
         <div class="line2">
         </div>
     </div>
@@ -181,7 +181,7 @@
                         </div>
                         <div class="mdui-card-content mdui-row">
                             <div th:each="comp:${list}" class="mdui-col-sm-6 mdui-col-md-4">
-                                <div class="mdui-card">
+                                <div class="mdui-card mdui-shadow-0">
                                     <div class="mdui-card-media">
                                         <img th:src="@{|/static/images/competition/${comp.type.pictureUrl}.jpg|}"/>
                                     </div>
@@ -211,7 +211,8 @@
                     </div>
                     <div class="mdui-card-content">
                         <ul class="mdui-list">
-                            <li th:href="@{|/delegation/${delegation.id}|}" th:each="delegation,index:${rank}" class="mdui-list-item mdui-ripple">
+                            <li th:href="@{|/delegation/${delegation.id}|}" th:each="delegation,index:${rank}"
+                                class="mdui-list-item mdui-ripple">
                                 <div class="mdui-list-item-avatar">
                                     <img th:src="@{|/static/images/flags/Flag%20of%20${delegation.name}.png|}"/>
                                 </div>
@@ -309,30 +310,37 @@
 
     <!---->
     <div class="container">
-        <h3>Other Olympic Websites</h3>
-        <div class="clearfix"></div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3 mdui-col-md-3">
-            <a href="#">
-                <img class="img-responsive " src="/static/images/banners/banner_pyeongchang.png" alt="">
-            </a>
+        <p></p>
+        <div class="mdui-card mdui-shadow-0">
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title">Other Olympic Websites</div>
+            </div>
+            <div class="mdui-card-content mdui-container">
+                <div class="mdui-row">
+                    <div class="mdui-col-xs-12 mdui-col-sm-3 mdui-col-md-3">
+                        <a href="#">
+                            <img class="img-responsive " src="/static/images/banners/banner_pyeongchang.png" alt="">
+                        </a>
+                    </div>
+                    <div class="mdui-col-xs-12 mdui-col-sm-3 mdui-col-md-3">
+                        <a href="#">
+                            <img class="img-responsive " src="/static/images/banners/banner_tokyo.png" alt="">
+                        </a>
+                    </div>
+                    <div class="mdui-col-xs-12 mdui-col-sm-3 mdui-col-md-3">
+                        <a href="#">
+                            <img class="img-responsive " src="/static/images/banners/banner_beijing.png" alt="">
+                        </a>
+                    </div>
+                    <div class="mdui-col-xs-12 mdui-col-sm-3 mdui-col-md-3">
+                        <a href="#">
+                            <img class="img-responsive " src="/static/images/banners/banner_paris.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3 mdui-col-md-3">
-            <a href="#">
-                <img class="img-responsive " src="/static/images/banners/banner_tokyo.png" alt="">
-            </a>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3 mdui-col-md-3">
-            <a href="#">
-                <img class="img-responsive " src="/static/images/banners/banner_beijing.png" alt="">
-            </a>
-        </div>
-        <div class="mdui-col-xs-12 mdui-col-sm-3 mdui-col-md-3">
-            <a href="#">
-                <img class="img-responsive " src="/static/images/banners/banner_paris.png" alt="">
-            </a>
-        </div>
-
-        <div class="clearfix"></div>
+        <p></p>
     </div>
 
 </div>

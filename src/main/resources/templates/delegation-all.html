@@ -74,7 +74,7 @@
 <script src="/static/js/ToProgress.min.js"></script>
 <script>
     var country_template = '<div class="col-xs-6 col-sm-4 col-md-2 grid-item-in"><div class=" item-grid">' +
-        '<a href="/delegation/__COUNTRY_NAME__"><img class="img-responsive" alt="__COUNTRY_NAME__" src="/static/images/flags/Flag%20of%20__COUNTRY_NAME__.png" alt=""></a>' +
+        '<a href="/delegation/__ID__"><img class="img-responsive" alt="__COUNTRY_NAME__" src="/static/images/flags/Flag%20of%20__COUNTRY_NAME__.png" alt=""></a>' +
         '<div class="item-in">' +
         '<h6><a href="/delegation/__COUNTRY_NAME__">__COUNTRY_NAME__ </a></h6></div></div></div>';
     var progressBar = new ToProgress({
@@ -97,7 +97,10 @@
                     var country;
                     for (var i = 0; i < countries['data']['list'].length; i++) {
                         $('#continent' + countries['data']['list'][i]['continent']).append(
-                            compileTemplate(country_template, {COUNTRY_NAME: countries['data']['list'][i]['name']})
+                            compileTemplate(country_template, {
+                                COUNTRY_NAME: countries['data']['list'][i]['name'],
+                                ID: countries['data']['list'][i]['id']
+                            })
                         );
                     }
                     $('#countries-panel').slideDown(800);

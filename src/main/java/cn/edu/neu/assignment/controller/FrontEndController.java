@@ -6,7 +6,6 @@ import cn.edu.neu.assignment.inter.TeamRepository;
 import cn.edu.neu.assignment.inter.TypeRepository;
 import cn.edu.neu.assignment.model.Competition;
 import cn.edu.neu.assignment.model.Delegation;
-import cn.edu.neu.assignment.model.Sport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class FrontEndController {
@@ -28,7 +29,7 @@ public class FrontEndController {
     @Autowired
     TeamRepository teamRepository;
 
-    private List<Delegation> getRankedDelegations(){
+    private List<Delegation> getRankedDelegations() {
         List<Delegation> delegations = delegationRepository.findAll();
         Collections.sort(delegations);
         return delegations;
@@ -36,11 +37,11 @@ public class FrontEndController {
 
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("list", competitionRepository.findAll(new PageRequest(0,4)));
+        model.addAttribute("list", competitionRepository.findAll(new PageRequest(0, 6)));
         List<Delegation> delegations = getRankedDelegations();
         Collections.sort(delegations);
-        delegations = delegations.subList(0,4);
-        model.addAttribute("rank",delegations);
+        delegations = delegations.subList(0, 5);
+        model.addAttribute("rank", delegations);
         return "index";
     }
 
@@ -56,7 +57,7 @@ public class FrontEndController {
 
     @RequestMapping("/medal")
     public String medal(Model model) {
-        model.addAttribute("rank",(getRankedDelegations()));
+        model.addAttribute("rank", (getRankedDelegations()));
         return "medal";
     }
 
@@ -67,31 +68,31 @@ public class FrontEndController {
 
     @RequestMapping("/competition/{id}") // Competition Type (sport, not session)
     public String competition(@PathVariable Integer id, Model model) {
-        model.addAttribute("id",id);
+        model.addAttribute("id", id);
         model.addAttribute("sport", typeRepository.findById(id).get());
         return "competition-detail";
     }
 
     @RequestMapping("/delegation/all")
-    public String delegationAll(){
+    public String delegationAll() {
         return "delegation-all";
     }
 
     @RequestMapping("/delegation/{id}")
     public String delegation(@PathVariable Integer id, Model model) {
-        model.addAttribute("delegation",delegationRepository.findById(id).get());
-        return "delegation";
+        model.addAttribute("delegation", delegationRepository.findById(id).get());
+        return "delegation-detail";
     }
 
     @RequestMapping("team/{id}")
-    public String teamDetail(@PathVariable Integer id, Model model){
+    public String teamDetail(@PathVariable Integer id, Model model) {
         model.addAttribute("team", teamRepository.findById(id).get());
         return "team-detail";
     }
 
     @RequestMapping("/athlete/{name}")
     public String athlete(@PathVariable String name, Model model) {
-        model.addAttribute("name",name);
+        model.addAttribute("name", name);
         return "athlete-detail";
     }
 
@@ -107,8 +108,14 @@ public class FrontEndController {
 
     @RequestMapping("/session/{id}") // Competition Item(session)
     public String session(@PathVariable Integer id, Model model) {
-        model.addAttribute("session",competitionRepository.findById(id).get());
-        return "session-detail";
+        Optional<Competition> competition = competitionRepository.findById(id);
+        if (competition.isPresent() && (competition.get().getType() != null)) {
+            model.addAttribute("session", competition.get());
+            model.addAttribute("type", competition.get().getType());
+            return "session-detail";
+        } else {
+            return "index";
+        }
     }
 
     @RequestMapping("/session/all")
@@ -117,7 +124,7 @@ public class FrontEndController {
     }
 
     @RequestMapping("/admin/")
-    public String adminIndex(){
+    public String adminIndex() {
         return "admin/index";
     }
 }
