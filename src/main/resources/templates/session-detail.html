@@ -28,9 +28,9 @@
 <body>
 <!--header-->
 <div id="header"></div>
-<div class="title-banner" th:style="'background: url(/static/images/competition/'+${session.type.pictureUrl}+'.jpg)'">
+<div class="title-banner" th:style="'background: url(/static/images/competition/'+${type.pictureUrl}+'.jpg)'">
     <div class="big-title">
-        <p th:text="${session.name} +' - '+ ${session.type.typeName}">SESSION_NAME_TITLE</p>
+        <p th:text="${session.name} +' - '+ ${type.typeName}">SESSION_NAME_TITLE</p>
     </div>
 </div>
 <div class="line1"></div>
@@ -39,12 +39,12 @@
     <div class="single">
         <div class="col-md-9 top-in-single">
             <div class="col-md-3 single-top">
-                <img class="flag-big" th:src="@{|/static/images/sports/${session.type.logoUrl}|}"/>
+                <img class="flag-big" th:src="@{|/static/images/sports/${type.logoUrl}|}"/>
             </div>
             <div class="col-md-9 single-top-in">
                 <div class="single-para">
                     <label class="add-to"></label>
-                    <p th:text="${session.type.description}">
+                    <p th:text="${type.description}">
                     </p>
                 </div>
             </div>
