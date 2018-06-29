@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Team</title>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
@@ -30,16 +30,20 @@
     <div class="single">
         <div class="col-md-9 top-in-single">
             <div class="col-md-3 single-top">
-                <h2>Curling</h2>
-                <img class="flag-big" src="/static/images/flags/Flag%20of%20China.png"/>
+                <img class="flag-big" th:src="@{|/static/images/flags/Flag%20of%20${team.delegations.name}.png|}"/>
             </div>
             <div class="col-md-9 single-top-in">
                 <div class="single-para">
-                    <h2>People's Republic of China</h2>
-                    <h4><strong> -Woman</strong></h4>
+                    <h2 th:text="${team.name}">China Women's Curling Team</h2>
+                    <h4 th:text="${team.delegations.name}"><strong> People's Republic of China</strong></h4>
+                    <div th:switch="${team.sex}">
+                        <h4 th:case="'F'"><strong> Women</strong></h4>
+                        <h4 th:case="'M'"><strong> Men</strong></h4>
+                        <h4 th:case="'X'"><strong> Mixed</strong></h4>
+                    </div>
                     <div class="clearfix"></div>
                     <label class="add-to"></label>
-                    <p>
+                    <p th:text="${team.description}">
                         The Chinese women's curling team was founded in 2003. Although the establishment
                         time was short, the Chinese curling girls were among the top teams in the world
                         in only 5 or 6 years. In 2007, the Chinese team hired Canadian foreign teacher
@@ -97,42 +101,6 @@
                     </td>
                     <td>
                         07 Jul 1984
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/persons/5.jpg" alt="">
-                        <strong><a href="../../en/alpine-skiing/daily-schedule.htm">ZHOU Yan</a></strong>
-                    </td>
-                    <td>
-                        30 Sep 1982
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/persons/6.jpg" alt="">
-                        <strong><a href="../../en/alpine-skiing/daily-schedule.htm">LIU Jinli</a></strong>
-                    </td>
-                    <td>
-                        16 Mar 1989
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/persons/7.jpg" alt="">
-                        <strong><a href="../../en/alpine-skiing/daily-schedule.htm">MA Jingyi</a></strong>
-                    </td>
-                    <td>
-                        29 Oct 1995
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-small" src="/static/images/persons/8.jpg" alt="">
-                        <strong><a href="../../en/alpine-skiing/daily-schedule.htm">JIANG Xindi</a></strong>
-                    </td>
-                    <td>
-                        26 Jan 1997
                     </td>
                 </tr>
                 </tbody>
