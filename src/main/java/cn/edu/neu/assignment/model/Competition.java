@@ -26,11 +26,11 @@ public class Competition {
     @ManyToOne(fetch = FetchType.EAGER)
     private Sport type;
 
-    @OneToMany(mappedBy = "competition")
+    @OneToMany(mappedBy = "competition",fetch = FetchType.EAGER)
     @JSONField(serialize = false)
     private Set<IndividualCompetition> individualCompetitions;
 
-    @OneToMany(mappedBy = "competition")
+    @OneToMany(mappedBy = "competition", fetch = FetchType.EAGER)
     @JSONField(serialize = false)
     private Set<TeamCompetition> teamCompetitions;
 
