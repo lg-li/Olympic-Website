@@ -111,6 +111,8 @@ public class Delegation implements Comparable<Delegation> {
         this.bronze = bronze;
     }
 
+
+
     public void countMedals() {
         Iterator<Individual> individualIterator = individuals.iterator();
         Iterator<IndividualCompetition> individualCompetitionIterator;

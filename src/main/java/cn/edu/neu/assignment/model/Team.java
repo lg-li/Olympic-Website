@@ -12,11 +12,14 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 32,nullable = false)
-    private String type;
+    @Column(length = 64,nullable = false)
+    private String name;
 
     @Column(nullable = false)
     private String description;
+
+    @Column(nullable = false)
+    private char sex;
 
     @OneToMany(mappedBy = "team",fetch=FetchType.EAGER)
     private Set<TeamCompetition> teamCompetitions = new HashSet<>();
@@ -39,14 +42,6 @@ public class Team {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getDescription() {
@@ -80,4 +75,21 @@ public class Team {
     public void setIndividuals(Set<Individual> individuals) {
         this.individuals = individuals;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public char getSex() {
+        return sex;
+    }
+
+    public void setSex(char sex) {
+        this.sex = sex;
+    }
+
 }

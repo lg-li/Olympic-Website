@@ -23,8 +23,10 @@ public class IndividualCompetition implements Serializable {
     @JSONField(serialize = false)
     private Competition competition;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private short rank;
+
+    private String result;
 
     public IndividualCompetition() {
     }
@@ -59,5 +61,13 @@ public class IndividualCompetition implements Serializable {
 
     public void setRank(short rank) {
         this.rank = rank;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }
