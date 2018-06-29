@@ -117,8 +117,8 @@ public class FrontEndController {
                         competition.getTeamCompetitions()
         );
         if (competition.getType() != null) {
-            model.addAttribute("session", competition);
             model.addAttribute("type", competition.getType());
+            model.addAttribute("session", competition);
             return "session-detail";
         } else {
             return "index";

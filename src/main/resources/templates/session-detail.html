@@ -85,7 +85,7 @@
                             <h3>Session Participants</h3><br/>
                                 <div class="mdui-card-content">
                                     <div class="mdui-row">
-                                        <div th:if="${session.individual eq true}" th:each="individualComp,index:${session.individualCompetitions}" class="mdui-col-md-4">
+                                        <div th:if="${session.individual eq true}" th:each="individualComp,index:${participant}" class="mdui-col-md-4">
                                             <a th:href="'/athlete/'+${individualComp.individual.id}" class="lot">
                                                 <img class="img-responsive" th:src="@{|/static/images/persons/${individualComp.individual.photo}|}" alt="">
                                             </a>
@@ -97,6 +97,17 @@
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
+                                        <div th:if="${session.individual eq false}" th:each="teamComp,index:${participant}" class="mdui-col-md-4">
+                                            <a th:href="'/team/'+${teamComp.team.id}" class="lot">
+                                                <img class="img-responsive" th:src="@{|/static/images/persons/${teamComp.team.delegations.name}|}" alt="">
+                                            </a>
+                                            <div class="big-item">
+                                                <p><span th:text="${teamComp.team.delegations.name}">PARENT_DELEGATION_NAME</span></p>
+                                                <label th:text="${teamComp.team.name}">TEAM_NAME</label>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
