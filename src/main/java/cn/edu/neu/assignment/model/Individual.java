@@ -28,6 +28,7 @@ public class Individual {
     private String photo;
 
     @OneToMany(mappedBy = "individual",fetch=FetchType.EAGER)
+    @JSONField(serialize = false)
     private Set<IndividualCompetition> individualCompetitions = new HashSet<>();
 
     @ManyToOne()

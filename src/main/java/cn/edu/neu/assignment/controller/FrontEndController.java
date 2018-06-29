@@ -4,9 +4,7 @@ import cn.edu.neu.assignment.inter.CompetitionRepository;
 import cn.edu.neu.assignment.inter.DelegationRepository;
 import cn.edu.neu.assignment.inter.TeamRepository;
 import cn.edu.neu.assignment.inter.TypeRepository;
-import cn.edu.neu.assignment.model.Competition;
-import cn.edu.neu.assignment.model.Delegation;
-import cn.edu.neu.assignment.model.Sport;
+import cn.edu.neu.assignment.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -107,7 +105,12 @@ public class FrontEndController {
 
     @RequestMapping("/session/{id}") // Competition Item(session)
     public String session(@PathVariable Integer id, Model model) {
-        model.addAttribute("session",competitionRepository.findById(id).get());
+        Competition competition = competitionRepository.findById(id).get();
+        if(competition.isIndividual()){
+            model.addAttribute("partner", competition.getIndividualCompetitions());
+        }else
+            model.addAttribute("partner",competition.getTeamCompetitions());
+        model.addAttribute("session",competition);
         return "session-detail";
     }
 
