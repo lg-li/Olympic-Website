@@ -87,7 +87,6 @@ public class FrontEndController {
     @RequestMapping("team/{id}")
     public String teamDetail(@PathVariable Integer id, Model model) {
         Team team = teamRepository.findById(id).get();
-
         model.addAttribute("team", team);
         model.addAttribute("individuals",team.getIndividuals());
         return "team-detail";
