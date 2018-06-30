@@ -70,7 +70,7 @@ public class FrontEndController {
     @RequestMapping("/sport/{id}") // Competition Type (sport, not session)
     public String type(@PathVariable Integer id, Model model) {
         Competition competition = new Competition();
-        competition.setId(id);
+        competition.setType(typeRepository.findById(id).get());
         model.addAttribute("id", id);
         model.addAttribute("sport", typeRepository.findById(id).get());
         model.addAttribute("competitions",competitionRepository.findAll(Example.of(competition)));
