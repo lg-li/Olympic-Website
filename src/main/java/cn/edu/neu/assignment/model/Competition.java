@@ -23,14 +23,14 @@ public class Competition {
     @JSONField(format="yyyy-MM-dd HH:mm")
     private Date time;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     private Sport type;
 
-    @OneToMany(mappedBy = "competition",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "competition")
     @JSONField(serialize = false)
     private Set<IndividualCompetition> individualCompetitions;
 
-    @OneToMany(mappedBy = "competition", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "competition")
     @JSONField(serialize = false)
     private Set<TeamCompetition> teamCompetitions;
 

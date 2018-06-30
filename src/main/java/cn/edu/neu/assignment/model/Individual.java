@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NamedEntityGraph(name = "Individual.lazy", attributeNodes = {@NamedAttributeNode("individualCompetitions")})
 public class Individual {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +28,7 @@ public class Individual {
 
     private String photo;
 
-    @OneToMany(mappedBy = "individual",fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "individual")
     @JSONField(serialize = false)
     private Set<IndividualCompetition> individualCompetitions = new HashSet<>();
 

@@ -16,7 +16,7 @@ public class Sport {
     @Column(length = 32, nullable = false)
     private String typeName;
 
-    @OneToMany(mappedBy = "type", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "type")
     @JSONField(serialize = false)
     private Set<Competition> competitions = new HashSet<>();
 

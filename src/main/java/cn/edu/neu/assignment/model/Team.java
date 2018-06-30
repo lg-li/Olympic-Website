@@ -21,7 +21,7 @@ public class Team {
     @Column(nullable = false)
     private char sex;
 
-    @OneToMany(mappedBy = "team",fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "team")
     private Set<TeamCompetition> teamCompetitions = new HashSet<>();
 
     @ManyToOne
@@ -29,7 +29,7 @@ public class Team {
     @JoinColumn(name = "delegation_id")
     private Delegation delegations;
 
-    @ManyToMany(mappedBy = "teams",fetch=FetchType.EAGER)
+    @ManyToMany(mappedBy = "teams")
     @JSONField(serialize = false)
     private Set<Individual> individuals = new HashSet<>();
 
