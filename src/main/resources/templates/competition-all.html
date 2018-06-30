@@ -128,7 +128,7 @@
         progressBar.increase(10);
 
         var status_table_row_template = '<tr>' +
-            '<td><strong><a href="">__COMPETITION_NAME__</a></strong></td>' +
+            '<td><strong><a href="/session/__COMP_SESSION_ID__">__COMPETITION_NAME__</a></strong></td>' +
             '<td>__COMPETITION_MODE__</td>' +
             '<td>__COMPETITION_TIME__</td>' +
             '<td>__COMPETITION_STATUS__</td>' +
@@ -167,12 +167,14 @@
                             {
                                 COMPETITION_NAME: data['data']['list'][i]['name'],
                                 COMPETITION_TIME: data['data']['list'][i]['time'],
+                                COMP_SESSION_ID: data['data']['list'][i]['id'],
                                 COMPETITION_STATUS: cstatus,
                                 COMPETITION_MODE: cmode
                             }
                         ));
                         competition_events[i] = {};
-                        competition_events[i]['title'] = data['data']['list'][i]['id'];
+                        competition_events[i]['id'] = data['data']['list'][i]['id'];
+                        competition_events[i]['href'] = '/session/'+data['data']['list'][i]['id'];
                         competition_events[i]['title'] = data['data']['list'][i]['name'];
                         competition_events[i]['start'] = data['data']['list'][i]['time'];
                     }

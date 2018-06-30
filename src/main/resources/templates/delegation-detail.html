@@ -45,17 +45,8 @@
                         </div>
                         <div class="clearfix"></div>
                     </div>
-
                     <p th:text="${delegation.description}">
-                        China, officially the People's Republic of China (PRC), is a unitary one-party sovereign state
-                        in East Asia and the world's most populous country, with a population of around 1.404
-                        billion.[13] Covering approximately 9,600,000 square kilometers (3,700,000 sq mi), it is the
-                        third- or fourth-largest country by total area,[k][19] depending on the source consulted. China
-                        also has the most neighbor countries in the world. Governed by the Communist Party of China, it
-                        exercises jurisdiction over 22 provinces, five autonomous regions, four direct-controlled
-                        municipalities (Beijing, Tianjin, Shanghai, and Chongqing), and the special administrative
-                        regions of Hong Kong and Macau.
-                        <a href="#" class="btn-red ">More from Wiki</a>
+                        DELEGATION_DESC
                     </p>
                 </div>
             </div>
@@ -92,47 +83,33 @@
         <div class="clearfix"></div>
     </div>
     <div class="single">
-        <div class="content-grids">
-            <h3>Medals</h3>
-            <div class="col-md-4 content-grid">
-                <a href="/athlete/JIA Zongyang" class="lot">
-                    <img class="img-responsive" src="/static/images/persons/1.jpg" alt="">
+        <h3>Athletes</h3>
+        <div class="mdui-row">
+            <div th:each="individual,index:${delegation.individuals}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
+                <a th:href="'/athlete/'+${individual.id}" class="lot">
+                    <img class="mdui-img-fluid" th:src="@{|/static/images/persons/${individual.photo}|}" alt="" style="max-height: 180px"/>
                 </a>
                 <div class="big-item">
-                    <p><img src="/static/images/silver.png"/> Silver</p>
-                    <label>JIA Zongyang</label>
-                    <a href="/competition/1">Men's Aerials</a>
+                    <label th:text="${individual.name}">JIA Zongyang</label>
                 </div>
                 <div class="clearfix"></div>
-                <b class="plus-in">+</b>
             </div>
-            <div class="col-md-4 content-grid">
-                <a href="/athlete/ZHANG Xin" class="lot">
-                    <img class="img-responsive" src="/static/images/persons/2.jpg" alt="">
-                </a>
-                <div class="big-item">
-                    <p><img src="/static/images/silver.png"/> Silver</p>
-                    <label>ZHANG Xin</label>
-                    <a href="/competition/1">Ladies' Aerials</a>
-                </div>
-                <div class="clearfix"></div>
-                <b class="plus-in">+</b>
-            </div>
-            <div class="col-md-4 content-grid">
-                <a href="/athlete/WU Dajing" class="lot">
-                    <img class="img-responsive" src="/static/images/persons/3.jpg" alt="">
-                </a>
-                <div class="big-item">
-                    <p><img src="/static/images/silver.png"/> Golden</p>
-                    <label>WU Dajing</label>
-                    <a href="/competition/1">Men's 500m</a>
-                </div>
-                <div class="clearfix"></div>
-                <b class="plus-in">+</b>
-            </div>
+
             <div class="clearfix"></div>
         </div>
-
+        <h3>Teams</h3>
+        <div class="mdui-row">
+            <div th:each="team,index:${delegation.teams}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card" style="max-height: 132px">
+                <div class="big-item">
+                    <h6>
+                        <a th:text="${team.name}" th:href="'/team/'+${team.id}" class="lot">
+                            TEAM_NAME
+                        </a>
+                    </h6>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
         <div>
             <h3>Participants and medals of the sport</h3>
             <table id="medals">
