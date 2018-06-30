@@ -66,7 +66,7 @@
         <div id="competitions">
             <div id="sports-panel" class="owl-carousel text-center">
                 <div class="item">
-                    <a href="/competition/all" title="image" rel="title1">
+                    <a href="/sport/all" title="image" rel="title1">
                         <img class="img-responsive " src="/static/images/pic.jpg" alt="">
                         <div class="run">
                             <i> </i>
@@ -75,7 +75,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/competition/all" title="image" rel="title1">
+                    <a href="/sport/all" title="image" rel="title1">
                         <img class="img-responsive " src="/static/images/pic1.jpg" alt="">
                         <div class="run">
                             <i class="foot-in"> </i>
@@ -84,7 +84,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/competition/all" title="image" rel="title1">
+                    <a href="/sport/all" title="image" rel="title1">
                         <img class="img-responsive " src="/static/images/pic2.jpg" alt="">
                         <div class="run">
                             <i class="cycling"> </i>
@@ -93,7 +93,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/competition/all" title="image" rel="title1">
+                    <a href="/sport/all" title="image" rel="title1">
                         <img class="img-responsive " src="/static/images/pic3.jpg" alt="">
                         <div class="run">
                             <i class="fitness"> </i>
@@ -102,7 +102,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/competition/all" title="image" rel="title1">
+                    <a href="/sport/all" title="image" rel="title1">
                         <img class="img-responsive " src="/static/images/pic4.jpg" alt="">
                         <div class="run">
                             <i class="tennis"> </i>
@@ -111,7 +111,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/competition/all" title="image" rel="title1">
+                    <a href="/sport/all" title="image" rel="title1">
                         <img class="img-responsive " src="/static/images/pic.jpg" alt="">
                         <div class="run">
                             <i> </i>
@@ -120,7 +120,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/competition/all" title="image" rel="title1">
+                    <a href="/sport/all" title="image" rel="title1">
                         <img class="img-responsive " src="/static/images/pic1.jpg" alt="">
                         <div class="run">
                             <i class="foot-in"> </i>
@@ -129,7 +129,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/competition/all" title="image" rel="title1">
+                    <a href="/sport/all" title="image" rel="title1">
                         <img class="img-responsive " src="/static/images/pic2.jpg" alt="">
                         <div class="run">
                             <i class="cycling"> </i>
@@ -138,7 +138,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/competition/all" title="image" rel="title1">
+                    <a href="/sport/all" title="image" rel="title1">
                         <img class="img-responsive " src="/static/images/pic3.jpg" alt="">
                         <div class="run">
                             <i class="fitness"> </i>
@@ -147,7 +147,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/competition/all" title="image" rel="title1">
+                    <a href="/sport/all" title="image" rel="title1">
                         <img class="img-responsive " src="/static/images/pic4.jpg" alt="">
                         <div class="run">
                             <i class="tennis"> </i>
@@ -156,7 +156,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/competition/all" title="image" rel="title1">
+                    <a href="/sport/all" title="image" rel="title1">
                         <img class="img-responsive " src="/static/images/pic.jpg" alt="">
                         <div class="run">
                             <i> </i>
@@ -183,7 +183,7 @@
                             <div th:each="comp:${list}" class="mdui-col-sm-6 mdui-col-md-4">
                                 <div class="mdui-card mdui-shadow-0">
                                     <div class="mdui-card-media">
-                                        <img th:src="@{|/static/images/competition/${comp.type.pictureUrl}.jpg|}"/>
+                                        <img th:src="@{|/static/images/photos/${comp.type.pictureUrl}.jpg|}"/>
                                     </div>
                                     <div class="mdui-card-primary">
                                         <div th:text="${comp.name}" class="mdui-card-primary-title"></div>
@@ -224,7 +224,7 @@
             </div>
             <div class="clearfix"></div>
             <h5 style="text-align: center; alignment: center">
-                <a href="competition-all.html" class="btn-red">All Competitions...</a>
+                <a href="sport-all.html" class="btn-red">All Competitions...</a>
             </h5>
         </div>
     </div>

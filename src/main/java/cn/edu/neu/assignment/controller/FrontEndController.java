@@ -61,16 +61,16 @@ public class FrontEndController {
         return "medal";
     }
 
-    @RequestMapping("/competition/all")
-    public String competition() {
-        return "competition-all";
+    @RequestMapping("/sport/all")
+    public String type() {
+        return "sport-all";
     }
 
-    @RequestMapping("/competition/{id}") // Competition Type (sport, not session)
-    public String competition(@PathVariable Integer id, Model model) {
+    @RequestMapping("/sport/{id}") // Competition Type (sport, not session)
+    public String type(@PathVariable Integer id, Model model) {
         model.addAttribute("id", id);
         model.addAttribute("sport", typeRepository.findById(id).get());
-        return "competition-detail";
+        return "sport-detail";
     }
 
     @RequestMapping("/delegation/all")
@@ -122,8 +122,8 @@ public class FrontEndController {
         return "participants";
     }
 
-    @RequestMapping("/session/{id}") // Competition Item(session)
-    public String session(@PathVariable Integer id, Model model) {
+    @RequestMapping("/competition/{id}") // Competition Item(session)
+    public String competition(@PathVariable Integer id, Model model) {
         Competition competition = competitionRepository.findById(id).get();
         model.addAttribute("participant", competition.isIndividual() ?
                 competition.getIndividualCompetitions() :
@@ -134,15 +134,15 @@ public class FrontEndController {
             model.addAttribute("type", competition.getType());
             model.addAttribute("sessionName",competition.getName());
             model.addAttribute("isIndividual", competition.isIndividual());
-            return "session-detail";
+            return "competition-session-detail";
         } else {
             return "index";
         }
     }
 
-    @RequestMapping("/session/all")
-    public String session() {
-        return "competition-all";
+    @RequestMapping("/competition/all")
+    public String competition() {
+        return "sport-all";
     }
 
     @RequestMapping("/admin/")
