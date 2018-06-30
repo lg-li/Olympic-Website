@@ -30,7 +30,7 @@
 <div id="header"></div>
 <div class="title-banner" th:style="'background: url(/static/images/competition/'+${type.pictureUrl}+'.jpg)'">
     <div class="big-title">
-        <p th:text="${session.name} +' - '+ ${type.typeName}">SESSION_NAME_TITLE</p>
+        <p th:text="${sessionName} +' - '+ ${type.typeName}">SESSION_NAME_TITLE</p>
     </div>
 </div>
 <div class="line1"></div>
@@ -43,7 +43,12 @@
             </div>
             <div class="col-md-9 single-top-in">
                 <div class="single-para">
-                    <label class="add-to"></label>
+                    <label class="add-to" th:text="${sessionName}">SESSION_NAME</label>
+                    <label class="add-to"><small th:text="${isIndividual}?'Individual Competition':'Team Competition'"></small></label>
+                    <h5>
+                        <span th:text="${compSession.place}"></span> /
+                        <span th:text="${compSession.time}"></span>
+                    </h5>
                     <p th:text="${type.description}">
                     </p>
                 </div>
@@ -85,21 +90,22 @@
                             <h3>Session Participants</h3><br/>
                                 <div class="mdui-card-content">
                                     <div class="mdui-row">
-                                        <div th:if="${session.individual eq true}" th:each="individualComp,index:${participant}" class="mdui-col-md-4">
+                                        <div th:if="${isIndividual eq true}" th:each="individualComp,index:${participant}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
                                             <a th:href="'/athlete/'+${individualComp.individual.id}" class="lot">
-                                                <img class="img-responsive" th:src="@{|/static/images/persons/${individualComp.individual.photo}|}" alt="">
+                                                <img class="mdui-img-fluid" th:src="@{|/static/images/persons/${individualComp.individual.photo}|}" alt="" style="max-height: 180px"/>
                                             </a>
                                             <div class="big-item">
-                                                <p><img class="flag-xsmall"
-                                                        th:src="@{|/static/images/flags/Flag%20of%20${individualComp.individual.delegation.name}|}"/>
-                                                    <span th:text="${individualComp.individual.delegations.name}">PARENT_DELEGATION_NAME</span></p>
+                                                <p>
+                                                    <img class="flag-xsmall" th:src="@{|/static/images/flags/Flag%20of%20${individualComp.individual.delegations.name}.png|}"/>
+                                                    <span th:text="${individualComp.individual.delegations.name}">PARENT_DELEGATION_NAME</span>
+                                                </p>
                                                 <label th:text="${individualComp.individual.name}">JIA Zongyang</label>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
-                                        <div th:if="${session.individual eq false}" th:each="teamComp,index:${participant}" class="mdui-col-md-4">
+                                        <div th:if="${isIndividual eq false}" th:each="teamComp,index:${participant}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
                                             <a th:href="'/team/'+${teamComp.team.id}" class="lot">
-                                                <img class="img-responsive" th:src="@{|/static/images/persons/${teamComp.team.delegations.name}|}" alt="">
+                                                <img class="mdui-img-fluid" th:src="@{|/static/images/persons/${teamComp.team.delegations.name}|}" alt="" style="max-height: 180px">
                                             </a>
                                             <div class="big-item">
                                                 <p><span th:text="${teamComp.team.delegations.name}">PARENT_DELEGATION_NAME</span></p>
@@ -107,7 +113,6 @@
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
-
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -133,7 +138,28 @@
                                         </tr>
                                         </thead>
                                         <tbody id="competition-status-table">
+                                        <tr th:if="${isIndividual eq true}" th:each="individualComp,index:${participant}">
+                                            <th th:text="${individualComp.rank}">
 
+                                            </th>
+                                            <th th:text="${individualComp.individual.name}">
+
+                                            </th>
+                                            <th th:text="${individualComp.result}">
+
+                                            </th>
+                                        </tr>
+                                        <tr th:if="${isIndividual eq false}" th:each="teamComp,index:${participant}">
+                                            <th th:text="${teamComp.rank}">
+
+                                            </th>
+                                            <th th:text="${teamComp.team.name}">
+
+                                            </th>
+                                            <th th:text="${teamComp.result}">
+
+                                            </th>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>

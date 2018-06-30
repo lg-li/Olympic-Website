@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class FrontEndController {
@@ -88,6 +90,13 @@ public class FrontEndController {
     public String teamDetail(@PathVariable Integer id, Model model) {
         Team team = teamRepository.findById(id).get();
         model.addAttribute("team", team);
+        Set<Team> teamList = team.getDelegations().getTeams();
+        Iterator iterator = teamList.iterator();
+        while (iterator.hasNext()){
+            if (iterator.next()==team)
+                iterator.remove();
+        }
+        model.addAttribute("teamList",teamList);
         model.addAttribute("individuals",team.getIndividuals());
         return "team-detail";
     }
@@ -116,8 +125,10 @@ public class FrontEndController {
                         competition.getTeamCompetitions()
         );
         if (competition.getType() != null) {
+            model.addAttribute("compSession", competition);
             model.addAttribute("type", competition.getType());
-            model.addAttribute("session", competition);
+            model.addAttribute("sessionName",competition.getName());
+            model.addAttribute("isIndividual", competition.isIndividual());
             return "session-detail";
         } else {
             return "index";

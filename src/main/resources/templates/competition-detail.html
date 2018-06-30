@@ -60,21 +60,21 @@
     <div class="mdui-row">
         <div class="mdui-card mdui-col-md-9">
             <div class="mdui-card-primary">
-                <div class="mdui-card-primary-title">Daily Scheduling</div>
-                <div class="mdui-card-primary-subtitle">Thu, 8 Feb</div>
+                <div class="mdui-card-primary-title">Competition Session Scheduling</div>
+                <div class="mdui-card-primary-subtitle">All sessions of this type of sport</div>
             </div>
             <div class="mdui-card-content">
                 <table id="Daily-Scheduling">
                     <thead>
                     <tr>
                         <th>
-                            Start Time
-                        </th>
-                        <th>
                             Event
                         </th>
                         <th>
-                            Result
+                            Start Time
+                        </th>
+                        <th>
+                            Location
                         </th>
 
                         <th>
@@ -83,57 +83,35 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    <tr th:each="compSession:${sport.competitions}">
                         <td>
-                            9:05
+                            <a th:text="${compSession.name}" th:href="@{|/session/${compSession.id}|}">EVENT_NAME</a>
                         </td>
-                        <td>
-                            <a href="/session/1"><h4>Woman Round Robin Session 1</h4></a>
-                            <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Switzerland.png" alt="">
-                            <strong><a href="/delegation/Switzerland">SUI</a></strong><br/>
-                            <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20China.png" alt="">
-                            <strong><a href="/delegation/China">CHN</a></strong>
+                        <td th:text="${compSession.time}">
+                            TIME
                         </td>
-                        <td>
-                            2<br/>7
+                        <td th:text="${compSession.place}">
+                            PLACE / LOCATION
                         </td>
-                        <td>
-                            Finished
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            11:05
-                        </td>
-                        <td>
-                            <a href="/session/1"><h4>Woman Round Robin Session 2</h4></a>
-                            <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Russia.png" alt="">
-                            <strong><a href="/delegation/Russia">RUS</a></strong><br/>
-                            <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20China.png" alt="">
-                            <strong><a href="/delegation/China">CHN</a></strong>
-                        </td>
-                        <td>
-                            7<br/>6
-                        </td>
-                        <td>
-                            Finished
+                        <td th:text="${compSession.situation}==0?'Pending':(${compSession.situation}==1?'In Progress':'Finished')">
+                            STATUS
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="mdui-card mdui-col-md-3">
+        <div class="mdui-card mdui-col-md-3 mdui-shadow-0">
             <div class="mdui-card-primary">
                 <div class="mdui-card-primary-title">Other Olympic Competitions</div>
             </div>
             <div class="mdui-card-content">
-                <ul>
-                    <li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item">
                         <img class="flag-xsmall" src="/static/images/sports/2.png">
                         <a href="#"><span></span> Ice Hockey</a>
                     </li>
-                    <li>
+                    <li class="mdui-list-item">
                         <img class="flag-xsmall" src="/static/images/sports/3.png">
                         <a href="#"><span></span> Short Track Speed Skating</a>
                     </li>
