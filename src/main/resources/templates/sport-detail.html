@@ -83,7 +83,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="compSession:${sport.competitions}">
+                    <tr th:each="compSession:${competitions}">
                         <td>
                             <a th:text="${compSession.name}" th:href="@{|/competition/${compSession.id}|}">EVENT_NAME</a>
                         </td>

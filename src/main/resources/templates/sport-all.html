@@ -137,7 +137,7 @@
         // load competition events from server in background
         $.ajax({
             async: true,
-            url: '/sport/list',
+            url: '/competition/list',
             type: "GET",
             dataType: "json",
             success: function (data) {
@@ -213,7 +213,7 @@
         // load countries list by ajax
         $.ajax({
             async: true,
-            url: '/type/list', //URL Requested
+            url: '/sport/list', //URL Requested
             type: "GET", // Get only
             dataType: "json",
             success: function (data) {

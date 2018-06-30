@@ -73,7 +73,7 @@ public class FrontEndController {
         competition.setId(id);
         model.addAttribute("id", id);
         model.addAttribute("sport", typeRepository.findById(id).get());
-        model.addAttribute("competition",competitionRepository.findAll(Example.of(competition)));
+        model.addAttribute("competitions",competitionRepository.findAll(Example.of(competition)));
         return "sport-detail";
     }
 
