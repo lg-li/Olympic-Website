@@ -6,6 +6,7 @@ import cn.edu.neu.assignment.inter.TeamRepository;
 import cn.edu.neu.assignment.inter.TypeRepository;
 import cn.edu.neu.assignment.model.Competition;
 import cn.edu.neu.assignment.model.Delegation;
+import cn.edu.neu.assignment.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class FrontEndController {
@@ -85,7 +88,16 @@ public class FrontEndController {
 
     @RequestMapping("team/{id}")
     public String teamDetail(@PathVariable Integer id, Model model) {
-        model.addAttribute("team", teamRepository.findById(id).get());
+        Team team = teamRepository.findById(id).get();
+        model.addAttribute("team", team);
+        Set<Team> teamList = team.getDelegations().getTeams();
+        Iterator iterator = teamList.iterator();
+        while (iterator.hasNext()){
+            if (iterator.next()==team)
+                iterator.remove();
+        }
+        model.addAttribute("teamList",teamList);
+        model.addAttribute("individuals",team.getIndividuals());
         return "team-detail";
     }
 
