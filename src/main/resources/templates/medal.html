@@ -39,6 +39,9 @@
                 <thead>
                 <tr>
                     <th>
+                        Rank
+                    </th>
+                    <th>
                         Country/Region
                     </th>
                     <th>
@@ -50,10 +53,16 @@
                     <th>
                         <img src="/static/images/bronze.png"/>Bronze
                     </th>
+                    <th>
+                        Total
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="delegation,index:${rank}">
+                    <td>
+                        <strong th:text="${index.index}+1">INDEX</strong>
+                    </td>
                     <td>
                         <img class="flag-small"
                              th:src="@{|/static/images/flags/Flag%20of%20${delegation.name}.png|}" th:alt="${delegation.name}">
@@ -69,6 +78,9 @@
                     </td>
                     <td th:text="${delegation.bronze}">
                         BROZEN_COUNT
+                    </td>
+                    <td th:text="${delegation.gold}+${delegation.silver}+${delegation.bronze}">
+                        TOTAL_COUNT
                     </td>
                 </tr>
                 </tbody>

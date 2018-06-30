@@ -1,11 +1,9 @@
 package cn.edu.neu.assignment.controller;
 
-import cn.edu.neu.assignment.inter.CompetitionRepository;
-import cn.edu.neu.assignment.inter.DelegationRepository;
-import cn.edu.neu.assignment.inter.TeamRepository;
-import cn.edu.neu.assignment.inter.TypeRepository;
+import cn.edu.neu.assignment.inter.*;
 import cn.edu.neu.assignment.model.Competition;
 import cn.edu.neu.assignment.model.Delegation;
+import cn.edu.neu.assignment.model.Individual;
 import cn.edu.neu.assignment.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -14,10 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class FrontEndController {
@@ -30,6 +25,8 @@ public class FrontEndController {
     TypeRepository typeRepository;
     @Autowired
     TeamRepository teamRepository;
+    @Autowired
+    IndividualRepository individualRepository;
 
     private List<Delegation> getRankedDelegations() {
         List<Delegation> delegations = delegationRepository.findAll();
@@ -101,10 +98,15 @@ public class FrontEndController {
         return "team-detail";
     }
 
-    @RequestMapping("/athlete/{name}")
-    public String athlete(@PathVariable String name, Model model) {
-        model.addAttribute("name", name);
-        return "athlete-detail";
+    @RequestMapping("/athlete/{id}")
+    public String athlete(@PathVariable Integer id, Model model) {
+        Optional<Individual> individual = individualRepository.findById(id);
+        if(individual.isPresent()) {
+            model.addAttribute("athlete",individual.get());
+            return "athlete-detail";
+        }else{
+            return "index";
+        }
     }
 
     @RequestMapping("/manage/login")

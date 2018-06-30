@@ -35,7 +35,7 @@
 </div>
 <div class="line1"></div>
 <!---->
-<div class="container">
+<div class="mdui-container">
     <div class="single">
         <div class="col-md-9 top-in-single">
             <div class="col-md-3 single-top">
@@ -71,7 +71,8 @@
         </div>
         <div class="clearfix"></div>
     </div>
-
+</div>
+<div class="mdui-container-fluid">
     <div class="row">
         <div class="col-sm-12 col-sm-12 col-md-12">
             <div class="tab" role="tabpanel">
@@ -88,34 +89,34 @@
                     <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                         <div class="container" id="competition-type-list">
                             <h3>Session Participants</h3><br/>
-                                <div class="mdui-card-content">
-                                    <div class="mdui-row">
-                                        <div th:if="${isIndividual eq true}" th:each="individualComp,index:${participant}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
-                                            <a th:href="'/athlete/'+${individualComp.individual.id}" class="lot">
-                                                <img class="mdui-img-fluid" th:src="@{|/static/images/persons/${individualComp.individual.photo}|}" alt="" style="max-height: 180px"/>
-                                            </a>
-                                            <div class="big-item">
-                                                <p>
-                                                    <img class="flag-xsmall" th:src="@{|/static/images/flags/Flag%20of%20${individualComp.individual.delegations.name}.png|}"/>
-                                                    <span th:text="${individualComp.individual.delegations.name}">PARENT_DELEGATION_NAME</span>
-                                                </p>
-                                                <label th:text="${individualComp.individual.name}">JIA Zongyang</label>
-                                            </div>
-                                            <div class="clearfix"></div>
+                            <div class="mdui-card-content">
+                                <div class="mdui-row">
+                                    <div th:if="${isIndividual eq true}" th:each="individualComp,index:${participant}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
+                                        <a th:href="'/athlete/'+${individualComp.individual.id}" class="lot">
+                                            <img class="mdui-img-fluid" th:src="@{|/static/images/persons/${individualComp.individual.photo}|}" alt="" style="max-height: 180px"/>
+                                        </a>
+                                        <div class="big-item">
+                                            <p>
+                                                <img class="flag-xsmall" th:src="@{|/static/images/flags/Flag%20of%20${individualComp.individual.delegations.name}.png|}"/>
+                                                <span th:text="${individualComp.individual.delegations.name}">PARENT_DELEGATION_NAME</span>
+                                            </p>
+                                            <label th:text="${individualComp.individual.name}">JIA Zongyang</label>
                                         </div>
-                                        <div th:if="${isIndividual eq false}" th:each="teamComp,index:${participant}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
-                                            <a th:href="'/team/'+${teamComp.team.id}" class="lot">
-                                                <img class="mdui-img-fluid" th:src="@{|/static/images/persons/${teamComp.team.delegations.name}|}" alt="" style="max-height: 180px">
-                                            </a>
-                                            <div class="big-item">
-                                                <p><span th:text="${teamComp.team.delegations.name}">PARENT_DELEGATION_NAME</span></p>
-                                                <label th:text="${teamComp.team.name}">TEAM_NAME</label>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="clearfix"></div>
+                                    <div th:if="${isIndividual eq false}" th:each="teamComp,index:${participant}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card" style="max-height: 132px">
+                                        <a th:href="'/team/'+${teamComp.team.id}" class="lot">
+                                            <img class="mdui-img-fluid" th:src="@{|/static/images/flags/Flag of ${teamComp.team.delegations.name}.png|}" alt="" style="max-height: 125px">
+                                        </a>
+                                        <div class="big-item">
+                                            <p><span th:text="${teamComp.team.delegations.name}">PARENT_DELEGATION_NAME</span></p>
+                                            <h6 th:text="${teamComp.team.name}">TEAM_NAME</h6>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
                                 </div>
+                                <div class="clearfix"></div>
+                            </div>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="Section2">
@@ -170,9 +171,7 @@
             </div>
         </div>
     </div>
-
 </div>
-
 <!---->
 
 <!--footer-->
