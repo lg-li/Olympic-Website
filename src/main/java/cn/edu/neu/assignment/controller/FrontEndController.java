@@ -114,7 +114,7 @@ public class FrontEndController {
 
     @RequestMapping("/manage/login")
     public String login() {
-        return "manager-login";
+        return "admin/manager-login";
     }
 
     @RequestMapping("/participants")
