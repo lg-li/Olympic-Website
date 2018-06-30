@@ -32,6 +32,7 @@ public class DelegationController {
     public JSONObject rank(){
         List<Delegation> delegations = delegationRepository.findAll();
         Collections.sort(delegations);
+        Collections.reverse(delegations);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("list", delegations);
         return CommonUtil.successJson(jsonObject);
