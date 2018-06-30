@@ -1,74 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <!--header partial module-->
-<div class="line">
-</div>
-<div class="olympic-header">
-    <div class="logo">
-        <a href="/">
-            <img style="max-height: 80px" src="/static/images/logo.png" alt="">
-        </a>
+<div th:fragment="header">
+    <div class="line">
     </div>
-    <div class="header-top">
-        <div class="header-grid">
-            <ul class="header-in">
-                <li><a href="/admin/login">Management </a></li>
-            </ul>
-            <div class="search-box">
-                <div id="sb-search" class="sb-search">
-                    <form>
-                        <input class="sb-search-input" placeholder="Enter..." type="search"
-                               name="search" id="search">
-                        <input class="sb-search-submit" type="submit" value="">
-                        <span class="sb-icon-search"> </span>
-                    </form>
-                </div>
-            </div>
-            <!-- search-scripts -->
-            <script src="/static/js/classie.js"></script>
-            <script src="/static/js/uisearch.js"></script>
-            <script>
-                new UISearch(document.getElementById('sb-search'));
-            </script>
-            <!-- //search-scripts -->
-            <div class="clearfix"></div>
+    <div class="olympic-header">
+        <div class="logo">
+            <a href="/">
+                <img style="max-height: 80px" src="/static/images/logo.png" alt="">
+            </a>
         </div>
-        <div class="header-bottom">
-            <div class="h_menu4">
-                <!-- start h_menu4 -->
-                <a class="toggleMenu" href="#">Navigation</a>
-                <ul class="nav" id="navigator">
-                    <li class="active">
-                        <a href="/">Home</a>
-                    </li>
-                    <li>
-                        <a href="/sport/all">Sports</a>
-                    </li>
-                    <li>
-                        <a href="/delegation/all">Delegations</a>
-                    </li>
-                    <li>
-                        <a href="/medal">Medals</a>
-                    </li>
-                    <li>
-                        <a href="/participants">Participants</a>
-                    </li>
-                    <li>
-                        <a href="#">More
-                            <i> </i>
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="/participants">Athletes/Teams</a>
-                            </li>
-                            <li>
-                                <a href="/admin/login">Management</a>
-                            </li>
-                        </ul>
-                    </li>
+        <div class="header-top">
+            <div class="header-grid">
+                <ul class="header-in">
+                    <li><a href="/admin/login">Management </a></li>
                 </ul>
-                <script type="text/javascript" src="/static/js/olympic.nav.js"></script>
+                <div class="search-box">
+                    <div id="sb-search" class="sb-search">
+                        <form>
+                            <input class="sb-search-input" placeholder="Enter..." type="search"
+                                   name="search" id="search">
+                            <input class="sb-search-submit" type="submit" value="">
+                            <span class="sb-icon-search"> </span>
+                        </form>
+                    </div>
+                </div>
+                <!-- search-scripts -->
+                <script src="/static/js/classie.js"></script>
+                <script src="/static/js/uisearch.js"></script>
+                <script>
+                    new UISearch(document.getElementById('sb-search'));
+                </script>
+                <!-- //search-scripts -->
+                <div class="clearfix"></div>
             </div>
-            <div class="clearfix"></div>
+            <div class="header-bottom">
+                <div class="h_menu4">
+                    <!-- start h_menu4 -->
+                    <a class="toggleMenu" href="#">Navigation</a>
+                    <ul class="nav" id="navigator">
+                        <li class="active">
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/sport/all">Sports</a>
+                        </li>
+                        <li>
+                            <a href="/delegation/all">Delegations</a>
+                        </li>
+                        <li>
+                            <a href="/medal">Medals</a>
+                        </li>
+                        <li>
+                            <a href="/participants">Participants</a>
+                        </li>
+                        <li>
+                            <a href="#">More
+                                <i> </i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="/participants">Athletes/Teams</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/login">Management</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <script type="text/javascript" src="/static/js/olympic.nav.js"></script>
+                </div>
+                <div class="clearfix"></div>
+            </div>
         </div>
+        <div class="clearfix"></div>
     </div>
-    <div class="clearfix"></div>
 </div>
+</html>

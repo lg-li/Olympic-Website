@@ -15,7 +15,6 @@ function loadTo(url, id) {
 }
 
 // load header and footer of every pages
-loadTo('/header.html','header');
 loadTo('/footer.html','footer');
 
 // Transition animation of text
