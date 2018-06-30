@@ -116,6 +116,7 @@ public class FrontEndController {
             model.addAttribute("session", competition);
             model.addAttribute("type", competition.getType());
             model.addAttribute("sessionName",competition.getName());
+            model.addAttribute("isIndividual", competition.isIndividual());
             return "session-detail";
         } else {
             return "index";

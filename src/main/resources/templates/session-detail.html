@@ -85,19 +85,20 @@
                             <h3>Session Participants</h3><br/>
                                 <div class="mdui-card-content">
                                     <div class="mdui-row">
-                                        <div th:if="${session.individual eq true}" th:each="individualComp,index:${participant}" class="mdui-col-md-4">
+                                        <div th:if="${isIndividual eq true}" th:each="individualComp,index:${participant}" class="mdui-col-md-4">
                                             <a th:href="'/athlete/'+${individualComp.individual.id}" class="lot">
-                                                <img class="img-responsive" th:src="@{|/static/images/persons/${individualComp.individual.photo}|}" alt="">
+                                                <img class="img-responsive" th:src="@{|/static/images/persons/${individualComp.individual.photo}|}" alt=""/>
                                             </a>
                                             <div class="big-item">
-                                                <p><img class="flag-xsmall"
-                                                        th:src="@{|/static/images/flags/Flag%20of%20${individualComp.individual.delegation.name}|}"/>
-                                                    <span th:text="${individualComp.individual.delegations.name}">PARENT_DELEGATION_NAME</span></p>
+                                                <p>
+                                                    <img class="flag-xsmall" th:src="@{|/static/images/flags/Flag%20of%20${individualComp.individual.delegations.name}.png|}"/>
+                                                    <span th:text="${individualComp.individual.delegations.name}">PARENT_DELEGATION_NAME</span>
+                                                </p>
                                                 <label th:text="${individualComp.individual.name}">JIA Zongyang</label>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
-                                        <div th:if="${session.individual eq false}" th:each="teamComp,index:${participant}" class="mdui-col-md-4">
+                                        <div th:if="${isIndividual eq false}" th:each="teamComp,index:${participant}" class="mdui-col-md-4">
                                             <a th:href="'/team/'+${teamComp.team.id}" class="lot">
                                                 <img class="img-responsive" th:src="@{|/static/images/persons/${teamComp.team.delegations.name}|}" alt="">
                                             </a>
@@ -107,7 +108,6 @@
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
-
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
