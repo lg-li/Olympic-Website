@@ -21,7 +21,6 @@ import java.util.Set;
         @NamedSubgraph(name = "individualCompetitions", attributeNodes = @NamedAttributeNode("individualCompetitions")), @NamedSubgraph(name = "teamCompetitions", attributeNodes = @NamedAttributeNode("teamCompetitions"))
 }
 )})
-
 public class Delegation implements Comparable<Delegation> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
