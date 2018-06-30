@@ -7,6 +7,7 @@ import cn.edu.neu.assignment.model.Individual;
 import cn.edu.neu.assignment.model.Team;
 import cn.edu.neu.assignment.model.TeamCompetition;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,8 +69,11 @@ public class FrontEndController {
 
     @RequestMapping("/sport/{id}") // Competition Type (sport, not session)
     public String type(@PathVariable Integer id, Model model) {
+        Competition competition = new Competition();
+        competition.setId(id);
         model.addAttribute("id", id);
         model.addAttribute("sport", typeRepository.findById(id).get());
+        model.addAttribute("competition",competitionRepository.findAll(Example.of(competition)));
         return "sport-detail";
     }
 
