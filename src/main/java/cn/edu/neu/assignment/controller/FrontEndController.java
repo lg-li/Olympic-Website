@@ -7,6 +7,7 @@ import cn.edu.neu.assignment.inter.TypeRepository;
 import cn.edu.neu.assignment.model.Competition;
 import cn.edu.neu.assignment.model.Delegation;
 import cn.edu.neu.assignment.model.Team;
+import cn.edu.neu.assignment.model.TeamCompetition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -96,6 +97,8 @@ public class FrontEndController {
             if (iterator.next()==team)
                 iterator.remove();
         }
+        Set<TeamCompetition> teamCompetitions = team.getTeamCompetitions();
+        model.addAttribute("teamCompetitions",teamCompetitions);
         model.addAttribute("teamList",teamList);
         model.addAttribute("individuals",team.getIndividuals());
         return "team-detail";
