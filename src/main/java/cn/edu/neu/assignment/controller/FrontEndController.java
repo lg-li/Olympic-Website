@@ -32,6 +32,7 @@ public class FrontEndController {
     private List<Delegation> getRankedDelegations() {
         List<Delegation> delegations = delegationRepository.findAll();
         Collections.sort(delegations);
+        Collections.reverse(delegations);
         return delegations;
     }
 
@@ -39,7 +40,6 @@ public class FrontEndController {
     public String index(Model model) {
         model.addAttribute("list", competitionRepository.findAll(new PageRequest(0, 6)));
         List<Delegation> delegations = getRankedDelegations();
-        Collections.sort(delegations);
         delegations = delegations.subList(0, 5);
         model.addAttribute("rank", delegations);
         return "index";

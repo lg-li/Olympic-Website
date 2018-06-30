@@ -8,6 +8,9 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
+@NamedEntityGraphs({@NamedEntityGraph(name = "competition.findById", attributeNodes = {
+        @NamedAttributeNode("individualCompetitions"), @NamedAttributeNode("teamCompetitions")
+})})
 public class Competition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +23,7 @@ public class Competition {
     private String place;
 
     @Column(nullable = false)
-    @JSONField(format="yyyy-MM-dd HH:mm")
+    @JSONField(format = "yyyy-MM-dd HH:mm")
     private Date time;
 
     @ManyToOne()
