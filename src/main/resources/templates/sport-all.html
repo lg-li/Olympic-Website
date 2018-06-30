@@ -128,7 +128,7 @@
         progressBar.increase(10);
 
         var status_table_row_template = '<tr>' +
-            '<td><strong><a href="/session/__COMP_SESSION_ID__">__COMPETITION_NAME__</a></strong></td>' +
+            '<td><strong><a href="/competition/__COMP_SESSION_ID__">__COMPETITION_NAME__</a></strong></td>' +
             '<td>__COMPETITION_MODE__</td>' +
             '<td>__COMPETITION_TIME__</td>' +
             '<td>__COMPETITION_STATUS__</td>' +
@@ -137,7 +137,7 @@
         // load competition events from server in background
         $.ajax({
             async: true,
-            url: '/competition/list',
+            url: '/sport/list',
             type: "GET",
             dataType: "json",
             success: function (data) {
@@ -174,7 +174,7 @@
                         ));
                         competition_events[i] = {};
                         competition_events[i]['id'] = data['data']['list'][i]['id'];
-                        competition_events[i]['href'] = '/session/'+data['data']['list'][i]['id'];
+                        competition_events[i]['href'] = '/competition/'+data['data']['list'][i]['id'];
                         competition_events[i]['title'] = data['data']['list'][i]['name'];
                         competition_events[i]['start'] = data['data']['list'][i]['time'];
                     }
@@ -204,10 +204,10 @@
 
         var competition_type_list_template = '<div class="olympic-card col-xs-6 col-sm-4 col-md-2 grid-item-in" style="max-height: 240px; min-height: 240px">' +
             '<div class=" item-grid">' +
-            '<a href="/competition/__ID__">' +
+            '<a href="/sport/__ID__">' +
             '<img class="img-responsive" src="/static/images/sports/__LOGO_URL__" alt="">' +
             '</a><div>' +
-            '<p><a href="/competition/__ID__">__TYPE_NAME__</a></p></div></div></div>';
+            '<p><a href="/sport/__ID__">__TYPE_NAME__</a></p></div></div></div>';
 
 
         // load countries list by ajax

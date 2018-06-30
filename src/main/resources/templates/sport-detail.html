@@ -27,7 +27,7 @@
 <!--header-->
 <div id="header"></div>
 <div class="competition-type-banner"
-     th:style="'background: url(/static/images/competition/'+${sport.pictureUrl}+'.jpg)'">
+     th:style="'background: url(/static/images/photos/'+${sport.pictureUrl}+'.jpg)'">
     <div class="mdui-container-fluid bg-transparent-dark">
         <div class="mdui-container">
             <div class="col-md-9 top-in-single">
@@ -85,7 +85,7 @@
                     <tbody>
                     <tr th:each="compSession:${sport.competitions}">
                         <td>
-                            <a th:text="${compSession.name}" th:href="@{|/session/${compSession.id}|}">EVENT_NAME</a>
+                            <a th:text="${compSession.name}" th:href="@{|/competition/${compSession.id}|}">EVENT_NAME</a>
                         </td>
                         <td th:text="${compSession.time}">
                             TIME
