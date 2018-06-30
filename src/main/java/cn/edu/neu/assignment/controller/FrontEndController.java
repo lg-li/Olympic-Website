@@ -1,11 +1,7 @@
 package cn.edu.neu.assignment.controller;
 
 import cn.edu.neu.assignment.inter.*;
-import cn.edu.neu.assignment.model.Competition;
-import cn.edu.neu.assignment.model.Delegation;
-import cn.edu.neu.assignment.model.Individual;
-import cn.edu.neu.assignment.model.Team;
-import cn.edu.neu.assignment.model.TeamCompetition;
+import cn.edu.neu.assignment.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.PageRequest;
@@ -29,6 +25,10 @@ public class FrontEndController {
     TeamRepository teamRepository;
     @Autowired
     IndividualRepository individualRepository;
+    @Autowired
+    IndividualCompetitionRepository individualCompetitionRepository;
+    @Autowired
+    TeamCompetitionRepository teamCompetitionRepository;
 
     private List<Delegation> getRankedDelegations() {
         List<Delegation> delegations = delegationRepository.findAll();
@@ -92,14 +92,19 @@ public class FrontEndController {
     public String teamDetail(@PathVariable Integer id, Model model) {
         Team team = teamRepository.findById(id).get();
         model.addAttribute("team", team);
-        Set<Team> teamList = team.getDelegations().getTeams();
+
+        Team teamForExample = new Team();
+        teamForExample.setDelegations(team.getDelegations());
+        TeamCompetition teamCompetitionForExample = new TeamCompetition();
+        teamCompetitionForExample.setTeam(team);
+
+       List<Team> teamList = teamRepository.findAll(Example.of(teamForExample));
         Iterator iterator = teamList.iterator();
         while (iterator.hasNext()){
             if (iterator.next()==team)
                 iterator.remove();
         }
-        Set<TeamCompetition> teamCompetitions = team.getTeamCompetitions();
-        model.addAttribute("teamCompetitions",teamCompetitions);
+        model.addAttribute("teamCompetitions",teamCompetitionRepository.findAll(Example.of(teamCompetitionForExample)));
         model.addAttribute("teamList",teamList);
         model.addAttribute("individuals",team.getIndividuals());
         return "team-detail";
@@ -108,8 +113,11 @@ public class FrontEndController {
     @RequestMapping("/athlete/{id}")
     public String athlete(@PathVariable Integer id, Model model) {
         Optional<Individual> individual = individualRepository.findById(id);
+        IndividualCompetition individualCompetition = new IndividualCompetition();
+        individualCompetition.setIndividual(individual.get());
         if(individual.isPresent()) {
             model.addAttribute("athlete",individual.get());
+            model.addAttribute("competitions",individualCompetitionRepository.findAll(Example.of(individualCompetition)));
             return "athlete-detail";
         }else{
             return "index";

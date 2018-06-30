@@ -72,7 +72,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="event:${athlete.individualCompetitions}">
+                <tr th:each="event:${competitions}">
                     <td>
                         <a th:href="@{|/competition/${event.competition.id}|}" th:text="${event.competition.name}">
                             Men's 20km Individual

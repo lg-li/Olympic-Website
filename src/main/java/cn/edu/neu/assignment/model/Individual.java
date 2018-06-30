@@ -8,7 +8,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@NamedEntityGraph(name = "Individual.lazy", attributeNodes = {@NamedAttributeNode("individualCompetitions")})
+@NamedEntityGraphs({@NamedEntityGraph(name = "individual.findById", attributeNodes = {
+        @NamedAttributeNode("teams")
+})})
 public class Individual {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

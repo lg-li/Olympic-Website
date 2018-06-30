@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NamedEntityGraphs({@NamedEntityGraph(name = "team.findById", attributeNodes = {
+        @NamedAttributeNode("individuals")
+})})
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
