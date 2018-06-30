@@ -43,7 +43,12 @@
             </div>
             <div class="col-md-9 single-top-in">
                 <div class="single-para">
-                    <label class="add-to"></label>
+                    <label class="add-to" th:text="${sessionName}">SESSION_NAME</label>
+                    <label class="add-to"><small th:text="${isIndividual}?'Individual Competition':'Team Competition'"></small></label>
+                    <h5>
+                        <span th:text="${compSession.place}"></span> /
+                        <span th:text="${compSession.time}"></span>
+                    </h5>
                     <p th:text="${type.description}">
                     </p>
                 </div>
@@ -85,9 +90,9 @@
                             <h3>Session Participants</h3><br/>
                                 <div class="mdui-card-content">
                                     <div class="mdui-row">
-                                        <div th:if="${isIndividual eq true}" th:each="individualComp,index:${participant}" class="mdui-col-md-4">
+                                        <div th:if="${isIndividual eq true}" th:each="individualComp,index:${participant}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
                                             <a th:href="'/athlete/'+${individualComp.individual.id}" class="lot">
-                                                <img class="img-responsive" th:src="@{|/static/images/persons/${individualComp.individual.photo}|}" alt=""/>
+                                                <img class="mdui-img-fluid" th:src="@{|/static/images/persons/${individualComp.individual.photo}|}" alt="" style="max-height: 180px"/>
                                             </a>
                                             <div class="big-item">
                                                 <p>
@@ -98,9 +103,9 @@
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
-                                        <div th:if="${isIndividual eq false}" th:each="teamComp,index:${participant}" class="mdui-col-md-4">
+                                        <div th:if="${isIndividual eq false}" th:each="teamComp,index:${participant}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
                                             <a th:href="'/team/'+${teamComp.team.id}" class="lot">
-                                                <img class="img-responsive" th:src="@{|/static/images/persons/${teamComp.team.delegations.name}|}" alt="">
+                                                <img class="mdui-img-fluid" th:src="@{|/static/images/persons/${teamComp.team.delegations.name}|}" alt="" style="max-height: 180px">
                                             </a>
                                             <div class="big-item">
                                                 <p><span th:text="${teamComp.team.delegations.name}">PARENT_DELEGATION_NAME</span></p>
@@ -133,7 +138,28 @@
                                         </tr>
                                         </thead>
                                         <tbody id="competition-status-table">
+                                        <tr th:if="${isIndividual eq true}" th:each="individualComp,index:${participant}">
+                                            <th th:text="${individualComp.rank}">
 
+                                            </th>
+                                            <th th:text="${individualComp.individual.name}">
+
+                                            </th>
+                                            <th th:text="${individualComp.result}">
+
+                                            </th>
+                                        </tr>
+                                        <tr th:if="${isIndividual eq false}" th:each="teamComp,index:${participant}">
+                                            <th th:text="${teamComp.rank}">
+
+                                            </th>
+                                            <th th:text="${teamComp.team.name}">
+
+                                            </th>
+                                            <th th:text="${teamComp.result}">
+
+                                            </th>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>

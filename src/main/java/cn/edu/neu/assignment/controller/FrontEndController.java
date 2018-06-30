@@ -125,7 +125,7 @@ public class FrontEndController {
                         competition.getTeamCompetitions()
         );
         if (competition.getType() != null) {
-            model.addAttribute("session", competition);
+            model.addAttribute("compSession", competition);
             model.addAttribute("type", competition.getType());
             model.addAttribute("sessionName",competition.getName());
             model.addAttribute("isIndividual", competition.isIndividual());
