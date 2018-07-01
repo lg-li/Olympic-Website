@@ -4,11 +4,11 @@
     <title>Delegation</title>
     <link href="/static/css/datatables.min.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body class="mdui-theme-primary-blue">
 <!--header-->
 <div th:replace="header::header"></div>
 <!---->
-<div class="container">
+<div class="mdui-container">
     <div class="single">
         <div class="col-md-9 top-in-single">
             <div class="col-md-3 single-top">
@@ -63,223 +63,240 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    <div class="single">
-        <h3>Athletes</h3>
-        <div class="mdui-row">
-            <div th:each="individual,index:${individuals}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
-                <a th:href="'/athlete/'+${individual.id}" class="lot">
-                    <img class="mdui-img-fluid" th:src="@{|/static/images/persons/${individual.photo}|}" alt="" style="max-height: 180px"/>
-                </a>
-                <div class="big-item">
-                    <label th:text="${individual.name}">JIA Zongyang</label>
-                </div>
-                <div class="clearfix"></div>
+    <div class="mdui-container-fluid">
+        <div class="mdui-card">
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">directions_run</i>  Athletes</div>
             </div>
-
-            <div class="clearfix"></div>
+            <div class="mdui-card-content">
+                <div class="mdui-row">
+                    <div th:each="individual,index:${individuals}"
+                         class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4 mdui-card mdui-shadow-0 mdui-hoverable mdui-ripple" th:onclick="'location.href=\'/athlete/'+${individual.id}+'\''">
+                        <a th:href="'/athlete/'+${individual.id}" class="lot">
+                            <img class="mdui-img-fluid mdui-img-circle" th:src="@{|/static/images/persons/${individual.photo}|}" alt=""
+                                 style="max-height: 150px"/>
+                        </a>
+                        <div class="big-item">
+                            <p><i class="mdui-icon material-icons">person</i> Athlete</p>
+                            <label th:text="${individual.name}">JIA Zongyang</label>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
         </div>
-        <h3>Teams</h3>
-        <div class="mdui-row">
-            <div th:each="team,index:${teams}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card" style="max-height: 132px">
-                <div class="big-item">
-                    <h6>
+        <br/>
+        <div class="mdui-card">
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">format_list_bulleted</i> Teams of this delegation</div>
+            </div>
+            <div class="mdui-card-content">
+                <ul class="mdui-list">
+                    <li th:each="team,index:${teams}" class="mdui-list-item">
+                        <i class="mdui-icon material-icons">group</i>
                         <a th:text="${team.name}" th:href="'/team/'+${team.id}" class="lot">
                             TEAM_NAME
                         </a>
-                    </h6>
-                </div>
-                <div class="clearfix"></div>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div>
-            <h3>Participants and medals of the sport</h3>
-            <table id="medals">
-                <thead>
-                <tr>
-                    <th>
-                        Discipline
-                    </th>
-                    <th>
-                        Female
-                    </th>
-                    <th>
-                        Male
-                    </th>
-                    <th>
-                        Total
-                    </th>
-                </tr>
+        <br/>
+        <div class="mdui-card">
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">format_list_numbered</i> Medals of this delegation</div>
+            </div>
+            <div class="mdui-card-content">
 
-                </thead>
-                <tbody>
+                <table id="medals">
+                    <thead>
+                    <tr>
+                        <th>
+                            Discipline
+                        </th>
+                        <th>
+                            Female
+                        </th>
+                        <th>
+                            Male
+                        </th>
+                        <th>
+                            Total
+                        </th>
+                    </tr>
 
-                <tr>
-                    <td>
-                        <img class="flag-xsmall" src="/static/images/sports/1.png" alt="">
-                        <strong><a href="/sport/1">Alpine Skiing</a></strong>
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        <a href="#">
-                            2</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-xsmall" src="/static/images/sports/2.png" alt="">
-                        <strong><a href="../../en/biathlon/daily-schedule.htm">Biathlon</a></strong>
-                    </td>
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        0
-                    </td>
-                    <td>
-                        <a href="#">
-                            2</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-xsmall" src="/static/images/sports/3.png" alt="">
-                        <strong><a>Bobsleigh</a></strong>
-                    </td>
-                    <td>
-                        0
-                    </td>
-                    <td>
-                        5
-                    </td>
-                    <td>
-                        <a>
-                            5</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-xsmall" src="/static/images/sports/4.png" alt="">
-                        <strong><a>Cross-Country
-                            Skiing</a></strong>
-                    </td>
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        <a href="#">
-                            4</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-xsmall" src="/static/images/sports/5.png" alt="">
-                        <strong><a href="/sport/1">Curling</a></strong>
-                    </td>
-                    <td>
-                        6
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        <a>
-                            7</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-xsmall" src="/static/images/sports/6.png" alt="">
-                        <strong><a>Figure Skating</a></strong>
-                    </td>
-                    <td>
-                        5
-                    </td>
-                    <td>
-                        6
-                    </td>
-                    <td>
-                        <a>
-                            11</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-xsmall" src="/static/images/sports/7.png" alt="">
-                        <strong><a>Freestyle Skiing</a></strong>
-                    </td>
-                    <td>
-                        9
-                    </td>
-                    <td>
-                        6
-                    </td>
-                    <td>
-                        <a>
-                            15</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-xsmall" src="/static/images/sports/8.png" alt="">
-                        <strong><a>Short Track Speed
-                            Skating</a></strong>
-                    </td>
-                    <td>
-                        5
-                    </td>
-                    <td>
-                        5
-                    </td>
-                    <td>
-                        <a>
-                            10</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="flag-xsmall" src="/static/images/sports/9.png" alt="">
-                        <strong><a>Skeleton</a></strong>
-                    </td>
-                    <td>
-                        0
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        <a>
-                            1</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <b>Total</b>
-                    </td>
-                    <td>
-                        46
-                    </td>
-                    <td>
-                        34
-                    </td>
-                    <td>
-                        <b>80</b>
-                    </td>
-                </tr>
+                    </thead>
+                    <tbody>
 
-                </tbody>
-            </table>
+                    <tr>
+                        <td>
+                            <img class="flag-xsmall" src="/static/images/sports/1.png" alt="">
+                            <strong><a href="/sport/1">Alpine Skiing</a></strong>
+                        </td>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            <a href="#">
+                                2</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="flag-xsmall" src="/static/images/sports/2.png" alt="">
+                            <strong><a href="../../en/biathlon/daily-schedule.htm">Biathlon</a></strong>
+                        </td>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            <a href="#">
+                                2</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="flag-xsmall" src="/static/images/sports/3.png" alt="">
+                            <strong><a>Bobsleigh</a></strong>
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            5
+                        </td>
+                        <td>
+                            <a>
+                                5</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="flag-xsmall" src="/static/images/sports/4.png" alt="">
+                            <strong><a>Cross-Country
+                                Skiing</a></strong>
+                        </td>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            <a href="#">
+                                4</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="flag-xsmall" src="/static/images/sports/5.png" alt="">
+                            <strong><a href="/sport/1">Curling</a></strong>
+                        </td>
+                        <td>
+                            6
+                        </td>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            <a>
+                                7</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="flag-xsmall" src="/static/images/sports/6.png" alt="">
+                            <strong><a>Figure Skating</a></strong>
+                        </td>
+                        <td>
+                            5
+                        </td>
+                        <td>
+                            6
+                        </td>
+                        <td>
+                            <a>
+                                11</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="flag-xsmall" src="/static/images/sports/7.png" alt="">
+                            <strong><a>Freestyle Skiing</a></strong>
+                        </td>
+                        <td>
+                            9
+                        </td>
+                        <td>
+                            6
+                        </td>
+                        <td>
+                            <a>
+                                15</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="flag-xsmall" src="/static/images/sports/8.png" alt="">
+                            <strong><a>Short Track Speed
+                                Skating</a></strong>
+                        </td>
+                        <td>
+                            5
+                        </td>
+                        <td>
+                            5
+                        </td>
+                        <td>
+                            <a>
+                                10</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="flag-xsmall" src="/static/images/sports/9.png" alt="">
+                            <strong><a>Skeleton</a></strong>
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            <a>
+                                1</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Total</b>
+                        </td>
+                        <td>
+                            46
+                        </td>
+                        <td>
+                            34
+                        </td>
+                        <td>
+                            <b>80</b>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-
+<br/>
 <!---->
 
 <!--footer-->

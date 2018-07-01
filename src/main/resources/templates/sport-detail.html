@@ -4,7 +4,7 @@
     <title>Competition - Curling</title>
     <link href="/static/css/datatables.min.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body class="mdui-theme-primary-blue">
 <!--header-->
 <div th:replace="header::header"></div>
 <div class="competition-type-banner"
@@ -39,7 +39,7 @@
 <!---->
 <div class="mdui-container-fluid">
     <div class="mdui-row">
-        <div class="mdui-card mdui-col-md-9">
+        <div class="mdui-card mdui-col-md-12">
             <div class="mdui-card-primary">
                 <div class="mdui-card-primary-title">Competition Session Scheduling</div>
                 <div class="mdui-card-primary-subtitle">All sessions of this type of sport</div>
@@ -74,29 +74,12 @@
                         <td th:text="${compSession.place}">
                             PLACE / LOCATION
                         </td>
-                        <td th:text="${compSession.situation}==0?'Pending':(${compSession.situation}==1?'In Progress':'Finished')">
+                        <td th:text="${compSession.situation}==0?'Scheduled':(${compSession.situation}==1?'On Going':'Finished')">
                             STATUS
                         </td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div class="mdui-card mdui-col-md-3 mdui-shadow-0">
-            <div class="mdui-card-primary">
-                <div class="mdui-card-primary-title">Other Olympic Competitions</div>
-            </div>
-            <div class="mdui-card-content">
-                <ul class="mdui-list">
-                    <li class="mdui-list-item">
-                        <img class="flag-xsmall" src="/static/images/sports/2.png">
-                        <a href="#"><span></span> Ice Hockey</a>
-                    </li>
-                    <li class="mdui-list-item">
-                        <img class="flag-xsmall" src="/static/images/sports/3.png">
-                        <a href="#"><span></span> Short Track Speed Skating</a>
-                    </li>
-                </ul>
             </div>
         </div>
         <br/>
@@ -114,6 +97,6 @@
         $('#Daily-Scheduling').DataTable();
     });
 </script>
-p
+
 </body>
 </html>

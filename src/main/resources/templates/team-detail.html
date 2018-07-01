@@ -4,7 +4,7 @@
     <title>Team</title>
     <link href="/static/css/datatables.min.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body class="mdui-theme-primary-blue">
 <!--header-->
 <div th:replace="header::header"></div>
 <!---->
@@ -26,16 +26,7 @@
                     <div class="clearfix"></div>
                     <label class="add-to"></label>
                     <p th:text="${team.description}">
-                        The Chinese women's curling team was founded in 2003. Although the establishment
-                        time was short, the Chinese curling girls were among the top teams in the world
-                        in only 5 or 6 years. In 2007, the Chinese team hired Canadian foreign teacher
-                        Daniel. The Chinese women's curling performance can be described as rapid progress.
-                        In the Women's Curling World Championships in 2008, the Chinese girls won the
-                        runner-up, and on March 25, 2009, they won the World Championship of Women's World
-                        Curling Championship and won the World Cup Vancouver 2010.Bronze medals, with a
-                        historical breakthrough in this department,they eventually won the 2009 Best Team
-                        Award for Sportsman of the Year Awarded by China Central Television.
-                        <a href="#" class="cart ">More from Wiki</a>
+                        TEAM_DESC
                     </p>
                 </div>
             </div>
@@ -78,11 +69,11 @@
                         <img class="flag-small" th:src="@{|/static/images/persons/${individual.photo}|}"/>
                         <strong>
                             <a href="/athlete/JIA Zongyang"
-                            th:href="@{|/athlete/${individual.name}|}"
+                            th:href="@{|/athlete/${individual.id}|}"
                             th:text="${individual.name}"}>WANG Bingyu</a>
                         </strong>
                     </td>
-                    <td th:text="${#dates.format(individual.birthday, 'dd-MMM-yyyy')}">
+                    <td th:text="${#dates.format(individual.birthday, 'MM-dd-yyyy')}">
                         1990-01-01
                     </td>
                 </tr>
@@ -127,7 +118,11 @@
                     </td>
 
                     <td>
-                        <h4 th:text="${teamCompetition.competition.name}">Woman Round Robin Session 1</h4>
+                        <h4>
+                            <a th:text="${teamCompetition.competition.name}" th:href="@{|/competition/${teamCompetition.competition.id}|}" >
+                                NAME
+                            </a>
+                        </h4>
                     </td>
 
                     <td th:text="${teamCompetition.result}">

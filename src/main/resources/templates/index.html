@@ -3,7 +3,7 @@
 <head th:replace="common-header::common_header(~{::title},~{},~{})">
     <title>Olympic NEU</title>
 </head>
-<body>
+<body class="mdui-theme-primary-blue">
 <!--header-->
 <div th:replace="header::header"></div>
 <!---->
@@ -155,14 +155,14 @@
     <div class="mdui-container-fluid" style="margin: 0 6%">
         <div class="single mdui-row">
             <div class="mdui-col-sm-12 mdui-col-md-8 mdui-row">
-                <div class="mdui-card">
+                <div class="mdui-card mdui-shadow-0">
                     <div class="mdui-card-primary">
                         <div class="mdui-card-primary-title">
                             <i class="mdui-icon material-icons">directions_run</i> Recent Competitions
                         </div>
                         <div class="mdui-card-content mdui-row">
                             <div th:each="comp:${list}" class="mdui-col-sm-6 mdui-col-md-4">
-                                <div class="mdui-card mdui-shadow-0">
+                                <div class="mdui-card mdui-shadow-0 mdui-ripple" th:onclick="'location.href=\'/competition/'+${comp.id}+'\''">
                                     <div class="mdui-card-media">
                                         <img th:src="@{|/static/images/photos/${comp.type.pictureUrl}.jpg|}"/>
                                     </div>
@@ -170,43 +170,34 @@
                                         <div th:text="${comp.name}" class="mdui-card-primary-title"></div>
                                         <div th:text="${comp.time}" class="mdui-card-primary-subtitle"></div>
                                     </div>
-                                    <div class="mdui-card-actions">
-                                        <button class="mdui-btn mdui-ripple">Trace on it</button>
-                                        <button class="mdui-btn mdui-btn-icon mdui-float-right"><i
-                                                class="mdui-icon material-icons">expand_more</i>
-                                        </button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="mdui-col-sm-12 mdui-col-md-1"></div>
-            <div class="mdui-col-sm-12 mdui-col-md-3">
-                <div class="mdui-card">
+            <div class="mdui-col-sm-12 mdui-col-md-4">
+                <div class="mdui-card mdui-shadow-0">
                     <div class="mdui-card-primary">
                         <div class="mdui-card-primary-title">
-                            <i class="mdui-icon material-icons">low_priority</i> Rank by countries
+                            <i class="mdui-icon material-icons">format_list_numbered</i> Rank by countries
                         </div>
                     </div>
                     <div class="mdui-card-content">
                         <ul class="mdui-list">
-                            <li th:href="@{|/delegation/${delegation.id}|}" th:each="delegation,index:${rank}"
+                            <li th:each="delegation,index:${rank}"
                                 class="mdui-list-item mdui-ripple">
                                 <div class="mdui-list-item-avatar">
                                     <img th:src="@{|/static/images/flags/Flag%20of%20${delegation.name}.png|}"/>
                                 </div>
-                                <div th:text="${delegation.name}" class="mdui-list-item-content"></div>
+                                <a th:href="@{|/delegation/${delegation.id}|}" th:text="${delegation.name}" class="mdui-list-item-content"></a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <h5 style="text-align: center; alignment: center">
-                <a href="sport-all.html" class="btn-red">All Competitions...</a>
-            </h5>
         </div>
     </div>
     <div class="content-bottom" style="background-color: #1a1a1a">
@@ -234,9 +225,6 @@
                             <img src="/static/images/photos/2.jpg" alt="">
 
                         </li>
-                        <li>
-                            <img src="/static/images/vi.jpg" alt="">
-                        </li>
                     </ul>
                 </div>
                 <div class="london">
@@ -250,41 +238,41 @@
             <h4>Latest Sport News</h4>
             <div class="news">
                 <span>25/07</span>
-                <p>Sporting wonders have come so thick and fast since last summer that we decided it... time </p>
+                <p>Olympic new content here... This is a sample data of olympic news. </p>
                 <div class="foot">
                     <label>football</label>
                     <ul class="eye ">
-                        <li><span><i> </i>315</span></li>
-                        <li><a href="#"><i class="comment"> </i> 3</a></li>
+                        <li><span><i> </i>3</span></li>
+                        <li><a href="#"><i class="comment"> </i> 1</a></li>
                     </ul>
                     <div class="clearfix"></div>
                 </div>
             </div>
             <div class="news">
                 <span>25/07</span>
-                <p>Sporting wonders have come so thick and fast since last summer that we decided it... time </p>
+                <p>Olympic new content here... This is a sample data of olympic news. </p>
                 <div class="foot">
                     <label>football</label>
                     <ul class="eye ">
-                        <li><span><i> </i>315</span></li>
-                        <li><a href="#"><i class="comment"> </i> 3</a></li>
+                        <li><span><i> </i>10</span></li>
+                        <li><a href="#"><i class="comment"> </i> 0</a></li>
                     </ul>
                     <div class="clearfix"></div>
                 </div>
             </div>
             <div class="news">
                 <span>25/07</span>
-                <p>Sporting wonders have come so thick and fast since last summer that we decided it... time </p>
+                <p>Olympic new content here... This is a sample data of olympic news. </p>
                 <div class="foot">
                     <label>football</label>
                     <ul class="eye ">
-                        <li><span><i> </i>315</span></li>
-                        <li><a href="#"><i class="comment"> </i> 3</a></li>
+                        <li><span><i> </i>1</span></li>
+                        <li><a href="#"><i class="comment"> </i> 0</a></li>
                     </ul>
                     <div class="clearfix"></div>
                 </div>
             </div>
-            <a href="#" class="mdui-btn mdui-color-theme mdui-btn-raised">view all articles</a>
+            <button href="#" class="mdui-btn mdui-color-theme mdui-btn-raised">view all articles</button>
         </div>
         <div class="clearfix"></div>
     </div>
