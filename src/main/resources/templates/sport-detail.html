@@ -1,33 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="common-header :: common_header(~{::title},~{::link},~{})">
     <title>Competition - Curling</title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/static/js/jquery.min.js"></script>
-    <!-- Custom Theme files -->
-    <!--theme-style-->
-    <link href="/static/css/olympic.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/static/css/datatables.min.css" rel="stylesheet" type="text/css">
-    <!--//theme-style-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Olympic Games, Sports"/>
-    <script type="application/x-javascript"> addEventListener("load", function () {
-        setTimeout(hideURLbar, 0);
-    }, false);
-
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    } </script>
-
-
 </head>
-<body>
+<body class="mdui-theme-primary-blue">
 <!--header-->
-<div id="header"></div>
+<div th:replace="header::header"></div>
 <div class="competition-type-banner"
-     th:style="'background: url(/static/images/competition/'+${sport.pictureUrl}+'.jpg)'">
+     th:style="'background: url(/static/images/photos/'+${sport.pictureUrl}+'.jpg)'">
     <div class="mdui-container-fluid bg-transparent-dark">
         <div class="mdui-container">
             <div class="col-md-9 top-in-single">
@@ -58,7 +39,7 @@
 <!---->
 <div class="mdui-container-fluid">
     <div class="mdui-row">
-        <div class="mdui-card mdui-col-md-9">
+        <div class="mdui-card mdui-col-md-12">
             <div class="mdui-card-primary">
                 <div class="mdui-card-primary-title">Competition Session Scheduling</div>
                 <div class="mdui-card-primary-subtitle">All sessions of this type of sport</div>
@@ -83,9 +64,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="compSession:${sport.competitions}">
+                    <tr th:each="compSession:${competitions}">
                         <td>
-                            <a th:text="${compSession.name}" th:href="@{|/session/${compSession.id}|}">EVENT_NAME</a>
+                            <a th:text="${compSession.name}" th:href="@{|/competition/${compSession.id}|}">EVENT_NAME</a>
                         </td>
                         <td th:text="${compSession.time}">
                             TIME
@@ -93,29 +74,12 @@
                         <td th:text="${compSession.place}">
                             PLACE / LOCATION
                         </td>
-                        <td th:text="${compSession.situation}==0?'Pending':(${compSession.situation}==1?'In Progress':'Finished')">
+                        <td th:text="${compSession.situation}==0?'Scheduled':(${compSession.situation}==1?'On Going':'Finished')">
                             STATUS
                         </td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div class="mdui-card mdui-col-md-3 mdui-shadow-0">
-            <div class="mdui-card-primary">
-                <div class="mdui-card-primary-title">Other Olympic Competitions</div>
-            </div>
-            <div class="mdui-card-content">
-                <ul class="mdui-list">
-                    <li class="mdui-list-item">
-                        <img class="flag-xsmall" src="/static/images/sports/2.png">
-                        <a href="#"><span></span> Ice Hockey</a>
-                    </li>
-                    <li class="mdui-list-item">
-                        <img class="flag-xsmall" src="/static/images/sports/3.png">
-                        <a href="#"><span></span> Short Track Speed Skating</a>
-                    </li>
-                </ul>
             </div>
         </div>
         <br/>
@@ -133,6 +97,6 @@
         $('#Daily-Scheduling').DataTable();
     });
 </script>
-p
+
 </body>
 </html>

@@ -15,8 +15,7 @@ function loadTo(url, id) {
 }
 
 // load header and footer of every pages
-loadTo('/pages/header.html','header');
-loadTo('/pages/footer.html','footer');
+loadTo('/footer.html','footer');
 
 // Transition animation of text
 function fadeToText(id, text){

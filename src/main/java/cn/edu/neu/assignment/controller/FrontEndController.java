@@ -1,24 +1,17 @@
 package cn.edu.neu.assignment.controller;
 
-import cn.edu.neu.assignment.inter.CompetitionRepository;
-import cn.edu.neu.assignment.inter.DelegationRepository;
-import cn.edu.neu.assignment.inter.TeamRepository;
-import cn.edu.neu.assignment.inter.TypeRepository;
-import cn.edu.neu.assignment.model.Competition;
-import cn.edu.neu.assignment.model.Delegation;
-import cn.edu.neu.assignment.model.Team;
-import cn.edu.neu.assignment.model.TeamCompetition;
+import cn.edu.neu.assignment.inter.*;
+import cn.edu.neu.assignment.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class FrontEndController {
@@ -31,10 +24,17 @@ public class FrontEndController {
     TypeRepository typeRepository;
     @Autowired
     TeamRepository teamRepository;
+    @Autowired
+    IndividualRepository individualRepository;
+    @Autowired
+    IndividualCompetitionRepository individualCompetitionRepository;
+    @Autowired
+    TeamCompetitionRepository teamCompetitionRepository;
 
     private List<Delegation> getRankedDelegations() {
         List<Delegation> delegations = delegationRepository.findAll();
         Collections.sort(delegations);
+        Collections.reverse(delegations);
         return delegations;
     }
 
@@ -42,7 +42,6 @@ public class FrontEndController {
     public String index(Model model) {
         model.addAttribute("list", competitionRepository.findAll(new PageRequest(0, 6)));
         List<Delegation> delegations = getRankedDelegations();
-        Collections.sort(delegations);
         delegations = delegations.subList(0, 5);
         model.addAttribute("rank", delegations);
         return "index";
@@ -64,16 +63,17 @@ public class FrontEndController {
         return "medal";
     }
 
-    @RequestMapping("/competition/all")
-    public String competition() {
-        return "competition-all";
+    @RequestMapping("/sport/all")
+    public String type() {
+        return "sport-all";
     }
 
-    @RequestMapping("/competition/{id}") // Competition Type (sport, not session)
-    public String competition(@PathVariable Integer id, Model model) {
+    @RequestMapping("/sport/{id}") // Competition Type (sport, not session)
+    public String type(@PathVariable Integer id, Model model) {
         model.addAttribute("id", id);
         model.addAttribute("sport", typeRepository.findById(id).get());
-        return "competition-detail";
+        model.addAttribute("competitions",competitionRepository.findAllByType_Id(id));
+        return "sport-detail";
     }
 
     @RequestMapping("/delegation/all")
@@ -83,7 +83,11 @@ public class FrontEndController {
 
     @RequestMapping("/delegation/{id}")
     public String delegation(@PathVariable Integer id, Model model) {
-        model.addAttribute("delegation", delegationRepository.findById(id).get());
+        Delegation delegation = delegationRepository.findById(id).get();
+        delegation.countMedals();
+        model.addAttribute("delegation", delegation);
+        model.addAttribute("individuals",individualRepository.findAllByDelegations_Id(id));
+        model.addAttribute("teams",teamRepository.findAllByDelegations_Id(id));
         return "delegation-detail";
     }
 
@@ -91,28 +95,29 @@ public class FrontEndController {
     public String teamDetail(@PathVariable Integer id, Model model) {
         Team team = teamRepository.findById(id).get();
         model.addAttribute("team", team);
-        Set<Team> teamList = team.getDelegations().getTeams();
+
+       List<Team> teamList = teamRepository.findAllByDelegations_Id(team.getDelegations().getId());
         Iterator iterator = teamList.iterator();
         while (iterator.hasNext()){
             if (iterator.next()==team)
                 iterator.remove();
         }
-        Set<TeamCompetition> teamCompetitions = team.getTeamCompetitions();
-        model.addAttribute("teamCompetitions",teamCompetitions);
+        model.addAttribute("teamCompetitions",teamCompetitionRepository.findAllByTeam_Id(id));
         model.addAttribute("teamList",teamList);
         model.addAttribute("individuals",team.getIndividuals());
         return "team-detail";
     }
 
-    @RequestMapping("/athlete/{name}")
-    public String athlete(@PathVariable String name, Model model) {
-        model.addAttribute("name", name);
-        return "athlete-detail";
-    }
-
-    @RequestMapping("/manage/login")
-    public String login() {
-        return "manager-login";
+    @RequestMapping("/athlete/{id}")
+    public String athlete(@PathVariable Integer id, Model model) {
+        Optional<Individual> individual = individualRepository.findById(id);
+        if(individual.isPresent()) {
+            model.addAttribute("athlete",individual.get());
+            model.addAttribute("competitions",individualCompetitionRepository.findAllByIndividual_Id(id));
+            return "athlete-detail";
+        }else{
+            return "index";
+        }
     }
 
     @RequestMapping("/participants")
@@ -120,8 +125,8 @@ public class FrontEndController {
         return "participants";
     }
 
-    @RequestMapping("/session/{id}") // Competition Item(session)
-    public String session(@PathVariable Integer id, Model model) {
+    @RequestMapping("/competition/{id}") // Competition Item(session)
+    public String competition(@PathVariable Integer id, Model model) {
         Competition competition = competitionRepository.findById(id).get();
         model.addAttribute("participant", competition.isIndividual() ?
                 competition.getIndividualCompetitions() :
@@ -132,19 +137,28 @@ public class FrontEndController {
             model.addAttribute("type", competition.getType());
             model.addAttribute("sessionName",competition.getName());
             model.addAttribute("isIndividual", competition.isIndividual());
-            return "session-detail";
+            return "competition-session-detail";
         } else {
             return "index";
         }
     }
 
-    @RequestMapping("/session/all")
-    public String session() {
-        return "competition-all";
+    @RequestMapping("/competition/all")
+    public String competition() {
+        return "sport-all";
     }
 
-    @RequestMapping("/admin/")
-    public String adminIndex() {
-        return "admin/index";
+    @RequestMapping("/admin/login")
+    public String login() {
+        return "admin-login";
+    }
+
+    @RequestMapping("/admin/dashboard")
+    public String adminIndex(Model model) {
+        model.addAttribute("athletes",individualRepository.findAll());
+        model.addAttribute("teams",teamRepository.findAll());
+        model.addAttribute("delegations", delegationRepository.findAll());
+        model.addAttribute("competitions",competitionRepository.findAll());
+        return "admin-dashboard";
     }
 }

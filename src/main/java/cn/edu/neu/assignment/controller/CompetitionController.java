@@ -29,19 +29,7 @@ public class CompetitionController {
                 }
             }
         }
-
         jsonObject.put("list", list);
         return CommonUtil.successJson(jsonObject);
-    }
-
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public JSONObject get(@PathVariable Integer id) {
-        if (competitionRepository.existsById(id)) {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("competition",competitionRepository.findById(id));
-            return CommonUtil.successJson(jsonObject);
-        } else {
-            return CommonUtil.errorJson(ErrorEnum.E_502);
-        }
     }
 }

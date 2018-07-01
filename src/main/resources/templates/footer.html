@@ -1,31 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <!--footer partial module-->
-<div class="footer">
+<div th:fragment="footer" class="footer">
     <div class="col-md-3 footer-left">
         <h4>Competitions</h4>
         <div class="run-top">
             <ul class="run-grid">
                 <li>
-                    <a href="product.html">RUNNING</a>
+                    <a href="#">RUNNING</a>
                 </li>
                 <li>
-                    <a href="product.html">CYCLING</a>
+                    <a href="#">CYCLING</a>
                 </li>
                 <li>
-                    <a href="product.html">TRIATHLON</a>
+                    <a href="#">TRIATHLON</a>
                 </li>
                 <li>
-                    <a href="product.html">MORE SPORTS</a>
+                    <a href="/sport/all">MORE SPORTS</a>
                 </li>
             </ul>
             <ul class="run-grid">
                 <li>
-                    <a href="product.html">INDIVIDUAL</a>
+                    <a href="#">INDIVIDUAL</a>
                 </li>
                 <li>
-                    <a href="product.html">TEAM</a>
+                    <a href="#">TEAM</a>
                 </li>
                 <li>
-                    <a href="product.html">ALL</a>
+                    <a href="#">ALL</a>
                 </li>
             </ul>
             <div class="clearfix"></div>
@@ -36,31 +38,27 @@
         <div class="run-top top-run">
             <ul class="run-grid">
                 <li>
-                    <a href="">Delegations</a>
+                    <a href="/delegation/all">Delegations</a>
                 </li>
                 <li>
-                    <a href="#">Medal Standings</a>
+                    <a href="/sport/all">Sports</a>
                 </li>
                 <li>
-                    <a href="#">Competition Schedule</a>
+                    <a href="/medal">Medal Standings</a>
                 </li>
             </ul>
             <ul class="run-grid">
                 <li>
-                    <a href="#">Clubs and Training</a>
+                    <a href="/participants">Browse Teams & Athletes</a>
                 </li>
                 <li>
-                    <a href="contact.html">Event Map</a>
-                </li>
-                <li>
-                    <a href="#">Challenge the world</a>
+                    <a href="/admin/login">Management</a>
                 </li>
             </ul>
             <div class="clearfix"></div>
         </div>
     </div>
     <div class="col-md-1 footer-left left-footer">
-
     </div>
     <div class="col-md-5 footer-left left-footer">
 
@@ -73,7 +71,8 @@
             <p class="footer-class"> © 2018 Li L. Chang C. Sun N. Huang Y. | NEU(China) Software College.
             </p>
         </div>
-
     </div>
     <div class="clearfix"></div>
+    <script src="/static/js/mdui.min.js"></script>
 </div>
+</html>

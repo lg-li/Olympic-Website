@@ -1,41 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="common-header :: common_header(~{::title},~{::link},~{})">
     <title>Session</title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/static/js/jquery.min.js"></script>
-    <!-- Custom Theme files -->
-    <!--theme-style-->
-    <link href="/static/css/olympic.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/static/css/datatables.min.css" rel="stylesheet" type="text/css">
-    <!--//theme-style-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Olympic Games, Sports"/>
-    <script type="application/x-javascript"> addEventListener("load", function () {
-        setTimeout(hideURLbar, 0);
-    }, false);
-
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    } </script>
-    <!--//tab style-->
     <link rel="stylesheet" href="/static/css/olympic.tab.css">
-
-
 </head>
-<body>
+<body class="mdui-theme-primary-blue">
 <!--header-->
-<div id="header"></div>
-<div class="title-banner" th:style="'background: url(/static/images/competition/'+${type.pictureUrl}+'.jpg)'">
+<div th:replace="header::header"></div>
+<div class="title-banner" th:style="'background: url(/static/images/photos/'+${type.pictureUrl}+'.jpg)'">
     <div class="big-title">
         <p th:text="${sessionName} +' - '+ ${type.typeName}">SESSION_NAME_TITLE</p>
     </div>
 </div>
 <div class="line1"></div>
 <!---->
-<div class="container">
+<div class="mdui-container">
     <div class="single">
         <div class="col-md-9 top-in-single">
             <div class="col-md-3 single-top">
@@ -56,7 +36,7 @@
         </div>
         <div class="col-md-3">
             <div class="single-bottom">
-                <h4>Other Olympic Competitions</h4>
+                <h4>Other Olympic Sessions of This Sport Type</h4>
                 <ul>
                     <li>
                         <img class="flag-xsmall" src="/static/images/sports/2.png">
@@ -71,7 +51,8 @@
         </div>
         <div class="clearfix"></div>
     </div>
-
+</div>
+<div class="mdui-container-fluid">
     <div class="row">
         <div class="col-sm-12 col-sm-12 col-md-12">
             <div class="tab" role="tabpanel">
@@ -88,34 +69,34 @@
                     <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                         <div class="container" id="competition-type-list">
                             <h3>Session Participants</h3><br/>
-                                <div class="mdui-card-content">
-                                    <div class="mdui-row">
-                                        <div th:if="${isIndividual eq true}" th:each="individualComp,index:${participant}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
-                                            <a th:href="'/athlete/'+${individualComp.individual.id}" class="lot">
-                                                <img class="mdui-img-fluid" th:src="@{|/static/images/persons/${individualComp.individual.photo}|}" alt="" style="max-height: 180px"/>
-                                            </a>
-                                            <div class="big-item">
-                                                <p>
-                                                    <img class="flag-xsmall" th:src="@{|/static/images/flags/Flag%20of%20${individualComp.individual.delegations.name}.png|}"/>
-                                                    <span th:text="${individualComp.individual.delegations.name}">PARENT_DELEGATION_NAME</span>
-                                                </p>
-                                                <label th:text="${individualComp.individual.name}">JIA Zongyang</label>
-                                            </div>
-                                            <div class="clearfix"></div>
+                            <div class="mdui-card-content">
+                                <div class="mdui-row">
+                                    <div th:if="${isIndividual eq true}" th:each="individualComp,index:${participant}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
+                                        <a th:href="'/athlete/'+${individualComp.individual.id}" class="lot">
+                                            <img class="mdui-img-fluid" th:src="@{|/static/images/persons/${individualComp.individual.photo}|}" alt="" style="max-height: 180px"/>
+                                        </a>
+                                        <div class="big-item">
+                                            <p>
+                                                <img class="flag-xsmall" th:src="@{|/static/images/flags/Flag%20of%20${individualComp.individual.delegations.name}.png|}"/>
+                                                <span th:text="${individualComp.individual.delegations.name}">PARENT_DELEGATION_NAME</span>
+                                            </p>
+                                            <label th:text="${individualComp.individual.name}">JIA Zongyang</label>
                                         </div>
-                                        <div th:if="${isIndividual eq false}" th:each="teamComp,index:${participant}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
-                                            <a th:href="'/team/'+${teamComp.team.id}" class="lot">
-                                                <img class="mdui-img-fluid" th:src="@{|/static/images/persons/${teamComp.team.delegations.name}|}" alt="" style="max-height: 180px">
-                                            </a>
-                                            <div class="big-item">
-                                                <p><span th:text="${teamComp.team.delegations.name}">PARENT_DELEGATION_NAME</span></p>
-                                                <label th:text="${teamComp.team.name}">TEAM_NAME</label>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="clearfix"></div>
+                                    <div th:if="${isIndividual eq false}" th:each="teamComp,index:${participant}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card" style="max-height: 132px">
+                                        <a th:href="'/team/'+${teamComp.team.id}" class="lot">
+                                            <img class="mdui-img-fluid" th:src="@{|/static/images/flags/Flag of ${teamComp.team.delegations.name}.png|}" alt="" style="max-height: 125px">
+                                        </a>
+                                        <div class="big-item">
+                                            <p><span th:text="${teamComp.team.delegations.name}">PARENT_DELEGATION_NAME</span></p>
+                                            <h6 th:text="${teamComp.team.name}">TEAM_NAME</h6>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
                                 </div>
+                                <div class="clearfix"></div>
+                            </div>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="Section2">
@@ -170,9 +151,7 @@
             </div>
         </div>
     </div>
-
 </div>
-
 <!---->
 
 <!--footer-->

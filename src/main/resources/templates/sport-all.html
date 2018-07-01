@@ -1,34 +1,17 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common-header :: common_header(~{::title},~{::link},~{})">
     <title>Competitions</title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/static/js/jquery.min.js"></script>
-    <!-- Custom Theme files -->
-    <!--theme-style-->
-    <link href="/static/css/olympic.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/static/css/datatables.min.css" rel="stylesheet" type="text/css">
-    <!--//theme-style-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Olympic Games, Sports"/>
-    <script type="application/x-javascript"> addEventListener("load", function () {
-        setTimeout(hideURLbar, 0);
-    }, false);
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    } </script>
     <!--tab style-->
     <link rel="stylesheet" href="/static/css/olympic.tab.css">
     <!--//tab style-->
     <!--//schedule table (calendar) style-->
     <link href="/static/css/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
-
 </head>
-<body>
+<body class="mdui-theme-primary-blue">
 <!--header-->
-<div id="header"></div>
+<div th:replace="header::header"></div>
 <div class="title-banner" style="background: url('/static/images/photos/running.jpg')">
     <div class="big-title">
         <p id="competition-loading">Loading...</p>
@@ -54,10 +37,10 @@
                 <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                     <div class="container" id="competition-type-list">
                         <h3>Competitions</h3><br/>
-                        <div id="preloader" style="text-align: center;">
-                            <span></span><span></span><span></span><span></span>
+                        <div id="preloader" style="text-align: center">
                             <br/><br/><br/><br/>
-                            <h3>Fetching competitions</h3>
+                            <div class="mdui-spinner"></div>
+                            <h3>Fetching sports</h3>
                             <br/><br/><br/><br/>
                         </div>
                     </div>
@@ -67,7 +50,8 @@
                         <h3>Global Schedule Overview</h3>
                         <div class="single">
                             <div id="competition-schedule-table">
-                                Loading competition events from server...
+                                <div class="mdui-spinner"></div>
+                                Loading competition events...
                             </div>
                         </div>
                     </div>
@@ -128,7 +112,7 @@
         progressBar.increase(10);
 
         var status_table_row_template = '<tr>' +
-            '<td><strong><a href="">__COMPETITION_NAME__</a></strong></td>' +
+            '<td><strong><a href="/competition/__COMP_SESSION_ID__">__COMPETITION_NAME__</a></strong></td>' +
             '<td>__COMPETITION_MODE__</td>' +
             '<td>__COMPETITION_TIME__</td>' +
             '<td>__COMPETITION_STATUS__</td>' +
@@ -150,15 +134,15 @@
                     for (var i = 0; i < data['data']['list'].length; i++) {
                         // competition types
                         var cmode = data['data']['list'][i]['individual'] ? 'Individual' : 'Team';
-                        // competition status: 0:Pending; 1:In Progress; 2:Finished
+                        // competition status: 0:Scheduled; 1:On Going; 2:Finished
                         var status_code = data['data']['list'][i]['situation'];
                         // convert code from database to readable strings
                         var cstatus = function () {
                             switch (status_code) {
                                 case 0:
-                                    return 'Pending';
+                                    return 'Scheduled';
                                 case 1:
-                                    return 'In Progress';
+                                    return 'On Going';
                                 case 2:
                                     return 'Finished';
                             }
@@ -167,12 +151,14 @@
                             {
                                 COMPETITION_NAME: data['data']['list'][i]['name'],
                                 COMPETITION_TIME: data['data']['list'][i]['time'],
+                                COMP_SESSION_ID: data['data']['list'][i]['id'],
                                 COMPETITION_STATUS: cstatus,
                                 COMPETITION_MODE: cmode
                             }
                         ));
                         competition_events[i] = {};
-                        competition_events[i]['title'] = data['data']['list'][i]['id'];
+                        competition_events[i]['id'] = data['data']['list'][i]['id'];
+                        competition_events[i]['href'] = '/competition/'+data['data']['list'][i]['id'];
                         competition_events[i]['title'] = data['data']['list'][i]['name'];
                         competition_events[i]['start'] = data['data']['list'][i]['time'];
                     }
@@ -202,16 +188,16 @@
 
         var competition_type_list_template = '<div class="olympic-card col-xs-6 col-sm-4 col-md-2 grid-item-in" style="max-height: 240px; min-height: 240px">' +
             '<div class=" item-grid">' +
-            '<a href="/competition/__ID__">' +
+            '<a href="/sport/__ID__">' +
             '<img class="img-responsive" src="/static/images/sports/__LOGO_URL__" alt="">' +
             '</a><div>' +
-            '<p><a href="/competition/__ID__">__TYPE_NAME__</a></p></div></div></div>';
+            '<p><a href="/sport/__ID__">__TYPE_NAME__</a></p></div></div></div>';
 
 
         // load countries list by ajax
         $.ajax({
             async: true,
-            url: '/type/list', //URL Requested
+            url: '/sport/list', //URL Requested
             type: "GET", // Get only
             dataType: "json",
             success: function (data) {

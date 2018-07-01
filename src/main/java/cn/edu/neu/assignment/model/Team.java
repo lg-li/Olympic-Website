@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NamedEntityGraphs({@NamedEntityGraph(name = "team.findById", attributeNodes = {
+        @NamedAttributeNode("individuals")
+})})
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +24,8 @@ public class Team {
     @Column(nullable = false)
     private char sex;
 
-    @OneToMany(mappedBy = "team",fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "team")
+    @JSONField(serialize = false)
     private Set<TeamCompetition> teamCompetitions = new HashSet<>();
 
     @ManyToOne
@@ -29,7 +33,7 @@ public class Team {
     @JoinColumn(name = "delegation_id")
     private Delegation delegations;
 
-    @ManyToMany(mappedBy = "teams",fetch=FetchType.EAGER)
+    @ManyToMany(mappedBy = "teams")
     @JSONField(serialize = false)
     private Set<Individual> individuals = new HashSet<>();
 

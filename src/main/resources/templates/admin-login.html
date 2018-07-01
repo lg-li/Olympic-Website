@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common-header :: common_header(~{::title},~{},~{})">
+    <title>Management</title>
+</head>
+<body class="mdui-theme-primary-blue">
+<!--header-->
+<div th:replace="header::header"></div>
+<!---->
+<div class="mdui-container">
+            <div class="col-md-7">
+                <form>
+                    <div class="mdui-card">
+                        <div class="mdui-card-primary">
+                            <div class="mdui-card-primary-title">
+                                Administration Dashboard
+                            </div>
+                            <div class="mdui-card-primary-subtitle">
+                                Olympic NEU
+                            </div>
+                        </div>
+                        <div class="mdui-card-content">
+                            <div class="mdui-textfield mdui-textfield-floating-label">
+                                <label class="mdui-textfield-label">Username</label>
+                                <input class="mdui-textfield-input" type="text"/>
+                            </div>
+                            <div class="mdui-textfield mdui-textfield-floating-label">
+                                <label class="mdui-textfield-label">Password</label>
+                                <input class="mdui-textfield-input" type="password"/>
+                            </div>
+
+                        </div>
+                        <div class="mdui-card-actions">
+                            <button class="mdui-btn mdui-btn-raised" href="/admin/dashboard">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-5 left-account" style="background-color: #0076bf; border-radius: 5px">
+                <a>
+                    <img class="img-responsive" src="/static/images/logo.png" alt="">
+                </a>
+            </div>
+    <div class="clearfix"></div>
+</div>
+<!---->
+
+<!--footer-->
+<div id="footer"></div>
+<script src="/static/js/olympic.ui-loader.js"></script>
+</body>
+</html>

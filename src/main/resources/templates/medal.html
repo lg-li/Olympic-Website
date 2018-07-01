@@ -1,30 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="common-header :: common_header(~{::title},~{::link},~{})">
     <title>Medals</title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/static/js/jquery.min.js"></script>
-    <!-- Custom Theme files -->
-    <!--theme-style-->
-    <link href="/static/css/olympic.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/static/css/datatables.min.css" rel="stylesheet" type="text/css">
-    <!--//theme-style-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Olympic Games, Sports"/>
-    <script type="application/x-javascript"> addEventListener("load", function () {
-        setTimeout(hideURLbar, 0);
-    }, false);
-
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    } </script>
-
 </head>
-<body>
+<body class="mdui-theme-primary-blue">
 <!--header-->
-<div id="header"></div>
+<div th:replace="header::header"></div>
 <div class="title-banner" style="background: url('/static/images/photos/flags.jpg')">
     <div class="big-title">
         <p>Medals</p>
@@ -39,6 +21,9 @@
                 <thead>
                 <tr>
                     <th>
+                        Rank
+                    </th>
+                    <th>
                         Country/Region
                     </th>
                     <th>
@@ -50,15 +35,21 @@
                     <th>
                         <img src="/static/images/bronze.png"/>Bronze
                     </th>
+                    <th>
+                        Total
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="delegation,index:${rank}">
                     <td>
+                        <strong th:text="${index.index}+1">INDEX</strong>
+                    </td>
+                    <td class="mdui-ripple mdui-ripple-blue" th:onclick="'location.href=\'/delegation/'+${delegation.id}+'\''">
                         <img class="flag-small"
                              th:src="@{|/static/images/flags/Flag%20of%20${delegation.name}.png|}" th:alt="${delegation.name}">
                         <strong>
-                            <a th:src="'/delegation/'+${delegation.id}" th:text="${delegation.name}">DELEGATION_NAME</a>
+                            <span th:src="'/delegation/'+${delegation.id}" th:text="${delegation.name}">DELEGATION_NAME</span>
                         </strong>
                     </td>
                     <td th:text="${delegation.gold}">
@@ -69,6 +60,9 @@
                     </td>
                     <td th:text="${delegation.bronze}">
                         BROZEN_COUNT
+                    </td>
+                    <td th:text="${delegation.gold}+${delegation.silver}+${delegation.bronze}">
+                        TOTAL_COUNT
                     </td>
                 </tr>
                 </tbody>

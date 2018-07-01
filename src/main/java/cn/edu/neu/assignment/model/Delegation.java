@@ -1,6 +1,13 @@
 package cn.edu.neu.assignment.model;
 
+import cn.edu.neu.assignment.inter.IndividualCompetitionRepository;
+import cn.edu.neu.assignment.inter.IndividualRepository;
+import cn.edu.neu.assignment.inter.TeamCompetitionRepository;
+import cn.edu.neu.assignment.inter.TeamRepository;
 import com.alibaba.fastjson.annotation.JSONField;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -8,6 +15,12 @@ import java.util.Iterator;
 import java.util.Set;
 
 @Entity
+@NamedEntityGraphs({@NamedEntityGraph(name = "delegation.all", attributeNodes = {
+        @NamedAttributeNode(value = "individuals", subgraph = "individualCompetitions"), @NamedAttributeNode(value = "teams", subgraph = "teamCompetitions"),
+}, subgraphs = {
+        @NamedSubgraph(name = "individualCompetitions", attributeNodes = @NamedAttributeNode("individualCompetitions")), @NamedSubgraph(name = "teamCompetitions", attributeNodes = @NamedAttributeNode("teamCompetitions"))
+}
+)})
 public class Delegation implements Comparable<Delegation> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +32,12 @@ public class Delegation implements Comparable<Delegation> {
     @Column(length = 32, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "delegations", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "delegations", fetch = FetchType.LAZY)
+    @JSONField(serialize = false)
     private Set<Individual> individuals = new HashSet<>();
 
-    @OneToMany(mappedBy = "delegations", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "delegations", fetch = FetchType.LAZY)
+    @JSONField(serialize = false)
     private Set<Team> teams = new HashSet<>();
 
     //0 Africa; 1 America; 2 Asia Pacific; 3 Europe; 4 Oceania
@@ -112,16 +127,19 @@ public class Delegation implements Comparable<Delegation> {
     }
 
 
-
     public void countMedals() {
+        //Variables of individual
         Iterator<Individual> individualIterator = individuals.iterator();
         Iterator<IndividualCompetition> individualCompetitionIterator;
-        Iterator<Team> teamIterator = teams.iterator();
-        Iterator<TeamCompetition> teamCompetitionIterator;
         Individual individual;
         IndividualCompetition individualCompetition;
+
+        //Variables of team
+        Iterator<Team> teamIterator = teams.iterator();
+        Iterator<TeamCompetition> teamCompetitionIterator;
         Team team;
         TeamCompetition teamCompetition;
+
         gold = 0;
         silver = 0;
         bronze = 0;
@@ -158,7 +176,7 @@ public class Delegation implements Comparable<Delegation> {
     public int compareTo(Delegation that) {
         this.countMedals();
         that.countMedals();
-        int x = (this.getGold() + this.getSilver() + this.getSilver()) - (that.getGold() + that.getSilver() + that.getBronze());
+        int x = (this.getGold() + this.getSilver() + this.getBronze()) - (that.getGold() + that.getSilver() + that.getBronze());
         int y = this.getGold() - that.getGold();
         int z = this.getSilver() - that.getSilver();
         if (x == 0) {

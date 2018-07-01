@@ -1,60 +1,34 @@
-we5<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common-header :: common_header(~{::title},~{::link},~{})">
     <title>Athlete</title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/static/js/jquery.min.js"></script>
-    <!-- Custom Theme files -->
-    <!--theme-style-->
-    <link href="/static/css/olympic.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/static/css/datatables.min.css" rel="stylesheet" type="text/css">
-    <!--//theme-style-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Olympic Games, Sports"/>
-    <script type="application/x-javascript"> addEventListener("load", function () {
-        setTimeout(hideURLbar, 0);
-    }, false);
-
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    } </script>
-
 </head>
-<body>
+<body class="mdui-theme-primary-blue">
 <!--header-->
-<div id="header"></div>
+<div th:replace="header::header"></div>
 <!---->
 <div class="container">
     <div class="single">
         <div class="col-md-9 top-in-single">
             <div class="col-md-3 single-top">
-                <img class="img-responsive" src="/static/images/persons/3.jpg" alt="">
+                <img class="img-responsive" th:src="@{|/static/images/persons/${athlete.photo}|}" alt=""
+                     style="max-height: 200px">
             </div>
             <div class="col-md-9 single-top-in">
                 <div class="single-para">
-                    <h2>Wu Dajing</h2>
-
-                    <div class="star">
-                        <div class="review">
-                            Metals
-                            <img src="/static/images/gold.png"/> 1
-                            <img src="/static/images/silver.png"/> 3
-                            <img src="/static/images/bronze.png"/> 4
-                        </div>
-                        <div class="clearfix"></div>
+                    <h2>
+                        <img class="flag-xsmall"
+                             th:src="@{|/static/images/flags/Flag Of ${athlete.delegations.name}.png|}"/>
+                        <span th:text="${athlete.name}">NAME</span>
+                    </h2>
+                    <div>
+                        <label class="add-to" th:text="${athlete.delegations.name}"
+                               th:href="@{|/delegation/${athlete.delegations.id}|}">DELEGATION_NAME</label>
                     </div>
-
-                    Rank
-                    <small>Delegation</small>
-                    <small>Age</small>
-                    <small>Height</small>
-                    <small>DOB</small>
-                    <label class="add-to">#3 </label>
-                    <p>
-                        LaLaLaLajjj
-                        <a href="#" class="cart ">More from Wiki</a>
+                    <p th:text="${athlete.sex}==0?'Male':'Female'"></p>
+                    <p th:text="${athlete.description}">
+                        DESC
                     </p>
                 </div>
             </div>
@@ -79,7 +53,7 @@ we5<!DOCTYPE html>
     </div>
     <div class="single">
         <div>
-            <h3>Events and Medals</h3>
+            <h3>Events of <span th:text="${athlete.name}"></span></h3>
             <table id="events">
                 <thead>
                 <tr>
@@ -87,78 +61,54 @@ we5<!DOCTYPE html>
                         Event
                     </th>
                     <th>
+                        Time
+                    </th>
+                    <th>
+                        Result
+                    </th>
+                    <th>
                         Rank
                     </th>
                 </tr>
-
                 </thead>
                 <tbody>
-
-                <tr>
+                <tr th:each="event:${competitions}">
                     <td>
-                        Men's 20km Individual
+                        <a th:href="@{|/competition/${event.competition.id}|}" th:text="${event.competition.name}">
+                            Men's 20km Individual
+                        </a>
                     </td>
-                    <td>
-                        43
+                    <td th:text="${event.competition.time}">
+                        TIME
                     </td>
-                </tr>
-                <tr class="Res2">
-                    <td>
-                        Men's 10km Sprint
+                    <td th:text="${event.result}==null?'Not finished':${event.result}">
+                        RESULT
                     </td>
-                    <td>
-                        81
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Men's 4x7.5km Relay
-                    </td>
-                    <td>
-                        2
+                    <td th:text="${event.rank}==null?'Not finished':${event.rank}">
+                        RANK
                     </td>
                 </tr>
-
                 </tbody>
             </table>
         </div>
         <div class="clearfix"></div>
+        <br/><br/>
         <div>
-            <h3>Schedule</h3>
+            <h3>Competition Teams including <span th:text="${athlete.name}"></span></h3>
             <table id="schedule">
                 <thead>
                 <tr>
                     <th>
-                        Time
-                    </th>
-                    <th>
-                        Location
-                    </th>
-                    <th>
-                        Event
-                    </th>
-                    <th>
-                        Status
+                        Team Name
                     </th>
                 </tr>
-
                 </thead>
                 <tbody>
-
-                <tr>
-                    <td>Sun, 11 Feb 20:15</td>
-                    <td>Olympic Center</td>
-                    <td>Men's 10km Sprint</td>
-                    <td>Finished</td>
+                <tr th:each="team:${athlete.teams}">
+                    <td>
+                        <a th:href="@{|/team/${team.id}|}" th:text="${team.name}"></a>
+                    </td>
                 </tr>
-                <tr class="Res2">
-                    <td>Thu, 15 Feb 20:20</td>
-                    <td>Alpensia Biathlon Centre</td>
-                    <td>Men's 20km Individual</td>
-                    <td>Finished</td>
-                </tr>
-
-                </tbody>
             </table>
         </div>
     </div>
