@@ -25,6 +25,7 @@ public class Team {
     private char sex;
 
     @OneToMany(mappedBy = "team")
+    @JSONField(serialize = false)
     private Set<TeamCompetition> teamCompetitions = new HashSet<>();
 
     @ManyToOne

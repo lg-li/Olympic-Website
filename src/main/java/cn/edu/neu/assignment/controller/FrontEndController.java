@@ -84,7 +84,7 @@ public class FrontEndController {
     @RequestMapping("/delegation/{id}")
     public String delegation(@PathVariable Integer id, Model model) {
         Delegation delegation = delegationRepository.findById(id).get();
-
+        delegation.countMedals();
         model.addAttribute("delegation", delegation);
         model.addAttribute("individuals",individualRepository.findAllByDelegations_Id(id));
         model.addAttribute("teams",teamRepository.findAllByDelegations_Id(id));
