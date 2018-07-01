@@ -32,9 +32,4 @@ public class AdminController {
         return CommonUtil.successJson();
     }
 
-    @RequestMapping("/admin/dashboard")
-    public String index(Model model) {
-        return "admin-dashboard";
-    }
-
 }

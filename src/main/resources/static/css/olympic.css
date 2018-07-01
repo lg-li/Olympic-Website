@@ -285,7 +285,7 @@ select.in-drop {
     color: #fff;
 }
 
-.nav {
+#navigator {
     list-style: none;
     *zoom: 1;
 }
@@ -300,14 +300,14 @@ select.in-drop {
     clear: both;
 }
 
-.nav ul {
+#navigator ul {
     list-style: none;
     width: 18em;
 
     z-index: 888;
 }
 
-.nav li a {
+#navigator li a {
     display: block;
     padding: 4px 15px;
     color: #fff;
@@ -320,44 +320,44 @@ select.in-drop {
     text-decoration: none;
 }
 
-.nav li {
+#navigator li {
     color: #fff;
 }
 
-.nav li:hover {
+#navigator li:hover {
     color: #0076bf;
 }
 
-.nav li {
+#navigator li {
     position: relative;
 }
 
-.nav li.active {
+#navigator li.active {
     color: #fff;
 }
 
-.nav li a i {
+#navigator li a i {
     background: url(/static/images/arrow.png) no-repeat 0px 4px;
     display: inline-block;
     width: 13px;
     height: 13px;
 }
 
-.nav > li {
+#navigator > li {
     float: left;
     margin: 0 10px;
 }
 
-.nav > li > a:hover {
+#navigator > li > a:hover {
     color: #0076bf;
 }
 
-.nav > li.hover > ul {
+#navigator > li.hover > ul {
     left: -1px;
     top: 30px;
 }
 
-.nav li li.hover ul {
+#navigator li li.hover ul {
     left: 100%;
     -webkit-transition: background .2s linear;
     -moz-transition: background .2s linear;
@@ -366,7 +366,7 @@ select.in-drop {
     transition: background .2s linear;
 }
 
-.nav > li > li > a {
+#navigator > li > li > a {
     font-size: 1.2em;
     padding: 10px 20px;
     display: block;
@@ -386,17 +386,17 @@ select.in-drop {
 
 }
 
-.nav li li a {
+#navigator li li a {
     font-size: 1.2em;
     border-bottom: 1px solid #fff;
     padding: 10px 20px;
 }
 
-.nav li li a:hover {
+#navigator li li a:hover {
     color: #0076bf;
 }
 
-.nav > li > ul {
+#navigator > li > ul {
     position: absolute;
     left: -9999px;
     padding: 0;
@@ -422,11 +422,11 @@ select.in-drop {
         width: 100%;
     }
 
-    .nav li a {
+    #navigator li a {
         padding: 10px 15px;
     }
 
-    .nav {
+    #navigator {
 
     }
 
@@ -434,20 +434,20 @@ select.in-drop {
         display: block;
     }
 
-    .nav > li {
+    #navigator > li {
         float: none;
     }
 
-    .nav > li > .parent {
+    #navigator > li > .parent {
         background-position: 95% 50% !important;
     }
 
-    .nav ul {
+    #navigator ul {
         display: block;
         width: 100%;
     }
 
-    .nav > li.hover > ul, .nav li li.hover ul {
+    #navigator > li.hover > ul, #navigator li li.hover ul {
         position: static;
     }
 }
@@ -1586,7 +1586,7 @@ p.footer-class a:hover {
         font-size: 0.75em;
     }
 
-    .nav li a {
+    #navigator li a {
         padding: 4px 9px;
     }
 
@@ -1674,11 +1674,11 @@ p.footer-class a:hover {
 }
 
 @media (max-width: 768px) {
-    .nav li a {
+    #navigator li a {
         padding: 4px 0px;
     }
 
-    .nav li li a {
+    #navigator li li a {
         padding: 4px 0px;
         border-bottom: none;
     }
@@ -2302,7 +2302,7 @@ p.footer-class a:hover {
         background-position: -161px -57px;
     }
 
-    .nav li a, .nav li li a {
+    #navigator li a, #navigator li li a {
         font-size: 1em;
     }
 
