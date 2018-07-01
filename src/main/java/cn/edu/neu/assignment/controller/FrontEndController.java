@@ -147,4 +147,14 @@ public class FrontEndController {
     public String competition() {
         return "sport-all";
     }
+
+    @RequestMapping("/admin/login")
+    public String login() {
+        return "admin-login";
+    }
+
+    @RequestMapping("/admin/dashboard")
+    public String adminIndex(Model model) {
+        return "admin-dashboard";
+    }
 }
