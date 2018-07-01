@@ -10,14 +10,20 @@
     <div class="mdui-card">
         <div class="mdui-card-primary">
             <div class="mdui-card-primary-title">
-                Dashboard
+                <i class="mdui-icon material-icons">dashboard</i> Dashboard
+            </div>
+            <div class="mdui-card-primary-subtitle">
+                You can manage all competitions, participants(including teams and individual athlete) of
+                <strong>Olympic NEU</strong> in this dashboard.
             </div>
         </div>
         <div class="mdui-card-content mdui-container">
             <div class="mdui-panel mdui-panel-popout" mdui-panel>
                 <div class="mdui-panel-item">
                     <div class="mdui-panel-item-header">
-                        <div class="mdui-panel-item-title">General</div>
+                        <div class="mdui-panel-item-title">
+                            <i class="mdui-icon material-icons">settings</i> General
+                        </div>
                         <div class="mdui-panel-item-summary">Runtime Information about Olympic NEU</div>
                         <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                     </div>
@@ -36,7 +42,7 @@
 
                 <div class="mdui-panel-item">
                     <div class="mdui-panel-item-header">
-                        <div class="mdui-panel-item-title">Competition</div>
+                        <div class="mdui-panel-item-title"><i class="mdui-icon material-icons">directions_run</i> Competition</div>
                         <div class="mdui-panel-item-summary">Create/Edit Competition Sessions</div>
                         <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                     </div>
@@ -55,32 +61,48 @@
 
                 <div class="mdui-panel-item">
                     <div class="mdui-panel-item-header">
-                        <div class="mdui-panel-item-title">Participants</div>
+                        <div class="mdui-panel-item-title"><i class="mdui-icon material-icons">group</i> Participants</div>
                         <div class="mdui-panel-item-summary">Manage Individual Athletes/Teams</div>
                         <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                     </div>
                     <div class="mdui-panel-item-body">
-                        <p>Third content</p>
-                        <p>
-                            <button mdui-dialog="{target: '#individual-dialog'}" class="mdui-btn">Create Individual Athlete</button>
-                            <button mdui-dialog="{target: '#individual-dialog'}" class="mdui-btn">Create Team</button>
-                        </p>
-                        <p>Third content</p>
-                        <p>Third content</p>
-                        <p>Third content</p>
-                        <p>Third content</p>
+                        <h6>All Individual Athletes on Olympic NEU</h6>
+                        <table>
+
+                        </table>
+                        <h6>All Teams on Olympic NEU</h6>
+                        <table>
+                            <thead>
+                            <tr>
+                                <td>
+                                    Team Name
+                                </td>
+                                <td>
+                                    Delegation
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+
+                            </tr>
+                            </tbody>
+                        </table>
                         <div class="mdui-panel-item-actions">
-                            <button class="mdui-btn mdui-color-theme mdui-ripple" mdui-panel-item-close>Close</button>
+                            <button mdui-dialog="{target: '#individual-dialog'}" class="mdui-btn mdui-ripple"><i class="mdui-icon material-icons">person_add</i> Create Individual Athlete</button>
+                            <button mdui-dialog="{target: '#team-dialog'}" class="mdui-btn mdui-ripple"><i class="mdui-icon material-icons">group_add</i> Create Team</button>
+                            <button class="mdui-btn mdui-ripple" mdui-panel-item-close><i class="mdui-icon material-icons">close</i> Close</button>
                         </div>
                     </div>
                 </div>
-
             </div>
+            <br/>
         </div>
     </div>
 </div>
 
 <br/>
+<!--Dialogs Area-->
 <div id="individual-dialog" class="mdui-dialog mdui-card">
     <div class="mdui-card-primary">
         <div class="mdui-card-primary-title">Individual</div>
@@ -352,6 +374,42 @@
             <select id="option-Sex" class="mdui-select" mdui-select data-placeholder="Choose a Sex">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
+            </select>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label" >
+            <label class="mdui-textfield-label">Description</label>
+            <input class="mdui-textfield-input" type="text" maxlength="250"/>
+        </div>
+    </div>
+    <div class="mdui-card-actions">
+        <button class="mdui-btn mdui-ripple">Save</button>
+        <button class="mdui-btn mdui-btn-icon mdui-float-right"><i
+                class="mdui-icon material-icons">expand_more</i></button>
+    </div>
+</div>
+<div id="team-dialog" class="mdui-dialog mdui-card">
+    <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">Team</div>
+        <div class="mdui-card-primary-subtitle">A team belongs to a delegation and contain more than one athlete from that delegation</div>
+    </div>
+    <div class="mdui-card-content">
+
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">Team Name</label>
+            <input class="mdui-textfield-input" type="text"/>
+        </div>
+        <div>
+            <label for="option-team-sex">Team Gender Type</label><br/>
+            <select id="option-team-sex" class="mdui-select" mdui-select data-placeholder="Choose a Sex">
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="X">Mixed</option>
+            </select>
+        </div>
+        <div>
+            <label for="option-team-delegation">Team Delegation</label><br/>
+            <select id="option-team-delegation" class="mdui-select" mdui-select data-placeholder="Choose a Sex">
+                <option value="1">United States of America</option>
             </select>
         </div>
         <div class="mdui-textfield mdui-textfield-floating-label" >

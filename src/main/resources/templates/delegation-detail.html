@@ -26,9 +26,13 @@
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                    <p th:text="${delegation.description}">
-                        DELEGATION_DESC
-                    </p>
+                </div>
+                <div class="mdui-typo">
+                    <blockquote>
+                        <p th:text="${delegation.description}">
+                            DELEGATION_DESC
+                        </p>
+                    </blockquote>
                 </div>
             </div>
         </div>
@@ -66,14 +70,17 @@
     <div class="mdui-container-fluid">
         <div class="mdui-card">
             <div class="mdui-card-primary">
-                <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">directions_run</i>  Athletes</div>
+                <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">directions_run</i> Athletes
+                </div>
             </div>
             <div class="mdui-card-content">
                 <div class="mdui-row">
                     <div th:each="individual,index:${individuals}"
-                         class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4 mdui-card mdui-shadow-0 mdui-hoverable mdui-ripple" th:onclick="'location.href=\'/athlete/'+${individual.id}+'\''">
+                         class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4 mdui-card mdui-shadow-0 mdui-hoverable mdui-ripple"
+                         th:onclick="'location.href=\'/athlete/'+${individual.id}+'\''">
                         <a th:href="'/athlete/'+${individual.id}" class="lot">
-                            <img class="mdui-img-fluid mdui-img-circle" th:src="@{|/static/images/persons/${individual.photo}|}" alt=""
+                            <img class="mdui-img-fluid mdui-img-circle"
+                                 th:src="@{|/static/images/persons/${individual.photo}|}" alt=""
                                  style="max-height: 150px"/>
                         </a>
                         <div class="big-item">
@@ -89,7 +96,9 @@
         <br/>
         <div class="mdui-card">
             <div class="mdui-card-primary">
-                <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">format_list_bulleted</i> Teams of this delegation</div>
+                <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">format_list_bulleted</i> Teams
+                    of this delegation
+                </div>
             </div>
             <div class="mdui-card-content">
                 <ul class="mdui-list">
@@ -105,7 +114,9 @@
         <br/>
         <div class="mdui-card">
             <div class="mdui-card-primary">
-                <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">format_list_numbered</i> Medals of this delegation</div>
+                <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">format_list_numbered</i> Medals
+                    of this delegation
+                </div>
             </div>
             <div class="mdui-card-content">
 

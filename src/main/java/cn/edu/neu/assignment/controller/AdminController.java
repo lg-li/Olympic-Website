@@ -37,6 +37,10 @@ public class AdminController {
 
     @RequestMapping("/admin/dashboard")
     public String index(Model model) {
+        model.addAttribute("athletes", individualRepository.findAll());
+        model.addAttribute("teams", teamRepository.findAll());
+        model.addAttribute("sports",typeRepository.findAll());
+        model.addAttribute("competitions", competitionRepository.findAll());
         return "admin-dashboard";
     }
 
