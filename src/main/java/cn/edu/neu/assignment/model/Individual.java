@@ -36,7 +36,6 @@ public class Individual {
 
     @ManyToOne()
     @JoinColumn(name = "delegation_id")
-    @JSONField(serialize = false)
     private Delegation delegations;
 
     @ManyToMany()

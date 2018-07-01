@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DelegationRepository extends JpaRepository<Delegation, Integer> {
     @Query("select d from Delegation d where d.name=?1")
@@ -14,4 +15,7 @@ public interface DelegationRepository extends JpaRepository<Delegation, Integer>
 
     @EntityGraph(value="delegation.all",type=EntityGraphType.FETCH)
     List findAll();
+
+    @EntityGraph(value="delegation.all",type=EntityGraphType.FETCH)
+    Optional<Delegation> findById(Integer integer);
 }
