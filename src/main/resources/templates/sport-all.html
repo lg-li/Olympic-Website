@@ -9,7 +9,7 @@
     <!--//schedule table (calendar) style-->
     <link href="/static/css/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
+<body class="mdui-theme-primary-blue">
 <!--header-->
 <div th:replace="header::header"></div>
 <div class="title-banner" style="background: url('/static/images/photos/running.jpg')">
@@ -134,15 +134,15 @@
                     for (var i = 0; i < data['data']['list'].length; i++) {
                         // competition types
                         var cmode = data['data']['list'][i]['individual'] ? 'Individual' : 'Team';
-                        // competition status: 0:Pending; 1:In Progress; 2:Finished
+                        // competition status: 0:Scheduled; 1:On Going; 2:Finished
                         var status_code = data['data']['list'][i]['situation'];
                         // convert code from database to readable strings
                         var cstatus = function () {
                             switch (status_code) {
                                 case 0:
-                                    return 'Pending';
+                                    return 'Scheduled';
                                 case 1:
-                                    return 'In Progress';
+                                    return 'On Going';
                                 case 2:
                                     return 'Finished';
                             }
