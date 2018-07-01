@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<div class="mdui-card">
+    <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">Filter</div>
+        <div class="mdui-card-primary-subtitle">Options for search</div>
+    </div>
+    <div class="mdui-textfield mdui-textfield-floating-label">
+        <label class="mdui-textfield-label">Name</label>
+        <input class="mdui-textfield-input" type="text"/>
+    </div>
+    <div class="mdui-card-content">
+        <div>
+            <label for="option-competition-status">Current Staus of The Competition</label><br/>
+            <select id="option-competition-status" class="mdui-select" mdui-select
+                    data-placeholder="Choose a Type">
+                <option value="2">Finished</option>
+                <option value="1">On Going</option>
+                <option value="0">Scheduled</option>
+                </select>
+        </div>
+        <div>
+            <label for="option-individual-or-team">Game Type: Individual or Team</label><br/>
+            <select id="option-individual-or-team" class="mdui-select" mdui-select
+                    data-placeholder="Choose a Type">
+                <option value="i">Individual</option>
+                <option value="t">Team</option>
+            </select>
+        </div>
+        <div class="">
+            <label for="option-country">Nations / Regions</label><br/>
+            <select id="option-country" class="mdui-select" mdui-select data-placeholder="Choose a Country">
+                <option value=""></option>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Afghanistan">Afghanistan</option>
+                </select>
+        </div>
+        <div class="">
+            <label for="option-sport">Sport/Competition Type</label><br/>
+            <select id="option-sport" class="mdui-select" mdui-select data-placeholder="Choose a Type">
+                <option value="Skating">Skating</option>
+                <option value="other">...</option>
+                </select>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">Location</label>
+            <input class="mdui-textfield-input" type="text"/>
+        </div>
+    </div>
+
+    <div class="mdui-card-actions">
+        <button class="mdui-btn mdui-ripple">Add</button>
+            <button class="mdui-btn mdui-btn-icon mdui-float-right"><i
+                    class="mdui-icon material-icons">expand_more</i></button>
+    </div>
+
+</div>
