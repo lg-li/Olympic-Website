@@ -4,6 +4,7 @@ import cn.edu.neu.assignment.inter.*;
 import cn.edu.neu.assignment.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,11 +70,9 @@ public class FrontEndController {
 
     @RequestMapping("/sport/{id}") // Competition Type (sport, not session)
     public String type(@PathVariable Integer id, Model model) {
-        Competition competition = new Competition();
-        competition.setType(typeRepository.findById(id).get());
         model.addAttribute("id", id);
         model.addAttribute("sport", typeRepository.findById(id).get());
-        model.addAttribute("competitions",competitionRepository.findAll(Example.of(competition)));
+        model.addAttribute("competitions",competitionRepository.findAllByType_Id(id));
         return "sport-detail";
     }
 
@@ -85,13 +84,10 @@ public class FrontEndController {
     @RequestMapping("/delegation/{id}")
     public String delegation(@PathVariable Integer id, Model model) {
         Delegation delegation = delegationRepository.findById(id).get();
-        Individual individualForExample = new Individual();
-        Team teamForExample = new Team();
-        individualForExample.setDelegations(delegation);
-        teamForExample.setDelegations(delegation);
+
         model.addAttribute("delegation", delegation);
-        model.addAttribute("individuals",individualRepository.findAll(Example.of(individualForExample)));
-        model.addAttribute("teams",teamRepository.findAll(Example.of(teamForExample)));
+        model.addAttribute("individuals",individualRepository.findAllByDelegations_Id(id));
+        model.addAttribute("teams",teamRepository.findAllByDelegations_Id(id));
         return "delegation-detail";
     }
 
@@ -100,18 +96,13 @@ public class FrontEndController {
         Team team = teamRepository.findById(id).get();
         model.addAttribute("team", team);
 
-        Team teamForExample = new Team();
-        teamForExample.setDelegations(team.getDelegations());
-        TeamCompetition teamCompetitionForExample = new TeamCompetition();
-        teamCompetitionForExample.setTeam(team);
-
-       List<Team> teamList = teamRepository.findAll(Example.of(teamForExample));
+       List<Team> teamList = teamRepository.findAllByDelegations_Id(team.getDelegations().getId());
         Iterator iterator = teamList.iterator();
         while (iterator.hasNext()){
             if (iterator.next()==team)
                 iterator.remove();
         }
-        model.addAttribute("teamCompetitions",teamCompetitionRepository.findAll(Example.of(teamCompetitionForExample)));
+        model.addAttribute("teamCompetitions",teamCompetitionRepository.findAllByTeam_Id(id));
         model.addAttribute("teamList",teamList);
         model.addAttribute("individuals",team.getIndividuals());
         return "team-detail";
@@ -120,11 +111,9 @@ public class FrontEndController {
     @RequestMapping("/athlete/{id}")
     public String athlete(@PathVariable Integer id, Model model) {
         Optional<Individual> individual = individualRepository.findById(id);
-        IndividualCompetition individualCompetition = new IndividualCompetition();
-        individualCompetition.setIndividual(individual.get());
         if(individual.isPresent()) {
             model.addAttribute("athlete",individual.get());
-            model.addAttribute("competitions",individualCompetitionRepository.findAll(Example.of(individualCompetition)));
+            model.addAttribute("competitions",individualCompetitionRepository.findAllByIndividual_Id(id));
             return "athlete-detail";
         }else{
             return "index";
