@@ -66,7 +66,7 @@
     <div class="single">
         <h3>Athletes</h3>
         <div class="mdui-row">
-            <div th:each="individual,index:${delegation.individuals}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
+            <div th:each="individual,index:${individuals}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card">
                 <a th:href="'/athlete/'+${individual.id}" class="lot">
                     <img class="mdui-img-fluid" th:src="@{|/static/images/persons/${individual.photo}|}" alt="" style="max-height: 180px"/>
                 </a>
@@ -80,7 +80,7 @@
         </div>
         <h3>Teams</h3>
         <div class="mdui-row">
-            <div th:each="team,index:${delegation.teams}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card" style="max-height: 132px">
+            <div th:each="team,index:${teams}" class="mdui-col-xs-12 mdui-col-sm-12 mdui-col-md-4 mdui-card" style="max-height: 132px">
                 <div class="big-item">
                     <h6>
                         <a th:text="${team.name}" th:href="'/team/'+${team.id}" class="lot">

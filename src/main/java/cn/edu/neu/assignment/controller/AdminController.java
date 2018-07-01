@@ -1,16 +1,10 @@
 package cn.edu.neu.assignment.controller;
 
 import cn.edu.neu.assignment.inter.*;
-import cn.edu.neu.assignment.model.Competition;
 import cn.edu.neu.assignment.model.Delegation;
-import cn.edu.neu.assignment.model.Individual;
-import cn.edu.neu.assignment.model.Team;
-import cn.edu.neu.assignment.model.TeamCompetition;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.*;
@@ -35,9 +29,15 @@ public class AdminController {
         return delegations;
     }
 
+
+    @RequestMapping("/admin/login")
+    public String login() {
+        return "admin-login";
+    }
+
     @RequestMapping("/admin/dashboard")
     public String index(Model model) {
-        return "admin/dashboard";
+        return "admin-dashboard";
     }
 
 }

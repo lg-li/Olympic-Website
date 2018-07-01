@@ -84,7 +84,14 @@ public class FrontEndController {
 
     @RequestMapping("/delegation/{id}")
     public String delegation(@PathVariable Integer id, Model model) {
-        model.addAttribute("delegation", delegationRepository.findById(id).get());
+        Delegation delegation = delegationRepository.findById(id).get();
+        Individual individualForExample = new Individual();
+        Team teamForExample = new Team();
+        individualForExample.setDelegations(delegation);
+        teamForExample.setDelegations(delegation);
+        model.addAttribute("delegation", delegation);
+        model.addAttribute("individuals",individualRepository.findAll(Example.of(individualForExample)));
+        model.addAttribute("teams",teamRepository.findAll(Example.of(teamForExample)));
         return "delegation-detail";
     }
 
@@ -124,11 +131,6 @@ public class FrontEndController {
         }
     }
 
-    @RequestMapping("/manage/login")
-    public String login() {
-        return "admin/manager-login";
-    }
-
     @RequestMapping("/participants")
     public String participants() {
         return "participants";
@@ -155,10 +157,5 @@ public class FrontEndController {
     @RequestMapping("/competition/all")
     public String competition() {
         return "sport-all";
-    }
-
-    @RequestMapping("/admin/")
-    public String adminIndex() {
-        return "admin/index";
     }
 }
