@@ -121,7 +121,9 @@ public class FrontEndController {
     }
 
     @RequestMapping("/participants")
-    public String participants() {
+    public String participants(Model model) {
+        model.addAttribute("delegations", delegationRepository.findAll());
+        model.addAttribute("sports", typeRepository.findAll());
         return "participants";
     }
 

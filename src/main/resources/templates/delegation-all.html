@@ -75,7 +75,6 @@
             success: function (data) {
                 var countries = data;
                 if (countries['code'] === '100') {
-                    var country;
                     for (var i = 0; i < countries['data']['list'].length; i++) {
                         $('#continent' + countries['data']['list'][i]['continent']).append(
                             compileTemplate(country_template, {

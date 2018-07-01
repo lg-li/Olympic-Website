@@ -42,7 +42,7 @@ public class SearchController {
                 jsonObject.put("list", individualRepository.findAllBySportIdAndNameContains(sportId,name));
             else
                 jsonObject.put("list", individualRepository.findAllByDelegationsIdAndNameContainsAndSportID(sportId,name,delegationId));
-            return jsonObject;
+            return CommonUtil.successJson(jsonObject);
         } else if (type.equals("team")) {
             if (delegationId == -1 && sportId == -1 && name.equals(""))
                 jsonObject.put("list", teamRepository.findAll());
@@ -60,7 +60,7 @@ public class SearchController {
                 jsonObject.put("list", teamRepository.findAllBySportIdAndNameContains(sportId,name));
             else
                 jsonObject.put("list", teamRepository.findAllByDelegationsIdAndNameContainsAndSportID(sportId,name,delegationId));
-            return jsonObject;
+            return CommonUtil.successJson(jsonObject);
         } else
             return CommonUtil.errorJson(ErrorEnum.E_503);
     }
