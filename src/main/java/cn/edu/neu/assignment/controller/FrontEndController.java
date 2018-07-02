@@ -3,8 +3,6 @@ package cn.edu.neu.assignment.controller;
 import cn.edu.neu.assignment.inter.*;
 import cn.edu.neu.assignment.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
