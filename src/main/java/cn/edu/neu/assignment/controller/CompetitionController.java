@@ -1,6 +1,8 @@
 package cn.edu.neu.assignment.controller;
 
 import cn.edu.neu.assignment.inter.CompetitionRepository;
+import cn.edu.neu.assignment.inter.IndividualCompetitionRepository;
+import cn.edu.neu.assignment.inter.TeamCompetitionRepository;
 import cn.edu.neu.assignment.model.*;
 import cn.edu.neu.assignment.utl.CommonUtil;
 import cn.edu.neu.assignment.utl.constants.ErrorEnum;
@@ -18,6 +20,10 @@ import java.util.List;
 public class CompetitionController {
     @Autowired
     CompetitionRepository competitionRepository;
+    @Autowired
+    IndividualCompetitionRepository individualCompetitionRepository;
+    @Autowired
+    TeamCompetitionRepository teamCompetitionRepository;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public JSONObject list() {
@@ -37,6 +43,9 @@ public class CompetitionController {
 
     @GetMapping(value = "/get/{id}")
     public JSONObject get(@PathVariable("id") Integer id){
+        if (!competitionRepository.existsById(id))
+            return CommonUtil.errorJson(ErrorEnum.E_503);
+
         JSONObject jsonObject= new JSONObject();
         Competition competition = competitionRepository.findById(id).get();
         if (competition.isIndividual()){
@@ -54,5 +63,19 @@ public class CompetitionController {
         }
         jsonObject.put("competition",competition);
         return CommonUtil.successJson(jsonObject);
+    }
+
+    @GetMapping(value = "result/{id}")
+    public JSONObject result(@PathVariable("id") Integer id){
+        if (!competitionRepository.existsById(id))
+            return CommonUtil.errorJson(ErrorEnum.E_503);
+        JSONObject jsonObject = new JSONObject();
+        if (competitionRepository.findById(id).get().isIndividual()){
+            jsonObject.put("result",individualCompetitionRepository.findAllByCompetition_Id(id));
+            return CommonUtil.successJson(jsonObject);
+        }else {
+            jsonObject.put("result",teamCompetitionRepository.findAllByCompetition_Id(id));
+            return CommonUtil.successJson(jsonObject);
+        }
     }
 }

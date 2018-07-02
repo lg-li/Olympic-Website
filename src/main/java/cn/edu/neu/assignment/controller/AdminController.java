@@ -83,7 +83,7 @@ public class AdminController {
             while (i.hasNext()) {
                 participantId = i.next();
                 if (teamRepository.existsById(participantId)) {
-                    teamCompetition.setTeam(teamRepository.getOne(participantId));
+                    teamCompetition.setTeam(teamRepository.findById(participantId).get());
                     teamCompetitionRepository.saveAndFlush(teamCompetition);
                 }
             }
@@ -92,5 +92,25 @@ public class AdminController {
         }
         jsonObject.put("competition", competitionRepository.findById(id).get());
         return CommonUtil.successJson(jsonObject);
+    }
+
+    @PostMapping("competition/individual/result/{id}")
+    public JSONObject individualResultUpdate(@PathVariable("id") Integer id,@RequestParam("result") ArrayList<IndividualCompetition> result){
+        if (!competitionRepository.existsById(id)||!competitionRepository.findById(id).get().isIndividual())
+            return CommonUtil.errorJson(ErrorEnum.E_503);
+        Iterator<IndividualCompetition> i = result.iterator();
+        while (i.hasNext())
+            individualCompetitionRepository.saveAndFlush(i.next());
+        return CommonUtil.successJson();
+    }
+
+    @PostMapping("competition/team/result/{id}")
+    public JSONObject teamResultUpdate(@PathVariable("id") Integer id,@RequestParam("result") ArrayList<TeamCompetition> result){
+        if (!competitionRepository.existsById(id)||competitionRepository.findById(id).get().isIndividual())
+            return CommonUtil.errorJson(ErrorEnum.E_503);
+        Iterator<TeamCompetition> i = result.iterator();
+        while (i.hasNext())
+            teamCompetitionRepository.saveAndFlush(i.next());
+        return CommonUtil.successJson();
     }
 }
