@@ -412,15 +412,15 @@
                     <label class="mdui-textfield-label">Time</label>
                     <input v-model="competition.time" class="mdui-textfield-input" type="datetime"/>
                 </div>
-                <label>Participants of this competition</label>
-                <div class="mdui-chip">
-                    <img class="mdui-chip-icon" src="/static/images/persons/ascal%20DION.jpg"/>
-                    <span class="mdui-chip-title">Example Chip</span>
+                <h5>Participants of this competition</h5>
+                <p>Participants already in this competition:</p>
+                <div v-for="item in competition_participants" class="mdui-chip">
+                    <span class="mdui-chip-title">{{ item.name }}</span>
+                    <span class="mdui-chip-delete"><i class="mdui-icon material-icons">cancel</i></span>
                 </div>
-                <div class="mdui-chip">
-                    <img class="mdui-chip-icon" src="/static/images/persons/J.R.%20CELSKI.jpg"/>
-                    <span class="mdui-chip-title">Example Chip</span>
-                </div>
+
+                <p>Add participants to this competition from the table below:</p>
+                <div v-if="competition_participants.length == 0">No participants.</div>
                 <div style="max-height: 300px; overflow: scroll">
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#comp-participant-athletes" aria-controls="home"
@@ -457,14 +457,14 @@
                                         <td th:text="${athlete.name}">
                                             Name
                                         </td>
-                                        <td th:text="${athlete.sex}==1?'Male':'Female'">
+                                        <td th:text="${athlete.sex}==true?'Male':'Female'">
                                             Sex
                                         </td>
                                         <td th:text="${athlete.delegations.name}">
                                             Delegation
                                         </td>
                                         <td>
-                                            <button class="mdui-btn mdui-btn-raised">
+                                            <button class="mdui-btn mdui-btn-raised" th:onclick="'app.addParticipantToCompetition(true, '+${athlete.id}+', &quot;'+${athlete.name}+'&quot;, &quot;/persons/'+${athlete.photo}+'&quot;)'">
                                                 Add to competition
                                             </button>
                                         </td>
@@ -507,7 +507,7 @@
                                             Delegation
                                         </td>
                                         <td>
-                                            <button class="mdui-btn mdui-btn-raised">
+                                            <button class="mdui-btn mdui-btn-raised" th:onclick="'app.addParticipantToCompetition(false, '+${team.id}+', &quot;'+${team.name}+'&quot;, &quot;/flags/Flag Of '+${team.delegations.name}+'.png&quot;)'">
                                                 Add to competition
                                             </button>
                                         </td>
@@ -553,13 +553,10 @@
                 place: '',
                 time: '',
                 individual: 0,
-                type: {id:0},
-                participants: [
-                    {id: 2},
-                    {id: 4},
-                    {id: 0}
-                ]
-            }
+                type: {id:0}
+            },
+            competition_participants: [
+            ]
         },
         methods: {
             pullCompetition: function (id) {
@@ -572,9 +569,24 @@
                     success: function (data) {
                         if (data.code === '100') {
                             that.competition = data.data.competition;
+                            that.competition_participants = data.data.participant;
                             that.loading = false;
                         }
                     }
+                })
+            },
+            addParticipantToCompetition(isIndividual, id, name, photoUrl) {
+                if(isIndividual !== this.competition.individual){
+                    mdui.snackbar({
+                        message: 'Competition type do not allow you to add this participant.'
+                    });
+                    return;
+
+                }
+                this.competition_participants.push({
+                    id: id,
+                    name: name,
+                    photoUrl: photoUrl
                 })
             },
             saveCompetition: function () {

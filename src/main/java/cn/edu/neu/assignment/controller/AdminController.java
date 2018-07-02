@@ -23,5 +23,4 @@ public class AdminController {
         individualRepository.deleteById(2);
         return CommonUtil.successJson();
     }
-
 }
