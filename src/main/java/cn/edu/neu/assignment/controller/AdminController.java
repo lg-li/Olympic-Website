@@ -17,14 +17,6 @@ import java.util.*;
 public class AdminController {
 
     @Autowired
-    CompetitionRepository competitionRepository;
-    @Autowired
-    DelegationRepository delegationRepository;
-    @Autowired
-    TypeRepository typeRepository;
-    @Autowired
-    TeamRepository teamRepository;
-    @Autowired
     IndividualRepository individualRepository;
     @GetMapping("individual/delete/{id}")
     public JSONObject individualDelete(@PathVariable(value = "id") Integer id) {
@@ -32,9 +24,5 @@ public class AdminController {
         return CommonUtil.successJson();
     }
 
-    @RequestMapping("/admin/dashboard")
-    public String index(Model model) {
-        return "admin-dashboard";
-    }
 
 }
