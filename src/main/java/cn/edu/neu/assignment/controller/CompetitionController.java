@@ -1,14 +1,16 @@
 package cn.edu.neu.assignment.controller;
 
 import cn.edu.neu.assignment.inter.CompetitionRepository;
-import cn.edu.neu.assignment.model.Competition;
+import cn.edu.neu.assignment.model.*;
 import cn.edu.neu.assignment.utl.CommonUtil;
 import cn.edu.neu.assignment.utl.constants.ErrorEnum;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -37,6 +39,19 @@ public class CompetitionController {
     public JSONObject get(@PathVariable("id") Integer id){
         JSONObject jsonObject= new JSONObject();
         Competition competition = competitionRepository.findById(id).get();
+        if (competition.isIndividual()){
+            List<Individual> individuals = new ArrayList<>();
+            Iterator<IndividualCompetition> i = competition.getIndividualCompetitions().iterator();
+            while (i.hasNext())
+                individuals.add(i.next().getIndividual());
+            jsonObject.put("participant",individuals);
+        }else {
+            List<Team> teams = new ArrayList<>();
+            Iterator<TeamCompetition> i = competition.getTeamCompetitions().iterator();
+            while (i.hasNext())
+                teams.add(i.next().getTeam());
+            jsonObject.put("participant",teams);
+        }
         jsonObject.put("competition",competition);
         return CommonUtil.successJson(jsonObject);
     }
