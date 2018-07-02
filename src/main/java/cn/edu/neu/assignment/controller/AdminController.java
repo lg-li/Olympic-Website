@@ -24,5 +24,4 @@ public class AdminController {
         return CommonUtil.successJson();
     }
 
-
 }
