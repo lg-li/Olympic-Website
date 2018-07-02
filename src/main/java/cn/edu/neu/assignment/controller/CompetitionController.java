@@ -44,13 +44,13 @@ public class CompetitionController {
             Iterator<IndividualCompetition> i = competition.getIndividualCompetitions().iterator();
             while (i.hasNext())
                 individuals.add(i.next().getIndividual());
-            jsonObject.put("participant",individuals);
+            jsonObject.put("participants",individuals);
         }else {
             List<Team> teams = new ArrayList<>();
             Iterator<TeamCompetition> i = competition.getTeamCompetitions().iterator();
             while (i.hasNext())
                 teams.add(i.next().getTeam());
-            jsonObject.put("participant",teams);
+            jsonObject.put("participants",teams);
         }
         jsonObject.put("competition",competition);
         return CommonUtil.successJson(jsonObject);
