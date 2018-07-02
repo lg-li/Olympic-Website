@@ -26,6 +26,7 @@ public class IndividualCompetition implements Serializable {
     @Column(nullable = true)
     private short rank;
 
+    @Column(nullable = true)
     private String result;
 
     public IndividualCompetition() {
