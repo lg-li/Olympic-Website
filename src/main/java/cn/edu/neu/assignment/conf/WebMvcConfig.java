@@ -31,10 +31,9 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         registry.addInterceptor(new ProcessInterceptor());
         //Token interceptor
 //        registry.addInterceptor(authorizationInterceptor)
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/general/**")
-//                .excludePathPatterns("/user/login/**")
-//                .excludePathPatterns("/pages/**");
+//                .addPathPatterns("/admin/**")
+//                .excludePathPatterns("/admin/login")
+//                .excludePathPatterns("/admin/dashboard");
     }
 
     @Bean

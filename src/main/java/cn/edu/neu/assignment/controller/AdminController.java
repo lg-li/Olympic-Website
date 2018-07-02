@@ -17,19 +17,12 @@ import java.util.*;
 public class AdminController {
 
     @Autowired
-    CompetitionRepository competitionRepository;
-    @Autowired
-    DelegationRepository delegationRepository;
-    @Autowired
-    TypeRepository typeRepository;
-    @Autowired
-    TeamRepository teamRepository;
-    @Autowired
     IndividualRepository individualRepository;
     @GetMapping("individual/delete/{id}")
     public JSONObject individualDelete(@PathVariable(value = "id") Integer id) {
         individualRepository.deleteById(2);
         return CommonUtil.successJson();
     }
+
 
 }

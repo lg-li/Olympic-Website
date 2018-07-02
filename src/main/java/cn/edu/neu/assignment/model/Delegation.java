@@ -10,6 +10,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -50,6 +51,10 @@ public class Delegation implements Comparable<Delegation> {
     private int silver;
     @Transient
     private int bronze;
+    @Transient
+    private ArrayList<IndividualCompetition> individualMedals = new ArrayList();
+    @Transient
+    private ArrayList<TeamCompetition> teamMedals = new ArrayList();
 
     public Delegation() {
     }
@@ -154,6 +159,8 @@ public class Delegation implements Comparable<Delegation> {
                     silver++;
                 if (individualCompetition.getRank() == 3)
                     bronze++;
+                if (individualCompetition.getRank() == 1||individualCompetition.getRank() == 2||individualCompetition.getRank() == 3)
+                    individualMedals.add(individualCompetition);
             }
         }
 
@@ -168,6 +175,8 @@ public class Delegation implements Comparable<Delegation> {
                     silver++;
                 if (teamCompetition.getRank() == 3)
                     bronze++;
+                if (teamCompetition.getRank() == 1||teamCompetition.getRank() == 2||teamCompetition.getRank() == 3)
+                    teamMedals.add(teamCompetition);
             }
         }
     }
