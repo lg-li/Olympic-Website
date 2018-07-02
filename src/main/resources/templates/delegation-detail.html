@@ -76,7 +76,7 @@
             <div class="mdui-card-content">
                 <div class="mdui-row">
                     <div th:each="individual,index:${individuals}"
-                         class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4 mdui-card mdui-shadow-0 mdui-hoverable mdui-ripple"
+                         class="individual-list-item mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-4 mdui-card mdui-shadow-0 mdui-hoverable mdui-ripple"
                          th:onclick="'location.href=\'/athlete/'+${individual.id}+'\''">
                         <a th:href="'/athlete/'+${individual.id}" class="lot">
                             <img class="mdui-img-fluid mdui-img-circle"
@@ -322,4 +322,9 @@
 
 </script>
 </body>
+<style>
+    .individual-list-item {
+        margin-bottom: 5px;
+    }
+</style>
 </html>

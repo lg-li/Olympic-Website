@@ -32,4 +32,12 @@ public class CompetitionController {
         jsonObject.put("list", list);
         return CommonUtil.successJson(jsonObject);
     }
+
+    @GetMapping(value = "/get/{id}")
+    public JSONObject get(@PathVariable("id") Integer id){
+        JSONObject jsonObject= new JSONObject();
+        Competition competition = competitionRepository.findById(id).get();
+        jsonObject.put("competition",competition);
+        return CommonUtil.successJson(jsonObject);
+    }
 }
