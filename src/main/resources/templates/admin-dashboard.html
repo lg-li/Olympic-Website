@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common-header :: common_header(~{::title},~{},~{})">
+<head th:replace="common-header :: common_header(~{::title},~{::link},~{})">
     <title>Olympic NEU - Dashboard</title>
+    <link href="/static/css/datatables.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/css/olympic.tab.css">
 </head>
 <body class="mdui-theme-primary-blue">
 <div th:replace="header::header"></div>
@@ -18,6 +20,7 @@
             </div>
         </div>
         <div class="mdui-card-content mdui-container">
+            <!--General-->
             <div class="mdui-panel mdui-panel-popout" mdui-panel>
                 <div class="mdui-panel-item">
                     <div class="mdui-panel-item-header">
@@ -35,63 +38,223 @@
                         <p>First content</p>
                         <p>First content</p>
                         <div class="mdui-panel-item-actions">
-                            <button class="mdui-btn mdui-color-theme mdui-ripple" mdui-panel-item-close>Close</button>
+                            <button class="mdui-btn mdui-ripple"><i
+                                    class="mdui-icon material-icons">exit</i> Logout
+                            </button>
+                            <button class="mdui-btn mdui-ripple" mdui-panel-item-close><i
+                                    class="mdui-icon material-icons">close</i> Close
+                            </button>
                         </div>
                     </div>
                 </div>
 
+                <!--Competition-->
                 <div class="mdui-panel-item">
                     <div class="mdui-panel-item-header">
-                        <div class="mdui-panel-item-title"><i class="mdui-icon material-icons">directions_run</i> Competition</div>
+                        <div class="mdui-panel-item-title"><i class="mdui-icon material-icons">directions_run</i>
+                            Competition
+                        </div>
                         <div class="mdui-panel-item-summary">Create/Edit Competition Sessions</div>
                         <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                     </div>
                     <div class="mdui-panel-item-body">
-                        <p>Second content</p>
-                        <p>Second content</p>
-                        <p>Second content</p>
-                        <p>Second content</p>
-                        <p>Second content</p>
-                        <p>Second content</p>
-                        <div class="mdui-panel-item-actions">
-                            <button class="mdui-btn mdui-color-theme mdui-ripple" mdui-panel-item-close>Close</button>
+
+                        <div class="mdui-table-fluid">
+                            <table id="competitions" class="mdui-table mdui-table-hoverable">
+                                <h3>Competition Sessions</h3>
+                                <p>Slide to view attributes and available operations</p>
+                                <thead>
+                                <tr>
+                                    <td>
+                                        Competition Name
+                                    </td>
+                                    <td>
+                                        Sport Type
+                                    </td>
+                                    <td>
+                                        Location
+                                    </td>
+                                    <td>
+                                        Time
+                                    </td>
+                                    <td>
+                                        Status
+                                    </td>
+                                    <td>
+                                        Operation
+                                    </td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="competition:${competitions}">
+                                    <td th:text="${competition.name}">
+                                        Name
+                                    </td>
+                                    <td th:text="${competition.type.typeName}">
+                                        Type Name
+                                    </td>
+                                    <td th:text="${competition.place}">
+                                        Location
+                                    </td>
+                                    <td th:text="${competition.time}">
+                                        Time
+                                    </td>
+                                    <td th:text="${competition.situation}">
+                                        Status
+                                    </td>
+                                    <td>
+                                        <button class="mdui-btn mdui-btn-raised">
+                                            Edit
+                                        </button>
+                                        <button class="mdui-btn mdui-btn-raised">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
+
+                        <div class="mdui-panel-item-actions">
+                            <button mdui-dialog="{target: '#individual-dialog'}" class="mdui-btn mdui-ripple"><i
+                                    class="mdui-icon material-icons">person_add</i> Create Individual Athlete
+                            </button>
+                            <button class="mdui-btn mdui-ripple" mdui-panel-item-close><i
+                                    class="mdui-icon material-icons">close</i> Close
+                            </button>
+                        </div>
+
                     </div>
                 </div>
-
+                <!--Participant-->
                 <div class="mdui-panel-item">
                     <div class="mdui-panel-item-header">
-                        <div class="mdui-panel-item-title"><i class="mdui-icon material-icons">group</i> Participants</div>
+                        <div class="mdui-panel-item-title"><i class="mdui-icon material-icons">group</i> Participants
+                        </div>
                         <div class="mdui-panel-item-summary">Manage Individual Athletes/Teams</div>
                         <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
                     </div>
                     <div class="mdui-panel-item-body">
-                        <h6>All Individual Athletes on Olympic NEU</h6>
-                        <table>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#participant-athletes" aria-controls="home"
+                                                                      role="tab"
+                                                                      data-toggle="tab">Athletes</a></li>
+                            <li role="presentation"><a href="#participant-teams" aria-controls="profile" role="tab"
+                                                       data-toggle="tab">Session
+                                Teams</a>
+                            </li>
+                        </ul>
+                        <!-- Competition Tab Panes -->
+                        <div class="tab-content tabs">
+                            <div role="tabpanel" class="tab-pane fade in active" id="participant-athletes">
+                                <div class="mdui-table-fluid">
+                                    <table id="athletes" class="mdui-table mdui-table-hoverable">
+                                        <h3>All Individual Athletes on Olympic NEU</h3>
+                                        <p>Slide to view attributes and available operations</p>
+                                        <thead>
+                                        <tr>
+                                            <td>
+                                                Athlete Name
+                                            </td>
+                                            <td>
+                                                Sex
+                                            </td>
+                                            <td>
+                                                Delegation
+                                            </td>
+                                            <td>
+                                                Birthday
+                                            </td>
+                                            <td>
+                                                Photo File Name
+                                            </td>
+                                            <td>
+                                                Description
+                                            </td>
+                                            <td>
+                                                Operation
+                                            </td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="athlete:${athletes}">
+                                            <td th:text="${athlete.name}">
+                                                Name
+                                            </td>
+                                            <td th:text="${athlete.sex}==0?'Male':'Female'">
+                                                Sex
+                                            </td>
+                                            <td th:text="${athlete.delegations.name}">
+                                                Delegation
+                                            </td>
+                                            <td th:text="${athlete.birthday}">
+                                                Birthday
+                                            </td>
+                                            <td th:text="${athlete.photo}">
+                                                Photo
+                                            </td>
+                                            <td th:text="${athlete.description}">
+                                                Description
+                                            </td>
+                                            <td>
+                                                <button class="mdui-btn mdui-btn-raised">
+                                                    Edit
+                                                </button>
+                                                <button class="mdui-btn mdui-btn-raised">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in" id="participant-teams">
 
-                        </table>
-                        <h6>All Teams on Olympic NEU</h6>
-                        <table>
-                            <thead>
-                            <tr>
-                                <td>
-                                    Team Name
-                                </td>
-                                <td>
-                                    Delegation
-                                </td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-
-                            </tr>
-                            </tbody>
-                        </table>
+                                <div class="mdui-table-fluid">
+                                    <table id="teams" class="mdui-table mdui-table-hoverable mdui-shadow-0">
+                                        <h3>All Teams on Olympic NEU</h3>
+                                        <p>Slide to view attributes and available operations</p>
+                                        <thead>
+                                        <tr>
+                                            <td>
+                                                Team Name
+                                            </td>
+                                            <td>
+                                                Team Sex Type
+                                            </td>
+                                            <td>
+                                                Delegation
+                                            </td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="team:${teams}">
+                                            <td th:text="${team.name}">
+                                                Team Name
+                                            </td>
+                                            <td th:text="${team.sex}=='M'?'Male':(${team.sex}=='F'?'Female':'Mixed')">
+                                                Team Sex Type
+                                            </td>
+                                            <td th:text="${team.delegations.name}">
+                                                Delegation
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                         <div class="mdui-panel-item-actions">
-                            <button mdui-dialog="{target: '#individual-dialog'}" class="mdui-btn mdui-ripple"><i class="mdui-icon material-icons">person_add</i> Create Individual Athlete</button>
-                            <button mdui-dialog="{target: '#team-dialog'}" class="mdui-btn mdui-ripple"><i class="mdui-icon material-icons">group_add</i> Create Team</button>
-                            <button class="mdui-btn mdui-ripple" mdui-panel-item-close><i class="mdui-icon material-icons">close</i> Close</button>
+                            <button mdui-dialog="{target: '#individual-dialog'}" class="mdui-btn mdui-ripple"><i
+                                    class="mdui-icon material-icons">person_add</i> Create Individual Athlete
+                            </button>
+                            <button mdui-dialog="{target: '#team-dialog'}" class="mdui-btn mdui-ripple"><i
+                                    class="mdui-icon material-icons">group_add</i> Create Team
+                            </button>
+                            <button class="mdui-btn mdui-ripple" mdui-panel-item-close><i
+                                    class="mdui-icon material-icons">close</i> Close
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -376,7 +539,7 @@
                 <option value="Female">Female</option>
             </select>
         </div>
-        <div class="mdui-textfield mdui-textfield-floating-label" >
+        <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">Description</label>
             <input class="mdui-textfield-input" type="text" maxlength="250"/>
         </div>
@@ -390,7 +553,9 @@
 <div id="team-dialog" class="mdui-dialog mdui-card">
     <div class="mdui-card-primary">
         <div class="mdui-card-primary-title">Team</div>
-        <div class="mdui-card-primary-subtitle">A team belongs to a delegation and contain more than one athlete from that delegation</div>
+        <div class="mdui-card-primary-subtitle">A team belongs to a delegation and contain more than one athlete from
+            that delegation
+        </div>
     </div>
     <div class="mdui-card-content">
 
@@ -412,7 +577,7 @@
                 <option value="1">United States of America</option>
             </select>
         </div>
-        <div class="mdui-textfield mdui-textfield-floating-label" >
+        <div class="mdui-textfield mdui-textfield-floating-label">
             <label class="mdui-textfield-label">Description</label>
             <input class="mdui-textfield-input" type="text" maxlength="250"/>
         </div>
@@ -425,5 +590,14 @@
 </div>
 <div id="footer"></div>
 <script src="/static/js/olympic.ui-loader.js"></script>
+<script src="/static/js/datatables.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#athletes').DataTable();
+        $('#teams').DataTable();
+        $('#competitions').DataTable();
+    });
+</script>
 </body>
 </html>

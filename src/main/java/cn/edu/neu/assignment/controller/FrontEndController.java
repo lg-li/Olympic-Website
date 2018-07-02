@@ -155,10 +155,10 @@ public class FrontEndController {
 
     @RequestMapping("/admin/dashboard")
     public String adminIndex(Model model) {
-        model.addAttribute("athletes", individualRepository.findAll());
-        model.addAttribute("teams", teamRepository.findAll());
-        model.addAttribute("sports",typeRepository.findAll());
-        model.addAttribute("competitions", competitionRepository.findAll());
+        model.addAttribute("athletes",individualRepository.findAll());
+        model.addAttribute("teams",teamRepository.findAll());
+        model.addAttribute("delegations", delegationRepository.findAll());
+        model.addAttribute("competitions",competitionRepository.findAll());
         return "admin-dashboard";
     }
 }
