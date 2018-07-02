@@ -114,193 +114,100 @@
         <br/>
         <div class="mdui-card">
             <div class="mdui-card-primary">
-                <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">format_list_numbered</i> Medals
-                    of this delegation
+                <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">format_list_numbered</i>
+                    Individual Medals of this delegation
                 </div>
             </div>
             <div class="mdui-card-content">
-
-                <table id="medals">
+                <table id="individual-medals">
                     <thead>
                     <tr>
                         <th>
-                            Discipline
+                            Sport
                         </th>
                         <th>
-                            Female
+                            Athlete
                         </th>
                         <th>
-                            Male
+                            Medal
                         </th>
                         <th>
-                            Total
+                            Result
                         </th>
                     </tr>
 
                     </thead>
                     <tbody>
 
-                    <tr>
+                    <tr th:each="individualMedal : ${delegation.individualMedals}">
                         <td>
-                            <img class="flag-xsmall" src="/static/images/sports/1.png" alt="">
-                            <strong><a href="/sport/1">Alpine Skiing</a></strong>
+                            <img class="flag-xsmall"
+                                th:src="@{|/static/images/sports/${individualMedal.competition.type.logoUrl}|}" alt=""/>
+                            <strong><a th:href="@{/competition/${individualMedal.competition.id}}"
+                                        th:text="${individualMedal.competition.name}">Alpine Skiing</a></strong>
                         </td>
-                        <td>
-                            1
+                        <td th:text="${individualMedal.individual.name}">
+                            Wu Dajing
                         </td>
-                        <td>
-                            1
+                        <td th:switch="${individualMedal.rank}">
+                            <div th:case="1"><img src="/static/images/gold.png"/></div>
+                            <div th:case="2"><img src="/static/images/silver.png"/></div>
+                            <div th:case="3"><img src="/static/images/bronze.png"/></div>
                         </td>
-                        <td>
-                            <a href="#">
-                                2</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="flag-xsmall" src="/static/images/sports/2.png" alt="">
-                            <strong><a href="../../en/biathlon/daily-schedule.htm">Biathlon</a></strong>
-                        </td>
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            0
-                        </td>
-                        <td>
-                            <a href="#">
-                                2</a>
+                        <td th:text="${individualMedal.result}">
+                            10:32
                         </td>
                     </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">format_list_numbered</i>
+                    Team Medals of this delegation
+                </div>
+            </div>
+            <div class="mdui-card-content">
+
+                <table id="team-medals">
+                    <thead>
                     <tr>
-                        <td>
-                            <img class="flag-xsmall" src="/static/images/sports/3.png" alt="">
-                            <strong><a>Bobsleigh</a></strong>
-                        </td>
-                        <td>
-                            0
-                        </td>
-                        <td>
-                            5
-                        </td>
-                        <td>
-                            <a>
-                                5</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="flag-xsmall" src="/static/images/sports/4.png" alt="">
-                            <strong><a>Cross-Country
-                                Skiing</a></strong>
-                        </td>
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            2
-                        </td>
-                        <td>
-                            <a href="#">
-                                4</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="flag-xsmall" src="/static/images/sports/5.png" alt="">
-                            <strong><a href="/sport/1">Curling</a></strong>
-                        </td>
-                        <td>
-                            6
-                        </td>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            <a>
-                                7</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="flag-xsmall" src="/static/images/sports/6.png" alt="">
-                            <strong><a>Figure Skating</a></strong>
-                        </td>
-                        <td>
-                            5
-                        </td>
-                        <td>
-                            6
-                        </td>
-                        <td>
-                            <a>
-                                11</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="flag-xsmall" src="/static/images/sports/7.png" alt="">
-                            <strong><a>Freestyle Skiing</a></strong>
-                        </td>
-                        <td>
-                            9
-                        </td>
-                        <td>
-                            6
-                        </td>
-                        <td>
-                            <a>
-                                15</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="flag-xsmall" src="/static/images/sports/8.png" alt="">
-                            <strong><a>Short Track Speed
-                                Skating</a></strong>
-                        </td>
-                        <td>
-                            5
-                        </td>
-                        <td>
-                            5
-                        </td>
-                        <td>
-                            <a>
-                                10</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img class="flag-xsmall" src="/static/images/sports/9.png" alt="">
-                            <strong><a>Skeleton</a></strong>
-                        </td>
-                        <td>
-                            0
-                        </td>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            <a>
-                                1</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>Total</b>
-                        </td>
-                        <td>
-                            46
-                        </td>
-                        <td>
-                            34
-                        </td>
-                        <td>
-                            <b>80</b>
-                        </td>
+                        <th>
+                            Sport
+                        </th>
+                        <th>
+                            Team
+                        </th>
+                        <th>
+                            Medal
+                        </th>
+                        <th>
+                            Result
+                        </th>
                     </tr>
 
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="individualMedal : ${delegation.teamMedals}">
+                        <td>
+                            <img class="flag-xsmall"
+                                 th:src="@{|/static/images/sports/${individualMedal.competition.type.logoUrl}|}" alt=""/>
+                            <strong><a th:href="@{/competition/${individualMedal.competition.id}}"
+                                       th:text="${individualMedal.competition.name}">Alpine Skiing</a></strong>
+                        </td>
+                        <td th:text="${individualMedal.individual.name}">
+                            Wu Dajing
+                        </td>
+                        <td th:switch="${individualMedal.rank}">
+                            <div th:case="1"><img src="/static/images/gold.png"/></div>
+                            <div th:case="2"><img src="/static/images/silver.png"/></div>
+                            <div th:case="3"><img src="/static/images/bronze.png"/></div>
+                        </td>
+                        <td th:text="${individualMedal.result}">
+                            10:32
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -316,10 +223,13 @@
 <script src="/static/js/datatables.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#medals').DataTable();
+        $('#individual-medals').DataTable();
     });
-
-
+</script>
+<script>
+    $(document).ready(function () {
+        $('#team-medals').DataTable();
+    });
 </script>
 </body>
 <style>

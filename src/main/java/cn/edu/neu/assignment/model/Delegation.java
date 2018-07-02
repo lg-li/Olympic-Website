@@ -51,6 +51,9 @@ public class Delegation implements Comparable<Delegation> {
     private int silver;
     @Transient
     private int bronze;
+
+
+
     @Transient
     private ArrayList<IndividualCompetition> individualMedals = new ArrayList();
     @Transient
@@ -131,6 +134,21 @@ public class Delegation implements Comparable<Delegation> {
         this.bronze = bronze;
     }
 
+    public ArrayList<IndividualCompetition> getIndividualMedals() {
+        return individualMedals;
+    }
+
+    public void setIndividualMedals(ArrayList<IndividualCompetition> individualMedals) {
+        this.individualMedals = individualMedals;
+    }
+
+    public ArrayList<TeamCompetition> getTeamMedals() {
+        return teamMedals;
+    }
+
+    public void setTeamMedals(ArrayList<TeamCompetition> teamMedals) {
+        this.teamMedals = teamMedals;
+    }
 
     public void countMedals() {
         //Variables of individual
