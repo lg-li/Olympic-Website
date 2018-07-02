@@ -117,8 +117,10 @@
                                                     th:onclick="'app.pullCompetition('+${competition.id}+')'">
                                                 Manage Participants
                                             </button>
-                                            <button class="mdui-btn mdui-btn-raised">
-                                                Delete
+                                            <button mdui-dialog="{target: '#result-dialog'}"
+                                                    class="mdui-btn mdui-btn-raised"
+                                                    th:onclick="'app.pullCompetitionResult('+${competition.id}+')'">
+                                                Update Result
                                             </button>
                                         </td>
                                     </tr>
@@ -280,7 +282,9 @@
         </div>
     </div>
     <br/>
+
     <!--Dialogs Area-->
+
     <!--INDIVIDUAL-->
     <div id="individual-dialog" class="mdui-dialog mdui-card">
         <div class="mdui-card-primary">
@@ -318,6 +322,8 @@
                     class="mdui-icon material-icons">expand_more</i></button>
         </div>
     </div>
+    <!--/INDIVIDUAL-->
+
     <!--TEAM-->
     <div id="team-dialog" class="mdui-dialog mdui-card">
         <div class="mdui-card-primary">
@@ -359,6 +365,8 @@
                     class="mdui-icon material-icons">expand_more</i></button>
         </div>
     </div>
+    <!--/TEAM-->
+
     <!--COMPETITION-->
     <div id="competition-dialog" class="mdui-dialog mdui-card" style="overflow: scroll">
         <div class="mdui-card-primary">
@@ -368,9 +376,10 @@
             </div>
         </div>
         <div class="mdui-card-content">
-            <div v-if="loading">
+            <div v-if="loading"><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <div class="mdui-spinner"></div>
-                Loading competition data...
+                <h4>Loading competition data...</h4>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             </div>
             <div>
                 <div class="mdui-textfield">
@@ -418,9 +427,9 @@
                     <span class="mdui-chip-title">{{ item.name }}</span>
                     <span class="mdui-chip-delete"><i class="mdui-icon material-icons">cancel</i></span>
                 </div>
-
+                <div v-if="competition_participants == null || competition_participants.length == 0">No participants.
+                </div>
                 <p>Add participants to this competition from the table below:</p>
-                <div v-if="competition_participants.length == 0">No participants.</div>
                 <div style="max-height: 300px; overflow: scroll">
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#comp-participant-athletes" aria-controls="home"
@@ -464,7 +473,8 @@
                                             Delegation
                                         </td>
                                         <td>
-                                            <button class="mdui-btn mdui-btn-raised" th:onclick="'app.addParticipantToCompetition(true, '+${athlete.id}+', &quot;'+${athlete.name}+'&quot;, &quot;/persons/'+${athlete.photo}+'&quot;)'">
+                                            <button class="mdui-btn mdui-btn-raised"
+                                                    th:onclick="'app.addParticipantToCompetition(true, '+${athlete.id}+', &quot;'+${athlete.name}+'&quot;, &quot;/persons/'+${athlete.photo}+'&quot;)'">
                                                 Add to competition
                                             </button>
                                         </td>
@@ -507,7 +517,8 @@
                                             Delegation
                                         </td>
                                         <td>
-                                            <button class="mdui-btn mdui-btn-raised" th:onclick="'app.addParticipantToCompetition(false, '+${team.id}+', &quot;'+${team.name}+'&quot;, &quot;/flags/Flag Of '+${team.delegations.name}+'.png&quot;)'">
+                                            <button class="mdui-btn mdui-btn-raised"
+                                                    th:onclick="'app.addParticipantToCompetition(false, '+${team.id}+', &quot;'+${team.name}+'&quot;, &quot;/flags/Flag Of '+${team.delegations.name}+'.png&quot;)'">
                                                 Add to competition
                                             </button>
                                         </td>
@@ -520,7 +531,6 @@
                 </div>
             </div>
         </div>
-
         <div class="mdui-card-actions">
             <button class="mdui-btn mdui-ripple mdui-color-blue-700" onclick="app.saveCompetition()">Save</button>
 
@@ -528,12 +538,64 @@
 
         </div>
     </div>
+    <!--/COMPETITION-->
+
+
+    <!--RESULT-->
+    <div id="result-dialog" class="mdui-dialog mdui-card" style="overflow: scroll; height: 90%;">
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title">Competition Result Submit/Updated</div>
+            <div class="mdui-card-primary-subtitle">Scroll vertically to view all options. Changes will not take effects
+                before you click SAVE button below.
+            </div>
+        </div>
+        <div class="mdui-card-content">
+            
+            <div v-if="loading"><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <div class="mdui-spinner"></div>
+                <h4>Loading competition data...</h4>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            </div>
+
+            <div class="mdui-table-fluid">
+                <table class="mdui-table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Result(Grades)</th>
+                        <th>Rank</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="result in competition_result">
+                        <th>
+                            {{ result.id }}
+                        </th>
+                        <th>
+                            {{ result.rank }}
+                        </th>
+                        <th>
+                            <div class="mdui-textfield">
+                                <label class="mdui-textfield-label">Result</label>
+                                <input v-model="result.result" class="mdui-textfield-input" type="text"/>
+                            </div>
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--/RESULT-->
+
+    <!--/Dialogs Area-->
+
 </div>
 <div id="footer"></div>
 <script src="/static/js/olympic.ui-loader.js"></script>
 <script src="/static/js/datatables.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="/static/js/vue.js"></script>
 <script>
     $(document).ready(function () {
         $('#athletes').DataTable();
@@ -553,10 +615,10 @@
                 place: '',
                 time: '',
                 individual: 0,
-                type: {id:0}
+                type: {id: 0}
             },
-            competition_participants: [
-            ]
+            competition_participants: [],
+            competition_result: []
         },
         methods: {
             pullCompetition: function (id) {
@@ -575,13 +637,31 @@
                     }
                 })
             },
+            pullCompetitionResult: function (id) {
+                this.loading = true;
+                var that = this;
+                $.ajax({
+                    url: '/competition/result/' + id,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.code === '100') {
+                            that.competition_result = data.data.result;
+                            that.loading = false;
+                        }
+                    }
+                })
+            },
             addParticipantToCompetition(isIndividual, id, name, photoUrl) {
-                if(isIndividual !== this.competition.individual){
+                if (isIndividual !== this.competition.individual) {
                     mdui.snackbar({
                         message: 'Competition type do not allow you to add this participant.'
                     });
                     return;
 
+                }
+                if (this.competition_participants == null) {
+                    this.competition_participants = [];
                 }
                 this.competition_participants.push({
                     id: id,
@@ -591,9 +671,9 @@
             },
             saveCompetition: function () {
                 $.ajax({
-                    url: '/competition/update/',
+                    url: '/admin/competition/update/' + this.competition.id,
                     type: 'post',
-                    data: this.competition,
+                    data: JSON.stringify({competition: this.competition, participant: this.competition_participants}),
                     dataType: 'json',
                     success: function (data) {
                         if (data.code === '100') {
