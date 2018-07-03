@@ -62,12 +62,13 @@ public class AdminController {
 
             Iterator<Integer> i = participants.iterator();
             int participantId;
-            IndividualCompetition individualCompetition = new IndividualCompetition();
-            individualCompetition.setCompetition(competition);
+
 
             while (i.hasNext()) {
                 participantId = i.next();
+                IndividualCompetition individualCompetition = new IndividualCompetition();
                 if (individualRepository.existsById(participantId)) {
+                    individualCompetition.setCompetition(competitionRepository.findById(id).get());
                     individualCompetition.setIndividual(individualRepository.findById(participantId).get());
                     individualCompetitionRepository.saveAndFlush(individualCompetition);
                 }
@@ -78,12 +79,12 @@ public class AdminController {
 
             Iterator<Integer> i = participants.iterator();
             int participantId;
-            TeamCompetition teamCompetition = new TeamCompetition();
-            teamCompetition.setCompetition(competition);
 
             while (i.hasNext()) {
                 participantId = i.next();
+                TeamCompetition teamCompetition = new TeamCompetition();
                 if (teamRepository.existsById(participantId)) {
+                    teamCompetition.setCompetition(competitionRepository.findById(id).get());
                     teamCompetition.setTeam(teamRepository.findById(participantId).get());
                     teamCompetitionRepository.saveAndFlush(teamCompetition);
                 }

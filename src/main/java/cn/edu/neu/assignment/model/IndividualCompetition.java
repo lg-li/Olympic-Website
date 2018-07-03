@@ -15,12 +15,10 @@ public class IndividualCompetition implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "individual_id")
-    @JSONField(serialize = false)
     private Individual individual;
 
     @ManyToOne
     @JoinColumn(name = "competition_id")
-    @JSONField(serialize = false)
     private Competition competition;
 
     @Column(nullable = true)

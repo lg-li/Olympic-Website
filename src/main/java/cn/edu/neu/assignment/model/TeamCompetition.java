@@ -13,12 +13,10 @@ public class TeamCompetition implements Serializable {
     private int id;
 
     @ManyToOne
-    @JSONField(serialize = false)
     @JoinColumn(name = "team_id")
     private Team team;
 
-    @ManyToOne
-    @JSONField(serialize = false)
+    @ManyToOne()
     @JoinColumn(name = "competition_id")
     private Competition competition;
 

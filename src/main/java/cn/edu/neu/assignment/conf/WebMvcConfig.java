@@ -30,9 +30,10 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         //Interceptor to solve cross-domain issues
         registry.addInterceptor(new ProcessInterceptor());
         //Token interceptor
-        registry.addInterceptor(authorizationInterceptor)
-                .addPathPatterns("/admin/**")
-                .excludePathPatterns("/admin/login");
+//        registry.addInterceptor(authorizationInterceptor)
+//                .addPathPatterns("/admin/**")
+//                .excludePathPatterns("/admin/login")
+//                .excludePathPatterns("/admin/dashboard");
     }
 
     @Bean

@@ -29,11 +29,11 @@ public class Competition {
     @ManyToOne()
     private Sport type;
 
-    @OneToMany(mappedBy = "competition")
+    @OneToMany(mappedBy = "competition",cascade = CascadeType.REFRESH)
     @JSONField(serialize = false)
     private Set<IndividualCompetition> individualCompetitions;
 
-    @OneToMany(mappedBy = "competition")
+    @OneToMany(cascade = CascadeType.ALL)
     @JSONField(serialize = false)
     private Set<TeamCompetition> teamCompetitions;
 
