@@ -562,11 +562,22 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Result(Grades)</th>
                         <th>Rank</th>
+                        <th>Result(Grades)</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <tr v-if="competition_result == null || competition_result.length == 0">
+                        <th>
+                            No participant. <br/> Go back and add participant(s) to this competition first before you submit competition result.
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
                     <tr v-for="result in competition_result">
                         <th>
                             {{ result.id }}
@@ -624,6 +635,7 @@
             pullCompetition: function (id) {
                 this.loading = true;
                 var that = this;
+                $("#competition-dialog").scrollTop(0);
                 $.ajax({
                     url: '/competition/get/' + id,
                     type: 'get',
@@ -640,6 +652,7 @@
             pullCompetitionResult: function (id) {
                 this.loading = true;
                 var that = this;
+                $("#result-dialog").scrollTop(0);
                 $.ajax({
                     url: '/competition/result/' + id,
                     type: 'get',
@@ -673,6 +686,7 @@
                 $.ajax({
                     url: '/admin/competition/update/' + this.competition.id,
                     type: 'post',
+                    contentType: 'application/json',
                     data: JSON.stringify({competition: this.competition, participant: this.competition_participants}),
                     dataType: 'json',
                     success: function (data) {
