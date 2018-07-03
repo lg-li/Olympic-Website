@@ -9,6 +9,7 @@ public enum ErrorEnum {
     * error message
     * */
     E_400("400", "Request error,please try again later!"),
+    E_500("500", "Invalid username or password!"),
     E_501("501", "Undefined path!"),
     E_502("502", "Don't exist!"),
     E_503("503","Parameter error");
