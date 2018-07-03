@@ -683,11 +683,15 @@
                 })
             },
             saveCompetition: function () {
+                var participantsIDs = [];
+                for(var i = 0; i<this.competition_participants.length; i++){
+                    participantsIDs.push(this.competition_participants[i].id);
+                }
                 $.ajax({
                     url: '/admin/competition/update/' + this.competition.id,
                     type: 'post',
                     contentType: 'application/json',
-                    data: JSON.stringify({competition: this.competition, participant: this.competition_participants}),
+                    data: JSON.stringify({competition: this.competition, participants: participantsIDs}),
                     dataType: 'json',
                     success: function (data) {
                         if (data.code === '100') {
