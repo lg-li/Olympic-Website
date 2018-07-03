@@ -1,14 +1,10 @@
 package cn.edu.neu.assignment.controller;
 
+import cn.edu.neu.assignment.utl.CommonUtil;
+import cn.edu.neu.assignment.utl.Jwt;
+import cn.edu.neu.assignment.utl.constants.Constants;
+import cn.edu.neu.assignment.utl.constants.ErrorEnum;
 import com.alibaba.fastjson.JSONObject;
-//import com.neu.demo.inter.UserRepository;
-//import com.neu.demo.model.old.User;
-//import com.neu.demo.request.Request;
-//import CommonUtil;
-//import Jwt;
-//import Constants;
-//import ErrorEnum;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,35 +17,24 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
-//    @Autowired
-//    UserRepository userRepository;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(@PathVariable() String code){
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public JSONObject login(@RequestBody JSONObject requestJson) {
+        String username = (String) requestJson.get("username");
+        String password = (String) requestJson.get("password");
 
-        return "hello";
-//        JSONObject jsonObject = new JSONObject();
-//        User user = Request.getUserByCode(code);
-//        if (user == null){
-//            return CommonUtil.errorJson(ErrorEnum.E_500);
-//        }else {
-//            Map<String , Object> payload=new HashMap<String, Object>();
-//            Date date=new Date();
-//            payload.put("userId", user.getId());//用户ID
-//            payload.put("sessionKey",user.getSessionKey());
-//            payload.put("startTime", date.getTime());//生成时间
-//            payload.put("expiryTime",date.getTime()+ Constants.EXPIRY_TIME);//过期时间2小时
-//            String token= Jwt.createToken(payload);
-//            if(userRepository.existsById(user.getId())){
-//                userRepository.saveAndFlush(user);
-//                jsonObject.put("isNew",false);
-//                return CommonUtil.successJsonWithToken(jsonObject,token);
-//            }else {
-//                userRepository.save(user);
-//                jsonObject.put("isNew",true);
-//                return CommonUtil.successJsonWithToken(jsonObject,token);
-//            }
-//        }
+        if (!username.equals("jsp") || !password.equals("123456"))
+            return CommonUtil.errorJson(ErrorEnum.E_500);
+        else {
+            JSONObject jsonObject = new JSONObject();
+            Map<String, Object> payload = new HashMap<String, Object>();
+            Date date = new Date();
+            payload.put("userId", username);
+            payload.put("startTime", date.getTime());
+            payload.put("expiryTime", date.getTime() + Constants.EXPIRY_TIME);
+            String token = Jwt.createToken(payload);
+            return CommonUtil.successJsonWithToken(jsonObject, token);
+        }
     }
 
 //    @RequestMapping(value = "/update", method = RequestMethod.POST)
