@@ -161,7 +161,7 @@
                             <i class="mdui-icon material-icons">directions_run</i> Recent Competitions
                         </div>
                         <div class="mdui-card-content mdui-row">
-                            <div th:each="comp:${list}" class="mdui-col-sm-6 mdui-col-md-4">
+                            <div th:each="comp:${competitions}" class="mdui-col-sm-6 mdui-col-md-4">
                                 <div class="mdui-card mdui-shadow-0 mdui-ripple" th:onclick="'location.href=\'/competition/'+${comp.id}+'\''">
                                     <div class="mdui-card-media">
                                         <img th:src="@{|/static/images/photos/${comp.type.pictureUrl}.jpg|}"/>

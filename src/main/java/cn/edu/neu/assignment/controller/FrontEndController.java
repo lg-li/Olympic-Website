@@ -38,7 +38,7 @@ public class FrontEndController {
 
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("list", competitionRepository.findAll(new PageRequest(0, 6)));
+        model.addAttribute("competitions", competitionRepository.findAll(new PageRequest(0, 6)));
         List<Delegation> delegations = getRankedDelegations();
         delegations = delegations.subList(0, 5);
         model.addAttribute("rank", delegations);
