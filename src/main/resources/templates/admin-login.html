@@ -8,39 +8,39 @@
 <div th:replace="header::header"></div>
 <!---->
 <div class="mdui-container">
-            <div class="col-md-7">
-                <form>
-                    <div class="mdui-card">
-                        <div class="mdui-card-primary">
-                            <div class="mdui-card-primary-title">
-                                Administration Dashboard
-                            </div>
-                            <div class="mdui-card-primary-subtitle">
-                                Olympic NEU
-                            </div>
-                        </div>
-                        <div class="mdui-card-content">
-                            <div class="mdui-textfield mdui-textfield-floating-label">
-                                <label class="mdui-textfield-label">Username</label>
-                                <input class="mdui-textfield-input" type="text"/>
-                            </div>
-                            <div class="mdui-textfield mdui-textfield-floating-label">
-                                <label class="mdui-textfield-label">Password</label>
-                                <input class="mdui-textfield-input" type="password"/>
-                            </div>
-
-                        </div>
-                        <div class="mdui-card-actions">
-                            <button class="mdui-btn mdui-btn-raised" href="/admin/dashboard">Login</button>
-                        </div>
+    <div class="col-md-7">
+        <form>
+            <div class="mdui-card">
+                <div class="mdui-card-primary">
+                    <div class="mdui-card-primary-title">
+                        Administration Dashboard
                     </div>
-                </form>
+                    <div class="mdui-card-primary-subtitle">
+                        Olympic NEU
+                    </div>
+                </div>
+                <div class="mdui-card-content">
+                    <div class="mdui-textfield mdui-textfield-floating-label">
+                        <label class="mdui-textfield-label">Username</label>
+                        <input id="username" class="mdui-textfield-input" type="text"/>
+                    </div>
+                    <div class="mdui-textfield mdui-textfield-floating-label">
+                        <label class="mdui-textfield-label">Password</label>
+                        <input id="password" class="mdui-textfield-input" type="password"/>
+                    </div>
+
+                </div>
+                <div class="mdui-card-actions">
+                    <button class="mdui-btn mdui-btn-raised" href="/admin/dashboard">Login</button>
+                </div>
             </div>
-            <div class="col-md-5 left-account" style="background-color: #0076bf; border-radius: 5px">
-                <a>
-                    <img class="img-responsive" src="/static/images/logo.png" alt="">
-                </a>
-            </div>
+        </form>
+    </div>
+    <div class="col-md-5 left-account" style="background-color: #0076bf; border-radius: 5px">
+        <a>
+            <img class="img-responsive" src="/static/images/logo.png" alt="">
+        </a>
+    </div>
     <div class="clearfix"></div>
 </div>
 <!---->
@@ -48,5 +48,36 @@
 <!--footer-->
 <div id="footer"></div>
 <script src="/static/js/olympic.ui-loader.js"></script>
+<script>
+    function login() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        if (username === "" || password === "") {
+            mdui.snackbar({
+                message: 'Both username and password are required.'
+            });
+            return;
+        }
+        $.ajax({
+            url: "/login",
+            data: {username: username, password: password},
+            dataType: "json",
+            success: function (data) {
+                if (data.code === '100') { //success code
+                    location.href = "/admin/dashboard?token=" + data.token;
+                } else {
+                    mdui.snackbar({
+                        message: 'Your input is not correct. Try again.'
+                    });
+                }
+            },
+            error: function (err) {
+                mdui.snackbar({
+                    message: 'Error occurs during the communication with server. Infomation:' + err.toString()
+                });
+            }
+        })
+    }
+</script>
 </body>
 </html>
