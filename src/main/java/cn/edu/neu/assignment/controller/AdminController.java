@@ -48,11 +48,12 @@ public class AdminController {
     }
 
     @PostMapping("competition/update/{id}")
-    public JSONObject individualUpdate(@PathVariable(value = "id") Integer id, @RequestParam("competition") Competition competition, @RequestParam("participants") ArrayList<Integer> participants) {
+    public JSONObject individualUpdate(@PathVariable(value = "id") Integer id,@RequestBody JSONObject postJsonObject) {
         if (!competitionRepository.existsById(id)) {
             return CommonUtil.errorJson(ErrorEnum.E_503);
         }
-
+        Competition competition = JSONObject.parseObject(postJsonObject.getJSONObject("competition").toJSONString(),Competition.class);
+        List<Integer> participants = JSONObject.parseArray(postJsonObject.getJSONArray("participants").toJSONString(),Integer.class);
         JSONObject jsonObject = new JSONObject();
         competitionRepository.saveAndFlush(competition);
 
@@ -105,7 +106,9 @@ public class AdminController {
     }
 
     @PostMapping("competition/team/result/{id}")
-    public JSONObject teamResultUpdate(@PathVariable("id") Integer id,@RequestParam("result") ArrayList<TeamCompetition> result){
+    public JSONObject teamResultUpdate(@PathVariable("id") Integer id,@RequestBody JSONObject jsonObject){
+        List<TeamCompetition> result = JSONObject.parseArray(jsonObject.getJSONArray("result").toJSONString(),TeamCompetition.class);
+        System.out.println(result.toString());
         if (!competitionRepository.existsById(id)||competitionRepository.findById(id).get().isIndividual())
             return CommonUtil.errorJson(ErrorEnum.E_503);
         Iterator<TeamCompetition> i = result.iterator();
