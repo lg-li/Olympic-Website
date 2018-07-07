@@ -45,7 +45,6 @@ public class CompetitionController {
     public JSONObject get(@PathVariable("id") Integer id){
         if (!competitionRepository.existsById(id))
             return CommonUtil.errorJson(ErrorEnum.E_503);
-
         JSONObject jsonObject= new JSONObject();
         Competition competition = competitionRepository.findById(id).get();
         if (competition.isIndividual()){
