@@ -10,7 +10,7 @@
 <!---->
 <div class="mdui-container">
     <div class="single">
-        <div class="col-md-9 top-in-single">
+        <div class="col-md-12 top-in-single">
             <div class="col-md-3 single-top">
                 <img class="flag-big" th:src="@{|/static/images/flags/Flag%20of%20${delegation.name}.png|}"/>
             </div>
@@ -34,35 +34,6 @@
                         </p>
                     </blockquote>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="single-bottom">
-                <h4>Other Countries or Region</h4>
-                <ul>
-                    <li>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20Japan.png">
-                        <a href="#"><span></span> Japan</a>
-                    </li>
-                    <li>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20South%20Korea.png">
-                        <a href="#"><span></span> South Korea</a>
-                    </li>
-                    <li>
-                        <img class="flag-xsmall" src="/static/images/flags/Flag%20of%20United%20Kingdom.png">
-                        <a href="#"><span></span> United Kongdom</a>
-                    </li>
-                    <li>
-                        <img class="flag-xsmall"
-                             src="/static/images/flags/Flag%20of%20United%20States%20of%20America.png">
-                        <a href="#"><span></span> United States</a>
-                    </li>
-                    <li>
-                        <img class="flag-xsmall"
-                             src="/static/images/flags/Flag%20of%20People's%20Republic%20of%20China.png">
-                        <a href="#"><span></span> Chinese Taipei</a>
-                    </li>
-                </ul>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -150,9 +121,9 @@
                             Wu Dajing
                         </td>
                         <td th:switch="${individualMedal.rank}">
-                            <div th:case="1"><img src="/static/images/gold.png"/></div>
-                            <div th:case="2"><img src="/static/images/silver.png"/></div>
-                            <div th:case="3"><img src="/static/images/bronze.png"/></div>
+                            <div th:case="1"><img src="/static/images/gold.png"/> Gold</div>
+                            <div th:case="2"><img src="/static/images/silver.png"/> Silver</div>
+                            <div th:case="3"><img src="/static/images/bronze.png"/> Bronze</div>
                         </td>
                         <td th:text="${individualMedal.result}">
                             10:32
@@ -189,22 +160,22 @@
                     </thead>
                     <tbody>
 
-                    <tr th:each="individualMedal : ${delegation.teamMedals}">
+                    <tr th:each="teamMedal : ${delegation.teamMedals}">
                         <td>
                             <img class="flag-xsmall"
-                                 th:src="@{|/static/images/sports/${individualMedal.competition.type.logoUrl}|}" alt=""/>
-                            <strong><a th:href="@{/competition/${individualMedal.competition.id}}"
-                                       th:text="${individualMedal.competition.name}">Alpine Skiing</a></strong>
+                                 th:src="@{|/static/images/sports/${teamMedal.competition.type.logoUrl}|}" alt=""/>
+                            <strong><a th:href="@{/competition/${teamMedal.competition.id}}"
+                                       th:text="${teamMedal.competition.name}">Alpine Skiing</a></strong>
                         </td>
-                        <td th:text="${individualMedal.individual.name}">
+                        <td th:text="${teamMedal.team.name}">
                             Wu Dajing
                         </td>
-                        <td th:switch="${individualMedal.rank}">
-                            <div th:case="1"><img src="/static/images/gold.png"/></div>
-                            <div th:case="2"><img src="/static/images/silver.png"/></div>
-                            <div th:case="3"><img src="/static/images/bronze.png"/></div>
+                        <td th:switch="${teamMedal.rank}">
+                            <div th:case="1"><img src="/static/images/gold.png"/> Gold</div>
+                            <div th:case="2"><img src="/static/images/silver.png"/> Silver</div>
+                            <div th:case="3"><img src="/static/images/bronze.png"/> Bronze</div>
                         </td>
-                        <td th:text="${individualMedal.result}">
+                        <td th:text="${teamMedal.result}">
                             10:32
                         </td>
                     </tr>
@@ -224,10 +195,6 @@
 <script>
     $(document).ready(function () {
         $('#individual-medals').DataTable();
-    });
-</script>
-<script>
-    $(document).ready(function () {
         $('#team-medals').DataTable();
     });
 </script>

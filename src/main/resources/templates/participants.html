@@ -65,7 +65,7 @@
         <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-col-md-8 com-lg-9">
             <div class="mdui-card">
                 <div class="mdui-card-primary">
-                    <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">people_outline</i> Result</div>
+                    <div class="mdui-card-primary-title"><i class="mdui-icon material-icons">people_outline</i> Result <div id="loading" class="mdui-spinner" style="display: none;"></div></div>
                     <div class="mdui-card-primary-subtitle">Options for search</div>
                 </div>
                 <div class="mdui-card-content" id="result-grid">
@@ -92,20 +92,27 @@
         $('.chosen-select').chosen();
     });
 
-    var athlete_template = '<div class="mdui-col-md-4">\n' +
+    var athlete_template = '<div class="mdui-col-md-4 mdui-hoverable">\n' +
         '                        <a href="/athlete/__ID__" class="lot">\n' +
         '                            <img class="img-responsive" src="/static/images/persons/__PHOTO__" alt="">\n' +
         '                        </a>\n' +
         '                        <div class="big-item">\n' +
         '                            <p><img class="flag-xsmall"\n' +
-        '                                    src="/static/images/flags/Flag%20of%20__DELEGATION_NAME__.png"/> China</p>\n' +
+        '                                    src="/static/images/flags/Flag%20of%20__DELEGATION_NAME__.png"/> __DELEGATION_NAME__</p>\n' +
         '                            <label>__NAME__</label>\n' +
         '                        </div>\n' +
         '                        <div class="clearfix"></div>\n' +
         '                    </div>';
 
+    var team_template = '<div class="mdui-col-md-4 mdui-hoverable" style="min-height: 100px">\n' +
+        '                            <p> __SEX__ Team</p>\n' +
+        '                            <label><a href="/team/__ID__"><i class="mdui-icon material-icons">group</i> __NAME__</a></label>\n' +
+        '                        <div class="clearfix"></div>\n' +
+        '                    </div>';
+
 
     function searchParticipants() {
+        $("#loading").show("200");
         $.ajax({
             url: '/search',
             type: 'post',
@@ -122,20 +129,38 @@
                     result_grid.fadeOut(50);
                     result_grid.html("");
                     for (var i = 0; i < data['data']['list'].length; i++) {
-                        result_grid.append(
-                            compileTemplate(athlete_template,
-                                {
-                                    ID: data['data']['list'][i]['id'],
-                                    NAME: data['data']['list'][i]['name'],
-                                    PHOTO: data['data']['list'][i]['photo'],
-                                    DELEGATION_NAME: data['data']['list'][i]['delegations']['name'],
-                                    DELEGATION_ID:  data['data']['list'][i]['delegations']['id']
-                                })
-                        );
+                        if($('#option-participant-type').val()==="team") {
+                            result_grid.append(
+                                compileTemplate(team_template,
+                                    {
+                                        ID: data['data']['list'][i]['id'],
+                                        NAME: data['data']['list'][i]['name'],
+                                        SEX: data['data']['list'][i]['sex']==='M'?"Male":(data['data']['list'][i]['sex']==='F'?"Female":"Gender Mixed"),
+                                    })
+                            );
+                        }else{
+                            result_grid.append(
+                                compileTemplate(athlete_template,
+                                    {
+                                        ID: data['data']['list'][i]['id'],
+                                        NAME: data['data']['list'][i]['name'],
+                                        PHOTO: data['data']['list'][i]['photo'],
+                                        DELEGATION_NAME: data['data']['list'][i]['delegations']['name'],
+                                        DELEGATION_ID: data['data']['list'][i]['delegations']['id']
+                                    })
+                            );
+                        }
+                    }
+                    if(i===0){
+                        result_grid.append("No result found.");
                     }
                     result_grid.fadeIn(250);
                 }
-
+                $("#loading").hide("200");
+            },
+            error: function (err) {
+                mdui.alert('Error occurs during request.', 'Try again', null, {});
+                $("#loading").hide("200");
             }
         })
     }

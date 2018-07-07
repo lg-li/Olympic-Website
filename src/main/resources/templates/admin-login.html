@@ -6,14 +6,24 @@
 <body class="mdui-theme-primary-blue">
 <!--header-->
 <div th:replace="header::header"></div>
+<div class="title-banner" style="background: url('/static/images/banner.jpg')">
+    <div class="big-title">
+        <p><img style=" max-height: 80px" src="/static/images/logo.png" alt="">
+            Administration Center</p>
+    </div>
+</div>
+<div class="line1"></div>
 <!---->
+<br/>
 <div class="mdui-container">
     <div class="col-md-7">
-        <form>
+        <form onsubmit="return false;">
             <div class="mdui-card">
                 <div class="mdui-card-primary">
                     <div class="mdui-card-primary-title">
-                        Administration Dashboard
+                        <div id="loading" class="mdui-spinner" style="display: none">
+                        </div>
+                        Login before continue
                     </div>
                     <div class="mdui-card-primary-subtitle">
                         Olympic NEU
@@ -31,18 +41,15 @@
 
                 </div>
                 <div class="mdui-card-actions">
-                    <button class="mdui-btn mdui-btn-raised" href="/admin/dashboard">Login</button>
+                    <button class="mdui-btn mdui-btn-raised" onclick="login()">Login</button>
                 </div>
             </div>
         </form>
     </div>
-    <div class="col-md-5 left-account" style="background-color: #0076bf; border-radius: 5px">
-        <a>
-            <img class="img-responsive" src="/static/images/logo.png" alt="">
-        </a>
-    </div>
+
     <div class="clearfix"></div>
 </div>
+<br/>
 <!---->
 
 <!--footer-->
@@ -58,23 +65,31 @@
             });
             return;
         }
+        $("#loading").show(250);
         $.ajax({
-            url: "/login",
-            data: {username: username, password: password},
+            url: "/user/login",
+            type:"post",
+            contentType: 'application/json',
+            data: JSON.stringify({username: username, password: password}),
             dataType: "json",
             success: function (data) {
                 if (data.code === '100') { //success code
                     location.href = "/admin/dashboard?token=" + data.token;
+                } else if (data.code === '500') {
+                    mdui.alert('Your username or password is not correct.', 'Authentication Failed', null, {});
+                    $("#loading").hide(250);
                 } else {
                     mdui.snackbar({
                         message: 'Your input is not correct. Try again.'
                     });
+                    $("#loading").hide(250);
                 }
             },
             error: function (err) {
                 mdui.snackbar({
                     message: 'Error occurs during the communication with server. Infomation:' + err.toString()
                 });
+                $("#loading").hide(250);
             }
         })
     }
