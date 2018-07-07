@@ -39,7 +39,8 @@
                         </div>
                         <div class="mdui-panel-item-body">
                             <p>This is the assignment for JSP and Servlet Course 2018. </p>
-                            <p>Disclaimer: All photos (including athlete portrait) are copied from other original Olympic sites
+                            <p>Disclaimer: All photos (including athlete portrait) are copied from other original
+                                Olympic sites
                                 and are used in this site ONLY FOR DEMO.</p>
                             <p>Authors</p>
                             <p>20165254 <strong>Li Lingen</strong></p>
@@ -535,9 +536,7 @@
         </div>
         <div class="mdui-card-actions">
             <button class="mdui-btn mdui-ripple mdui-color-blue-700" onclick="app.saveCompetition()">Save</button>
-
             <button class="mdui-btn mdui-ripple mdui-color-red" mdui-dialog-close>Close</button>
-
         </div>
     </div>
     <!--/COMPETITION-->
@@ -552,14 +551,12 @@
             </div>
         </div>
         <div class="mdui-card-content">
-            
             <div v-if="loading"><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <div class="mdui-spinner"></div>
                 <h4>Loading competition data...</h4>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             </div>
-
-            <div class="mdui-table-fluid">
+            <div v-show="!loading" class="mdui-table-fluid">
                 <table class="mdui-table">
                     <thead>
                     <tr>
@@ -571,7 +568,8 @@
                     <tbody>
                     <tr v-if="competition_result == null || competition_result.length == 0">
                         <th>
-                            No participant. <br/> Go back and add participant(s) to this competition first before you submit competition result.
+                            No participant. <br/> Go back and add participant(s) to this competition first before you
+                            submit competition result.
                         </th>
                         <th>
 
@@ -582,10 +580,13 @@
                     </tr>
                     <tr v-for="result in competition_result">
                         <th>
-                            {{ result.id }}
+                            {{ result.competition.individual?result.individual.name:result.team.name }}
                         </th>
                         <th>
-                            {{ result.rank }}
+                            <div class="mdui-textfield">
+                                <label class="mdui-textfield-label">Rank</label>
+                                <input v-model="result.rank" class="mdui-textfield-input" type="number"/>
+                            </div>
                         </th>
                         <th>
                             <div class="mdui-textfield">
@@ -597,6 +598,11 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+
+        <div class="mdui-card-actions">
+            <button class="mdui-btn mdui-ripple mdui-color-blue-700" onclick="app.saveCompetitionResult()">Save</button>
+            <button class="mdui-btn mdui-ripple mdui-color-red" mdui-dialog-close>Close</button>
         </div>
     </div>
     <!--/RESULT-->
@@ -648,6 +654,12 @@
                             that.competition_participants = data.data.participants;
                             that.loading = false;
                         }
+                    },
+                    error: function (err) {
+                        mdui.snackbar({
+                            message: 'Error occurs during the communication with server. Infomation:' + err.toString()
+                        });
+                        that.loading = false;
                     }
                 })
             },
@@ -662,8 +674,14 @@
                     success: function (data) {
                         if (data.code === '100') {
                             that.competition_result = data.data.result;
-                            that.loading = false;
                         }
+                        that.loading = false;
+                    },
+                    error: function (err) {
+                        mdui.snackbar({
+                            message: 'Error occurs during the communication with server. Infomation:' + err.toString()
+                        });
+                        that.loading = false;
                     }
                 })
             },
@@ -685,8 +703,9 @@
                 })
             },
             saveCompetition: function () {
+                var that = this;
                 var participantsIDs = [];
-                for(var i = 0; i<this.competition_participants.length; i++){
+                for (var i = 0; i < this.competition_participants.length; i++) {
                     participantsIDs.push(this.competition_participants[i].id);
                 }
                 $.ajax({
@@ -701,6 +720,38 @@
                                 message: 'Data has been saved. Refresh page to update the display(Not necessary).'
                             });
                         }
+                    },
+                    error: function (err) {
+                        mdui.snackbar({
+                            message: 'Error occurs during the communication with server. Infomation:' + err.toString()
+                        });
+                        that.loading = false;
+                    }
+                })
+            },
+            saveCompetitionResult: function () {
+                this.loading = true;
+                var that = this;
+                $.ajax({
+                    url: '/admin/competition/' + (this.competition_result[0].competition.individual ? 'individual' : 'team') + '/result/' + this.competition_result[0].competition.id,
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({result: this.competition_result}),
+                    dataType: 'json',
+                    success: function (data) {
+                        that.loading = false;
+                        if (data.code === '100') {
+                            mdui.snackbar({
+                                message: 'Data has been saved. Refresh page to update the display(Not necessary).'
+                            });
+                        }
+
+                    },
+                    error: function (err) {
+                        mdui.snackbar({
+                            message: 'Error occurs during the communication with server. Infomation:' + err.toString()
+                        });
+                        that.loading = false;
                     }
                 })
             }

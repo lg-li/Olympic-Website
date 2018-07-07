@@ -97,7 +97,8 @@ public class AdminController {
     }
 
     @PostMapping("competition/individual/result/{id}")
-    public JSONObject individualResultUpdate(@PathVariable("id") Integer id,@RequestParam("result") ArrayList<IndividualCompetition> result){
+    public JSONObject individualResultUpdate(@PathVariable("id") Integer id,@RequestBody JSONObject jsonObject){
+        List<IndividualCompetition> result = JSONObject.parseArray(jsonObject.getJSONArray("result").toJSONString(),IndividualCompetition.class);
         if (!competitionRepository.existsById(id)||!competitionRepository.findById(id).get().isIndividual())
             return CommonUtil.errorJson(ErrorEnum.E_503);
         Iterator<IndividualCompetition> i = result.iterator();
@@ -109,7 +110,6 @@ public class AdminController {
     @PostMapping("competition/team/result/{id}")
     public JSONObject teamResultUpdate(@PathVariable("id") Integer id,@RequestBody JSONObject jsonObject){
         List<TeamCompetition> result = JSONObject.parseArray(jsonObject.getJSONArray("result").toJSONString(),TeamCompetition.class);
-        System.out.println(result.toString());
         if (!competitionRepository.existsById(id)||competitionRepository.findById(id).get().isIndividual())
             return CommonUtil.errorJson(ErrorEnum.E_503);
         Iterator<TeamCompetition> i = result.iterator();
