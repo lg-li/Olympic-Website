@@ -1,16 +1,17 @@
 package cn.edu.neu.assignment.controller;
 
 import cn.edu.neu.assignment.inter.*;
-import cn.edu.neu.assignment.model.*;
+import cn.edu.neu.assignment.model.Competition;
+import cn.edu.neu.assignment.model.IndividualCompetition;
+import cn.edu.neu.assignment.model.TeamCompetition;
 import cn.edu.neu.assignment.utl.CommonUtil;
 import cn.edu.neu.assignment.utl.constants.ErrorEnum;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
@@ -48,14 +49,20 @@ public class AdminController {
     }
 
     @PostMapping("competition/update/{id}")
-    public JSONObject individualUpdate(@PathVariable(value = "id") Integer id,@RequestBody JSONObject postJsonObject) {
-        if (!competitionRepository.existsById(id)) {
-            return CommonUtil.errorJson(ErrorEnum.E_503);
+    public JSONObject individualUpdate(@PathVariable(value = "id") Integer id, @RequestBody JSONObject postJsonObject) {
+        if (id != -1) {
+            if (!competitionRepository.existsById(id)) {
+                return CommonUtil.errorJson(ErrorEnum.E_503);
+            }
+        } else {
+            id = null;
         }
-        Competition competition = JSONObject.parseObject(postJsonObject.getJSONObject("competition").toJSONString(),Competition.class);
-        List<Integer> participants = JSONObject.parseArray(postJsonObject.getJSONArray("participants").toJSONString(),Integer.class);
+        Competition competition = JSONObject.parseObject(postJsonObject.getJSONObject("competition").toJSONString(), Competition.class);
+        List<Integer> participants = JSONObject.parseArray(postJsonObject.getJSONArray("participants").toJSONString(), Integer.class);
         JSONObject jsonObject = new JSONObject();
-        competitionRepository.saveAndFlush(competition);
+        id = competitionRepository.saveAndFlush(competition).getId();
+
+
 
         if (competition.isIndividual()) {
             individualCompetitionRepository.deleteAllByCompetition_Id(id);
@@ -97,9 +104,9 @@ public class AdminController {
     }
 
     @PostMapping("competition/individual/result/{id}")
-    public JSONObject individualResultUpdate(@PathVariable("id") Integer id,@RequestBody JSONObject jsonObject){
-        List<IndividualCompetition> result = JSONObject.parseArray(jsonObject.getJSONArray("result").toJSONString(),IndividualCompetition.class);
-        if (!competitionRepository.existsById(id)||!competitionRepository.findById(id).get().isIndividual())
+    public JSONObject individualResultUpdate(@PathVariable("id") Integer id, @RequestBody JSONObject jsonObject) {
+        List<IndividualCompetition> result = JSONObject.parseArray(jsonObject.getJSONArray("result").toJSONString(), IndividualCompetition.class);
+        if (!competitionRepository.existsById(id) || !competitionRepository.findById(id).get().isIndividual())
             return CommonUtil.errorJson(ErrorEnum.E_503);
         Iterator<IndividualCompetition> i = result.iterator();
         while (i.hasNext())
@@ -108,9 +115,9 @@ public class AdminController {
     }
 
     @PostMapping("competition/team/result/{id}")
-    public JSONObject teamResultUpdate(@PathVariable("id") Integer id,@RequestBody JSONObject jsonObject){
-        List<TeamCompetition> result = JSONObject.parseArray(jsonObject.getJSONArray("result").toJSONString(),TeamCompetition.class);
-        if (!competitionRepository.existsById(id)||competitionRepository.findById(id).get().isIndividual())
+    public JSONObject teamResultUpdate(@PathVariable("id") Integer id, @RequestBody JSONObject jsonObject) {
+        List<TeamCompetition> result = JSONObject.parseArray(jsonObject.getJSONArray("result").toJSONString(), TeamCompetition.class);
+        if (!competitionRepository.existsById(id) || competitionRepository.findById(id).get().isIndividual())
             return CommonUtil.errorJson(ErrorEnum.E_503);
         Iterator<TeamCompetition> i = result.iterator();
         while (i.hasNext())
