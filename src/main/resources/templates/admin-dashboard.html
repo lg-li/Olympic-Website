@@ -111,7 +111,7 @@
                                         <td th:text="${competition.time}">
                                             Time
                                         </td>
-                                        <td th:text="${competition.situation}">
+                                        <td th:text="${competition.situation}==0?'Scheduled':(${competition.situation}==1?'On Going':'Finished')">
                                             Status
                                         </td>
                                         <td>
@@ -133,7 +133,8 @@
 
                             <div class="mdui-panel-item-actions">
                                 <button mdui-dialog="{target: '#competition-dialog'}"
-                                        class="mdui-btn mdui-ripple mdui-color-blue-700" onclick="app.createCompetition()"><i
+                                        class="mdui-btn mdui-ripple mdui-color-blue-700"
+                                        onclick="app.createCompetition()"><i
                                         class="mdui-icon material-icons">add</i> Create Competition
                                 </button>
                                 <button class="mdui-btn mdui-ripple" mdui-panel-item-close><i
@@ -265,6 +266,7 @@
                                 </div>
                             </div>
                             <div class="mdui-panel-item-actions">
+                                <!--
                                 <button mdui-dialog="{target: '#individual-dialog'}"
                                         class="mdui-btn mdui-ripple mdui-color-blue-700"><i
                                         class="mdui-icon material-icons">person_add</i> Create Individual Athlete
@@ -272,7 +274,7 @@
                                 <button mdui-dialog="{target: '#team-dialog'}"
                                         class="mdui-btn mdui-ripple mdui-color-blue-700"><i
                                         class="mdui-icon material-icons">group_add</i> Create Team
-                                </button>
+                                </button>-->
                                 <button class="mdui-btn mdui-ripple" mdui-panel-item-close><i
                                         class="mdui-icon material-icons">close</i> Close
                                 </button>
@@ -379,21 +381,22 @@
             </div>
         </div>
         <div class="mdui-card-content">
-            <div v-if="loading"><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                <div class="mdui-spinner"></div>
-                <h4>Loading competition data...</h4>
+            <div v-show="loading"><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <h4>
+                    <div class="mdui-spinner"></div>
+                    Please wait...
+                </h4>
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             </div>
             <div>
+                <div v-show="!loading">
                 <div class="mdui-textfield">
                     <label class="mdui-textfield-label">Competition Name</label>
                     <input v-model="competition.name" class="mdui-textfield-input" type="text"/>
                 </div>
                 <div>
                     <label for="option-competition-status">Current Staus of The Competition</label><br/>
-                    <select v-model="competition.situation" id="option-competition-status" class="mdui-select"
-                            mdui-select
-                            data-placeholder="Choose a Type">
+                    <select v-model="competition.situation" id="option-competition-status">
                         <option value="2">Finished</option>
                         <option value="1">On Going</option>
                         <option value="0">Scheduled</option>
@@ -401,17 +404,14 @@
                 </div>
                 <div>
                     <label for="option-individual-or-team">Competition Type: Individual or Team</label><br/>
-                    <select v-model="competition.individual" id="option-individual-or-team" class="mdui-select"
-                            mdui-select
-                            data-placeholder="Choose a Type">
-                        <option value="true">Individual</option>
-                        <option value="false">Team</option>
+                    <select v-model="competition.individual" id="option-individual-or-team">
+                        <option :value="true">Individual</option>
+                        <option :value="false">Team</option>
                     </select>
                 </div>
                 <div>
                     <label for="option-sport">Sport/Competition Type</label><br/>
-                    <select v-model="competition.type.id" id="option-sport" class="mdui-select" mdui-select
-                            data-placeholder="Choose a Type">
+                    <select v-model="competition.type.id" id="option-sport">
                         <option th:each="sport:${sports}" th:value="${sport.id}"
                                 th:text="${sport.typeName}"></option>
                     </select>
@@ -428,7 +428,7 @@
                 <p>Participants already in this competition:</p>
                 <div v-for="item in competition_participants" class="mdui-chip">
                     <span class="mdui-chip-title">{{ item.name }}</span>
-                    <span class="mdui-chip-delete"><i class="mdui-icon material-icons">cancel</i></span>
+                    <span class="mdui-chip-delete" @click="deleteParticipant(item.id)"><i class="mdui-icon material-icons">cancel</i></span>
                 </div>
                 <div v-if="competition_participants == null || competition_participants.length == 0">No participants.
                 </div>
@@ -447,7 +447,8 @@
                         <div role="tabpanel" class="tab-pane fade in active" id="comp-participant-athletes">
                             <div class="mdui-table-fluid">
                                 <table id="comp-athletes" class="mdui-table mdui-table-hoverable">
-                                    <p>Add athletes to this competition</p>
+                                    <h3>Add athletes to competition</h3>
+                                    <p>Slide to view attributes and available operations</p>
                                     <thead>
                                     <tr>
                                         <td>
@@ -531,6 +532,7 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
         <div class="mdui-card-actions">
@@ -539,7 +541,6 @@
         </div>
     </div>
     <!--/COMPETITION-->
-
 
     <!--RESULT-->
     <div id="result-dialog" class="mdui-dialog mdui-card" style="overflow: scroll; height: 90%;">
@@ -550,9 +551,8 @@
             </div>
         </div>
         <div class="mdui-card-content">
-            <div v-if="loading"><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                <div class="mdui-spinner"></div>
-                <h4>Loading competition data...</h4>
+            <div v-show="loading"><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <h4><div class="mdui-spinner"></div>Please wait...</h4>
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             </div>
             <div v-show="!loading" class="mdui-table-fluid">
@@ -615,17 +615,26 @@
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/vue.js"></script>
 <script>
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+
     $(document).ready(function () {
         $('#athletes').DataTable();
         $('#teams').DataTable();
         $('#comp-athletes').DataTable();
         $('#comp-teams').DataTable();
         $('#competitions').DataTable();
+        app.token = getQueryString("token");
     });
 
     var app = new Vue({
         el: '#app',
         data: {
+            token: "",
             loading: false,
             competition: {
                 id: null,
@@ -663,13 +672,25 @@
                     }
                 })
             },
+            deleteParticipant: function(id) {
+                Array.prototype.myRemove = function(dx)
+                {
+                    if(isNaN(dx)||dx>this.length){return false;}
+                    this.splice(dx,1);
+                };
+                for(var i=0; i<this.competition_participants.length;i++){
+                    if(this.competition_participants[i].id == id){
+                        this.competition_participants.myRemove(i);
+                    }
+                }
+            },
             createCompetition: function () {
                 this.competition = {
                     individual: false,
                     name: "",
                     place: "",
-                    situation: 1,
-                    time: "2018-07-01 15:00",
+                    situation: 0,
+                    time: "",
                     type: {id: 1}
                 };
                 this.competition_participants = [];
@@ -714,22 +735,36 @@
                 })
             },
             saveCompetition: function () {
+                if(this.competition.name==""||this.competition.time==""||this.competition.place==""){
+                    mdui.snackbar({
+                        message: 'No blank in the form is allowed to be empty.'
+                    });
+                    return;
+                }
+                this.loading = true;
                 var that = this;
                 var participantsIDs = [];
                 for (var i = 0; i < this.competition_participants.length; i++) {
                     participantsIDs.push(this.competition_participants[i].id);
                 }
                 $.ajax({
-                    url: '/admin/competition/update/' + (this.competition.id==undefined?-1:this.competition.id),
+                    url: '/admin/competition/update/' + (this.competition.id == undefined ? -1 : this.competition.id) + '?token=' + this.token,
                     type: 'post',
                     contentType: 'application/json',
-                    data: JSON.stringify({competition: this.competition, participants: participantsIDs}),
+                    data: JSON.stringify({
+                        token: this.token,
+                        competition: this.competition,
+                        participants: participantsIDs
+                    }),
                     dataType: 'json',
                     success: function (data) {
                         if (data.code === '100') {
                             mdui.snackbar({
                                 message: 'Data has been saved. Refresh page to update the display(Not necessary).'
                             });
+                        }else if(data.code === '401'){
+                            // invalid token
+                            location.href="/admin/login";
                         }
                     },
                     error: function (err) {
@@ -744,10 +779,10 @@
                 this.loading = true;
                 var that = this;
                 $.ajax({
-                    url: '/admin/competition/' + (this.competition_result[0].competition.individual ? 'individual' : 'team') + '/result/' + this.competition_result[0].competition.id,
+                    url: '/admin/competition/' + (this.competition_result[0].competition.individual ? 'individual' : 'team') + '/result/' + this.competition_result[0].competition.id + '?token=' + this.token,
                     type: 'post',
                     contentType: 'application/json',
-                    data: JSON.stringify({result: this.competition_result}),
+                    data: JSON.stringify({token: this.token, result: this.competition_result}),
                     dataType: 'json',
                     success: function (data) {
                         that.loading = false;
@@ -755,8 +790,10 @@
                             mdui.snackbar({
                                 message: 'Data has been saved. Refresh page to update the display(Not necessary).'
                             });
+                        }else if(data.code === '401'){
+                            // invalid token
+                            location.href="/admin/login";
                         }
-
                     },
                     error: function (err) {
                         mdui.snackbar({

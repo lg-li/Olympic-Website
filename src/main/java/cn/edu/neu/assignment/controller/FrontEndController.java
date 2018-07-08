@@ -2,6 +2,9 @@ package cn.edu.neu.assignment.controller;
 
 import cn.edu.neu.assignment.inter.*;
 import cn.edu.neu.assignment.model.*;
+import cn.edu.neu.assignment.utl.Jwt;
+import cn.edu.neu.assignment.utl.TokenState;
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -236,11 +240,17 @@ public class FrontEndController {
      * @return The html content of this page
      */
     @RequestMapping("/admin/dashboard")
-    public String adminIndex(Model model) {
-        model.addAttribute("athletes",individualRepository.findAll());
-        model.addAttribute("teams",teamRepository.findAll());
-        model.addAttribute("delegations", delegationRepository.findAll());
-        model.addAttribute("competitions",competitionRepository.findAll());
-        return "admin-dashboard";
+    public String adminIndex(Model model, HttpServletRequest request) {
+        String token = request.getParameter("token");
+        if(Jwt.validToken(token).get("state").equals(TokenState.VALID.toString())) {
+            model.addAttribute("athletes", individualRepository.findAll());
+            model.addAttribute("teams", teamRepository.findAll());
+            model.addAttribute("sports", typeRepository.findAll());
+            model.addAttribute("delegations", delegationRepository.findAll());
+            model.addAttribute("competitions", competitionRepository.findAll());
+            return "admin-dashboard";
+        } else {
+            return login();
+        }
     }
 }

@@ -26,7 +26,7 @@
                         Login before continue
                     </div>
                     <div class="mdui-card-primary-subtitle">
-                        Olympic NEU
+                        Default account for test   Username: jsp / Password: 123456
                     </div>
                 </div>
                 <div class="mdui-card-content">
@@ -74,7 +74,7 @@
             dataType: "json",
             success: function (data) {
                 if (data.code === '100') { //success code
-                    location.href = "/admin/dashboard?token=" + data.token;
+                    location.href = "/admin/dashboard/?token=" + data.token;
                 } else if (data.code === '500') {
                     mdui.alert('Your username or password is not correct.', 'Authentication Failed', null, {});
                     $("#loading").hide(250);
