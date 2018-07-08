@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * The entity to keep information of the relation between a individual athlete and a competition
+ */
 @Entity
 @Table(name = "individual_competition")
 public class IndividualCompetition implements Serializable {
@@ -13,10 +16,16 @@ public class IndividualCompetition implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    /**
+     * Mapped to the individual of this record
+     */
     @ManyToOne
     @JoinColumn(name = "individual_id")
     private Individual individual;
 
+    /**
+     * Mapped to the competition of this record
+     */
     @ManyToOne
     @JoinColumn(name = "competition_id")
     private Competition competition;

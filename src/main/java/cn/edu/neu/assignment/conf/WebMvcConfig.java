@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * @author: CCM 20164969
- * @description: The config of this application
+ * The config of this application
  */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
@@ -27,8 +27,6 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        //Interceptor to solve cross-domain issues
-        registry.addInterceptor(new ProcessInterceptor());
         //Token interceptor
 //        registry.addInterceptor(authorizationInterceptor)
 //                .addPathPatterns("/admin/**")
@@ -60,13 +58,6 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
 
-    @Bean
-    public InternalResourceViewResolver jspViewResolver() {
-        InternalResourceViewResolver bean = new InternalResourceViewResolver();
-        bean.setPrefix("/WEB-INF/jsp/");
-        bean.setSuffix(".jsp");
-        return bean;
-    }
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {

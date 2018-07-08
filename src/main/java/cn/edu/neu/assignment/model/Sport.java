@@ -7,6 +7,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The entity to keep information of a sport
+ */
 @Entity
 public class Sport {
     @Id
@@ -16,6 +19,9 @@ public class Sport {
     @Column(length = 32, nullable = false)
     private String typeName;
 
+    /**
+     * Mapped to competition list of this type
+     */
     @OneToMany(mappedBy = "type")
     @JSONField(serialize = false)
     private Set<Competition> competitions = new HashSet<>();

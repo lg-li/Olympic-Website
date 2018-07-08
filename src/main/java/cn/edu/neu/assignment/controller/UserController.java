@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/**
+ * The request controller to respond request of user information.
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -23,12 +26,14 @@ public class UserController {
         String username = (String) requestJson.get("username");
         String password = (String) requestJson.get("password");
 
+        //check username and password
         if (!username.equals("jsp") || !password.equals("123456"))
             return CommonUtil.errorJson(ErrorEnum.E_500);
         else {
             JSONObject jsonObject = new JSONObject();
             Map<String, Object> payload = new HashMap<String, Object>();
             Date date = new Date();
+            //add payload to create a token
             payload.put("userId", username);
             payload.put("startTime", date.getTime());
             payload.put("expiryTime", date.getTime() + Constants.EXPIRY_TIME);
@@ -36,15 +41,4 @@ public class UserController {
             return CommonUtil.successJsonWithToken(jsonObject, token);
         }
     }
-
-//    @RequestMapping(value = "/update", method = RequestMethod.POST)
-//    public JSONObject login(HttpServletRequest request, @RequestBody JSONObject requestJson){
-//        requestJson = requestJson.getJSONObject("user");
-//        System.out.println(requestJson.toJSONString());
-//        requestJson.put("id",Jwt.getUserId(request));
-//        requestJson.put("sessionKey",Jwt.getSessionKey(request));
-//        User user = JSONObject.toJavaObject(requestJson,User.class);
-//        userRepository.saveAndFlush(user);
-//        return CommonUtil.successJson(new JSONObject());
-//    }
 }

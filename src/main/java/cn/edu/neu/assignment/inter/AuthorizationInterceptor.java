@@ -12,17 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
+/**
+ * @author CCM 20164969
+ * A interceptor to implement a authorization check
+ */
 @Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
-        //如果不是映射到方法直接通过
+        //if not a hand method just pass
         if (!(handler instanceof HandlerMethod)) {
             return true;
         }
 
-        //从request中得到token
+        //get token from request
         String token = request.getParameter("token");
 //        System.out.println("token: "+token);
         Map<String, Object> result= Jwt.validToken(token);

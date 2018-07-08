@@ -7,6 +7,9 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
+/**
+ * The entity to keep information of competition
+ */
 @Entity
 @NamedEntityGraphs({@NamedEntityGraph(name = "competition.findById", attributeNodes = {
         @NamedAttributeNode("individualCompetitions"), @NamedAttributeNode("teamCompetitions")
@@ -26,13 +29,22 @@ public class Competition {
     @JSONField(format = "yyyy-MM-dd HH:mm")
     private Date time;
 
+    /**
+     * Mapped to the type of this competition
+     */
     @ManyToOne()
     private Sport type;
 
+    /**
+     * Mapped to the individual competition list
+     */
     @OneToMany(mappedBy = "competition")
     @JSONField(serialize = false)
     private Set<IndividualCompetition> individualCompetitions;
 
+    /**
+     * Mapped to the team competition list
+     */
     @OneToMany(mappedBy = "competition")
     @JSONField(serialize = false)
     private Set<TeamCompetition> teamCompetitions;

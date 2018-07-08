@@ -7,6 +7,9 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The entity to keep information of individual athletes
+ */
 @Entity
 @NamedEntityGraphs({@NamedEntityGraph(name = "individual.findById", attributeNodes = {
         @NamedAttributeNode("teams")
@@ -30,14 +33,23 @@ public class Individual {
 
     private String photo;
 
+    /**
+     * Mapped to individual competition list
+     */
     @OneToMany(mappedBy = "individual")
     @JSONField(serialize = false)
     private Set<IndividualCompetition> individualCompetitions = new HashSet<>();
 
+    /**
+     * Mapped to delegation of this athletes
+     */
     @ManyToOne()
     @JoinColumn(name = "delegation_id")
     private Delegation delegations;
 
+    /**
+     * Mapped to the team list of this athletes
+     */
     @ManyToMany()
     @JSONField(serialize = false)
     private Set<Team> teams = new HashSet<>();
