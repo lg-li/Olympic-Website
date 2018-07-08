@@ -114,7 +114,7 @@
                         <td>
                             <img class="flag-xsmall"
                                 th:src="@{|/static/images/sports/${individualMedal.competition.type.logoUrl}|}" alt=""/>
-                            <strong><a th:href="@{/competition/${individualMedal.competition.id}}"
+                            <strong><a th:href="'/competition/'+${individualMedal.competition.id}"
                                         th:text="${individualMedal.competition.name}">Alpine Skiing</a></strong>
                         </td>
                         <td th:text="${individualMedal.individual.name}">
@@ -164,7 +164,7 @@
                         <td>
                             <img class="flag-xsmall"
                                  th:src="@{|/static/images/sports/${teamMedal.competition.type.logoUrl}|}" alt=""/>
-                            <strong><a th:href="@{/competition/${teamMedal.competition.id}}"
+                            <strong><a th:href="'/competition/'+${teamMedal.competition.id}"
                                        th:text="${teamMedal.competition.name}">Alpine Skiing</a></strong>
                         </td>
                         <td th:text="${teamMedal.team.name}">
