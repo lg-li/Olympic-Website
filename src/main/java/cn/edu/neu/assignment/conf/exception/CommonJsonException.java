@@ -7,7 +7,6 @@ import cn.edu.neu.assignment.utl.constants.ErrorEnum;
 
 /**
  * @author: CCM 20164969
- * @description: An Exception class
  * When there is a exception has been throw,the class can send a error msg to front end.
  */
 public class CommonJsonException extends RuntimeException {

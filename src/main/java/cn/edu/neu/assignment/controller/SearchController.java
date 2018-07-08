@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The request controller to respond request for search participants.
+ */
 @RestController
 @RequestMapping("/search")
 public class SearchController {

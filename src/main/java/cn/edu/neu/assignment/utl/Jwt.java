@@ -14,7 +14,7 @@ import java.util.Map;
 
 /**
  * @author: CCM 20164969
- * @description: The class to implement a authentication system
+ * The class to implement a authentication system
  */
 public class Jwt {
 
@@ -52,9 +52,6 @@ public class Jwt {
 
     /**
      * check token invalid or not
-     *
-     * @param token
-     * @return Map<String               ,                               Object>
      */
     public static Map<String, Object> validToken(String token) {
         Map<String, Object> resultMap = new HashMap<String, Object>();

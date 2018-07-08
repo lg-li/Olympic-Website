@@ -6,6 +6,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The entity to keep information of a team
+ */
 @Entity
 @NamedEntityGraphs({@NamedEntityGraph(name = "team.findById", attributeNodes = {
         @NamedAttributeNode("individuals")
@@ -24,15 +27,24 @@ public class Team {
     @Column(nullable = false)
     private char sex;
 
+    /**
+     * Mapped to team competition list of this team
+     */
     @OneToMany(mappedBy = "team")
     @JSONField(serialize = false)
     private Set<TeamCompetition> teamCompetitions = new HashSet<>();
 
+    /**
+     * Mapped to delegation of this team
+     */
     @ManyToOne
     @JSONField(serialize = false)
     @JoinColumn(name = "delegation_id")
     private Delegation delegations;
 
+    /**
+     * Mapped to individual list of this team
+     */
     @ManyToMany(mappedBy = "teams")
     @JSONField(serialize = false)
     private Set<Individual> individuals = new HashSet<>();

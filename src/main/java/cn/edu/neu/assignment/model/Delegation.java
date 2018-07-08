@@ -15,6 +15,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * The entity to keep information of delegation
+ */
 @Entity
 @NamedEntityGraphs({@NamedEntityGraph(name = "delegation.all", attributeNodes = {
         @NamedAttributeNode(value = "individuals", subgraph = "individualCompetitions"), @NamedAttributeNode(value = "teams", subgraph = "teamCompetitions"),
@@ -33,10 +36,16 @@ public class Delegation implements Comparable<Delegation> {
     @Column(length = 32, nullable = false)
     private String name;
 
+    /**
+     * Mapped to the individual athletes of this delegation
+     */
     @OneToMany(mappedBy = "delegations", fetch = FetchType.LAZY)
     @JSONField(serialize = false)
     private Set<Individual> individuals = new HashSet<>();
 
+    /**
+     * Mapped to the team athletes of this delegation
+     */
     @OneToMany(mappedBy = "delegations", fetch = FetchType.LAZY)
     @JSONField(serialize = false)
     private Set<Team> teams = new HashSet<>();
@@ -51,8 +60,6 @@ public class Delegation implements Comparable<Delegation> {
     private int silver;
     @Transient
     private int bronze;
-
-
 
     @Transient
     private ArrayList<IndividualCompetition> individualMedals = new ArrayList();
@@ -150,6 +157,9 @@ public class Delegation implements Comparable<Delegation> {
         this.teamMedals = teamMedals;
     }
 
+    /**
+     * Count the medals of this delegation
+     */
     public void countMedals() {
         //Variables of individual
         Iterator<Individual> individualIterator = individuals.iterator();

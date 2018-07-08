@@ -5,6 +5,9 @@ import com.alibaba.fastjson.annotation.JSONField;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * The entity to keep information of the relation between team and competition
+ */
 @Entity
 @Table(name = "team_competition")
 public class TeamCompetition implements Serializable {
@@ -12,10 +15,16 @@ public class TeamCompetition implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    /**
+     * Mapped to the team of this record
+     */
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
 
+    /**
+     * Mapped to he competition of this record
+     */
     @ManyToOne()
     @JoinColumn(name = "competition_id")
     private Competition competition;

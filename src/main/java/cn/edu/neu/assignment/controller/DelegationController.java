@@ -15,6 +15,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * The request controller to respond request for delegation information.
+ */
 @RestController
 @RequestMapping("/delegation")
 public class DelegationController {

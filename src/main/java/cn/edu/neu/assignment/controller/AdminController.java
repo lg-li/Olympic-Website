@@ -1,18 +1,21 @@
 package cn.edu.neu.assignment.controller;
 
 import cn.edu.neu.assignment.inter.*;
-import cn.edu.neu.assignment.model.Competition;
-import cn.edu.neu.assignment.model.IndividualCompetition;
-import cn.edu.neu.assignment.model.TeamCompetition;
+import cn.edu.neu.assignment.model.*;
 import cn.edu.neu.assignment.utl.CommonUtil;
 import cn.edu.neu.assignment.utl.constants.ErrorEnum;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
+/**
+ * @author: CCM 20164969
+ * The request controller to respond request from admin user.
+ */
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -28,28 +31,15 @@ public class AdminController {
     @Autowired
     TeamCompetitionRepository teamCompetitionRepository;
 
-    @GetMapping("individual/delete/{id}")
-    public JSONObject individualDelete(@PathVariable(value = "id") Integer id) {
-        individualRepository.deleteById(2);
-        return CommonUtil.successJson();
-    }
-
-    @PostMapping("test/{id}")
-    public JSONObject test(@PathVariable(value = "id") Integer id, @RequestParam("participant") Integer participant) {
-        individualCompetitionRepository.deleteAllByCompetition_Id(id);
-        IndividualCompetition individualCompetition = new IndividualCompetition();
-        individualCompetition.setCompetition(competitionRepository.findById(id).get());
-        individualCompetition.setIndividual(individualRepository.findById(participant).get());
-        individualCompetitionRepository.saveAndFlush(individualCompetition);
-
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("competition", competitionRepository.findById(id).get());
-        jsonObject.put("participants", individualCompetitionRepository.findAllByCompetition_Id(id));
-        return CommonUtil.successJson(jsonObject);
-    }
-
+    /**
+     * Update the information and participants of a competition
+     * @param id The id of competition
+     * @param postJsonObject The data want to change
+     * @return The result of update
+     */
     @PostMapping("competition/update/{id}")
-    public JSONObject individualUpdate(@PathVariable(value = "id") Integer id, @RequestBody JSONObject postJsonObject) {
+    public JSONObject competitionUpdate(@PathVariable(value = "id") Integer id, @RequestBody JSONObject postJsonObject) {
+        //Determine whether the id exists
         if (id != -1) {
             if (!competitionRepository.existsById(id)) {
                 return CommonUtil.errorJson(ErrorEnum.E_503);
@@ -57,14 +47,14 @@ public class AdminController {
         } else {
             id = null;
         }
+        //Parse the requested parameters
         Competition competition = JSONObject.parseObject(postJsonObject.getJSONObject("competition").toJSONString(), Competition.class);
         List<Integer> participants = JSONObject.parseArray(postJsonObject.getJSONArray("participants").toJSONString(), Integer.class);
         JSONObject jsonObject = new JSONObject();
-        id = competitionRepository.saveAndFlush(competition).getId();
-
-
-
-        if (competition.isIndividual()) {
+        //Refresh the information of competition
+        competitionRepository.saveAndFlush(competition);
+        //Determine whether the participant of competition are is individual of team
+        if (competition.isIndividual()) {//individual participant
             individualCompetitionRepository.deleteAllByCompetition_Id(id);
 
             Iterator<Integer> i = participants.iterator();
@@ -80,8 +70,9 @@ public class AdminController {
                     individualCompetitionRepository.saveAndFlush(individualCompetition);
                 }
             }
+            //Put the new participants into response data
             jsonObject.put("participants", individualCompetitionRepository.findAllByCompetition_Id(id));
-        } else {
+        } else {//team participant
             teamCompetitionRepository.deleteAllByCompetition_Id(id);
 
             Iterator<Integer> i = participants.iterator();
@@ -96,6 +87,7 @@ public class AdminController {
                     teamCompetitionRepository.saveAndFlush(teamCompetition);
                 }
             }
+            //Put the new participants into response data
             jsonObject.put("participants", teamCompetitionRepository.findAllByCompetition_Id(id));
 
         }
@@ -103,10 +95,16 @@ public class AdminController {
         return CommonUtil.successJson(jsonObject);
     }
 
+    /**
+     * Update result of a individual competition
+     * @param id The id of competition
+     * @param jsonObject The result want to update
+     * @return The result after update
+     */
     @PostMapping("competition/individual/result/{id}")
-    public JSONObject individualResultUpdate(@PathVariable("id") Integer id, @RequestBody JSONObject jsonObject) {
-        List<IndividualCompetition> result = JSONObject.parseArray(jsonObject.getJSONArray("result").toJSONString(), IndividualCompetition.class);
-        if (!competitionRepository.existsById(id) || !competitionRepository.findById(id).get().isIndividual())
+    public JSONObject individualResultUpdate(@PathVariable("id") Integer id,@RequestBody JSONObject jsonObject){
+        List<IndividualCompetition> result = JSONObject.parseArray(jsonObject.getJSONArray("result").toJSONString(),IndividualCompetition.class);
+        if (!competitionRepository.existsById(id)||!competitionRepository.findById(id).get().isIndividual())
             return CommonUtil.errorJson(ErrorEnum.E_503);
         Iterator<IndividualCompetition> i = result.iterator();
         while (i.hasNext())
@@ -114,10 +112,16 @@ public class AdminController {
         return CommonUtil.successJson();
     }
 
+    /**
+     * Update result of a team competition
+     * @param id The id of competition
+     * @param jsonObject The result want to update
+     * @return The result after update
+     */
     @PostMapping("competition/team/result/{id}")
-    public JSONObject teamResultUpdate(@PathVariable("id") Integer id, @RequestBody JSONObject jsonObject) {
-        List<TeamCompetition> result = JSONObject.parseArray(jsonObject.getJSONArray("result").toJSONString(), TeamCompetition.class);
-        if (!competitionRepository.existsById(id) || competitionRepository.findById(id).get().isIndividual())
+    public JSONObject teamResultUpdate(@PathVariable("id") Integer id,@RequestBody JSONObject jsonObject){
+        List<TeamCompetition> result = JSONObject.parseArray(jsonObject.getJSONArray("result").toJSONString(),TeamCompetition.class);
+        if (!competitionRepository.existsById(id)||competitionRepository.findById(id).get().isIndividual())
             return CommonUtil.errorJson(ErrorEnum.E_503);
         Iterator<TeamCompetition> i = result.iterator();
         while (i.hasNext())

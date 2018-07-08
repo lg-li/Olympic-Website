@@ -15,6 +15,9 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * The request controller to respond request for competition information.
+ */
 @RestController
 @RequestMapping("/competition")
 public class CompetitionController {

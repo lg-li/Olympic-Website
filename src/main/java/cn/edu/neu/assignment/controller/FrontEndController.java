@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.*;
 
+/**
+ * @author CCM 20164969 LLG 20165254
+ * @Description The route of frontend and inject data
+ */
 @Controller
 public class FrontEndController {
 
@@ -29,6 +33,10 @@ public class FrontEndController {
     @Autowired
     TeamCompetitionRepository teamCompetitionRepository;
 
+    /**
+     * The method to get the rank list of delegation
+     * @return The rank list of delegation
+     */
     private List<Delegation> getRankedDelegations() {
         List<Delegation> delegations = delegationRepository.findAll();
         Collections.sort(delegations);
@@ -36,6 +44,11 @@ public class FrontEndController {
         return delegations;
     }
 
+    /**
+     * The route for home page
+     * @param model The data to inject into page
+     * @return The html content of this page
+     */
     @RequestMapping("/")
     public String index(Model model) {
         model.addAttribute("competitions", competitionRepository.findAll(new PageRequest(0, 6)));
@@ -45,27 +58,50 @@ public class FrontEndController {
         return "index";
     }
 
+    /**
+     * The route for global footer
+     * @return The html content of this page
+     */
     @RequestMapping("**/footer.html")
     public String footer() {
         return "footer";
     }
 
+    /**
+     * The route for global header
+     * @return The html content of this page
+     */
     @RequestMapping("**/header.html")
     public String header() {
         return "header";
     }
 
+    /**
+     * The route for rank list page
+     * @param model The data to inject into page
+     * @return The html content of this page
+     */
     @RequestMapping("/medal")
-    public String medal(Model model) {
+    public String rank(Model model) {
         model.addAttribute("rank", (getRankedDelegations()));
         return "medal";
     }
 
+    /**
+     * The route for sport types list page
+     * @return The html content of this page
+     */
     @RequestMapping("/sport/all")
-    public String type() {
+    public String typeAll() {
         return "sport-all";
     }
 
+    /**
+     * The route for sport page
+     * @param id The id of sport
+     * @param model The data want to inject into page
+     * @return The html content of this page
+     */
     @RequestMapping("/sport/{id}") // Competition Type (sport, not session)
     public String type(@PathVariable Integer id, Model model) {
         model.addAttribute("id", id);
@@ -74,11 +110,21 @@ public class FrontEndController {
         return "sport-detail";
     }
 
+    /**
+     * The route for delegations list page
+     * @return The html content of this page
+     */
     @RequestMapping("/delegation/all")
     public String delegationAll() {
         return "delegation-all";
     }
 
+    /**
+     * The route for a delegation page
+     * @param id The id of delegation
+     * @param model The data want to inject into page
+     * @return The html content of this page
+     */
     @RequestMapping("/delegation/{id}")
     public String delegation(@PathVariable Integer id, Model model) {
         Delegation delegation = delegationRepository.findById(id).get();
@@ -89,6 +135,12 @@ public class FrontEndController {
         return "delegation-detail";
     }
 
+    /**
+     * The route for a team page
+     * @param id The id of team
+     * @param model The data want to inject into page
+     * @return The html content of this page
+     */
     @RequestMapping("team/{id}")
     public String teamDetail(@PathVariable Integer id, Model model) {
         Team team = teamRepository.findById(id).get();
@@ -106,6 +158,12 @@ public class FrontEndController {
         return "team-detail";
     }
 
+    /**
+     * The route for a athlete page
+     * @param id The id of athlete
+     * @param model The data want to inject into page
+     * @return The html content of this page
+     */
     @RequestMapping("/athlete/{id}")
     public String athlete(@PathVariable Integer id, Model model) {
         Optional<Individual> individual = individualRepository.findById(id);
@@ -118,6 +176,11 @@ public class FrontEndController {
         }
     }
 
+    /**
+     * The route for the search page
+     * @param model The data want to inject into page
+     * @return The html content of this page
+     */
     @RequestMapping("/participants")
     public String participants(Model model) {
         model.addAttribute("delegations", delegationRepository.findAll());
@@ -125,6 +188,12 @@ public class FrontEndController {
         return "participants";
     }
 
+    /**
+     * The route for a competition
+     * @param id The id of competition
+     * @param model The data want to inject into page
+     * @return The html content of this page
+     */
     @RequestMapping("/competition/{id}") // Competition Item(session)
     public String competition(@PathVariable Integer id, Model model) {
         Competition competition = competitionRepository.findById(id).get();
@@ -143,16 +212,29 @@ public class FrontEndController {
         }
     }
 
+    /**
+     * The route for all competition page
+     * @return The html content of this page
+     */
     @RequestMapping("/competition/all")
     public String competition() {
         return "sport-all";
     }
 
+    /**
+     * The route for login page
+     * @return The html content of this page
+     */
     @RequestMapping("/admin/login")
     public String login() {
         return "admin-login";
     }
 
+    /**
+     * The route for admin page
+     * @param model The data want to inject into page
+     * @return The html content of this page
+     */
     @RequestMapping("/admin/dashboard")
     public String adminIndex(Model model) {
         model.addAttribute("athletes",individualRepository.findAll());
