@@ -43,7 +43,7 @@ public class Jwt {
             jwsObject.sign(new MACSigner(SECRET));
             tokenString = jwsObject.serialize();
         } catch (JOSEException e) {
-            System.err.println("签名失败:" + e.getMessage());
+            System.err.println("Signature failed:" + e.getMessage());
             e.printStackTrace();
         }
         return tokenString;

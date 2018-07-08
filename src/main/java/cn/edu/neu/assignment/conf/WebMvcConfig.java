@@ -2,7 +2,6 @@ package cn.edu.neu.assignment.conf;
 
 
 import cn.edu.neu.assignment.inter.AuthorizationInterceptor;
-import cn.edu.neu.assignment.inter.ProcessInterceptor;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
