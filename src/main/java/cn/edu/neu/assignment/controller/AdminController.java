@@ -38,22 +38,29 @@ public class AdminController {
      * @return The result of update
      */
     @PostMapping("competition/update/{id}")
-    public JSONObject competitionUpdate(@PathVariable(value = "id") Integer id,@RequestBody JSONObject postJsonObject) {
+    public JSONObject competitionUpdate(@PathVariable(value = "id") Integer id, @RequestBody JSONObject postJsonObject) {
         //Determine whether the id exists
-        if (!competitionRepository.existsById(id)) {
-            return CommonUtil.errorJson(ErrorEnum.E_503);
+        if (id != -1) {
+            if (!competitionRepository.existsById(id)) {
+                return CommonUtil.errorJson(ErrorEnum.E_503);
+            }
+        } else {
+            id = null;
         }
         //Parse the requested parameters
-        Competition competition = JSONObject.parseObject(postJsonObject.getJSONObject("competition").toJSONString(),Competition.class);
-        List<Integer> participants = JSONObject.parseArray(postJsonObject.getJSONArray("participants").toJSONString(),Integer.class);
+        Competition competition = JSONObject.parseObject(postJsonObject.getJSONObject("competition").toJSONString(), Competition.class);
+        List<Integer> participants = JSONObject.parseArray(postJsonObject.getJSONArray("participants").toJSONString(), Integer.class);
         JSONObject jsonObject = new JSONObject();
         //Refresh the information of competition
         competitionRepository.saveAndFlush(competition);
         //Determine whether the participant of competition are is individual of team
         if (competition.isIndividual()) {//individual participant
             individualCompetitionRepository.deleteAllByCompetition_Id(id);
+
             Iterator<Integer> i = participants.iterator();
             int participantId;
+
+
             while (i.hasNext()) {
                 participantId = i.next();
                 IndividualCompetition individualCompetition = new IndividualCompetition();
@@ -67,8 +74,10 @@ public class AdminController {
             jsonObject.put("participants", individualCompetitionRepository.findAllByCompetition_Id(id));
         } else {//team participant
             teamCompetitionRepository.deleteAllByCompetition_Id(id);
+
             Iterator<Integer> i = participants.iterator();
             int participantId;
+
             while (i.hasNext()) {
                 participantId = i.next();
                 TeamCompetition teamCompetition = new TeamCompetition();
@@ -80,6 +89,7 @@ public class AdminController {
             }
             //Put the new participants into response data
             jsonObject.put("participants", teamCompetitionRepository.findAllByCompetition_Id(id));
+
         }
         jsonObject.put("competition", competitionRepository.findById(id).get());
         return CommonUtil.successJson(jsonObject);
