@@ -1,13 +1,7 @@
 # Olympic NEU
  This is a Java web project for the assignment of [JSP and Servlet Tech] course, NEU.
 ## Contributors
- Li Lingen(#20165254)
- 
- Chang Chenming(#20164969)
- 
- Sun Ningyuan(#20165316)
- 
- Huang Yan(#20165252)
+ Li Lingen, Chang Chenming, Sun Ningyuan, Huang Yan
  
 ## To Run
 ##### This is a SpringBoot Appliction. 
@@ -24,6 +18,3 @@ This project license is
 [MIT](http://opensource.org/licenses/MIT).
 
 All photos used in this project is **only for demo purpose**, whose copyrights belong to their origin owners. **Remove these photos** before you redistribute this source code.
-
-
-
