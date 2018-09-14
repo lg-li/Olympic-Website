@@ -3,11 +3,10 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    # @LiLingen: This remote database is only for test and demo for the assignment of course [JSP and Servlet Tech.]
-    url: jdbc:mysql://intpserv1.5io2.com:3306/olympic?characterEncoding=utf-8&createDatabaseIfNotExist=true
-    username: olympic
+    url: jdbc:mysql://YOUR_SERVER:3306/YOUR_DATABASE?characterEncoding=utf-8&createDatabaseIfNotExist=true
+    username: YOUR_USERNAME
     platform: mysql
-    password: oly_assignment-neu
+    password: YOUR_PASSWORD
   jpa:
     hibernate:
       ddl-auto: update
